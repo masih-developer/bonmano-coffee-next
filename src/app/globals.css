@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 60 4% 11%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -36,6 +36,24 @@
 
     --info: 201 98% 41%;
     --info-foreground: 210 40% 98%;
+
+    --c-neutral-0: 0 0% 100%;
+    --c-neutral-0-foreground: 60 4% 11%;
+
+    --c-neutral-100: 0 0% 96%;
+    --c-neutral-100-foreground: 60 4% 11%;
+
+    --c-neutral-200: 0 0% 85%;
+    --c-neutral-200-foreground: 60 4% 11%;
+
+    --c-neutral-300: 0 0% 44%;
+    --c-neutral-300-foreground: 0 0% 100%;
+
+    --c-neutral-400: 60 5% 30%;
+    --c-neutral-400-foreground: 0 0% 100%;
+
+    --c-neutral-500: 60 4% 11%;
+    --c-neutral-500-foreground: 0 0% 100%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;

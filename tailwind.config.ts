@@ -21,6 +21,7 @@ const config = {
       fontFamily: {
         dana: ["var(--font-dana)", ...fontFamily.sans],
       },
+      fontSize: {},
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -66,6 +67,32 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        neutral: {
+          0: {
+            DEFAULT: "hsl(var(--c-neutral-0))",
+            foreground: "hsl(var(--c-neutral-0-foreground))",
+          },
+          100: {
+            DEFAULT: "hsl(var(--c-neutral-100))",
+            foreground: "hsl(var(--c-neutral-100-foreground))",
+          },
+          200: {
+            DEFAULT: "hsl(var(--c-neutral-200))",
+            foreground: "hsl(var(--c-neutral-200-foreground))",
+          },
+          300: {
+            DEFAULT: "hsl(var(--c-neutral-300))",
+            foreground: "hsl(var(--c-neutral-300-foreground))",
+          },
+          400: {
+            DEFAULT: "hsl(var(--c-neutral-400))",
+            foreground: "hsl(var(--c-neutral-400-foreground))",
+          },
+          500: {
+            DEFAULT: "hsl(var(--c-neutral-500))",
+            foreground: "hsl(var(--c-neutral-500-foreground))",
+          },
         },
       },
       borderRadius: {
