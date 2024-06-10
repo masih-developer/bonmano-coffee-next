@@ -71,3 +71,6 @@
     @apply bg-background text-foreground;
   }
 }
+/* .szh-accordion__item-content {
+  transition: height 0.25s cubic-bezier(0, 0, 0, 1);
+} */

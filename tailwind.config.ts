@@ -114,9 +114,31 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      transitionTimingFunction: {
+        "custom-cubic": "cubic-bezier(0, 0, 0, 1)",
+      },
+      transitionDuration: {
+        "250": "250ms",
+      },
+      transitionProperty: {
+        height: "height",
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addUtilities }: { addUtilities: (utilities: any) => void }) {
+      addUtilities({
+        ".hide-scrollbar": {
+          "::-webkit-scrollbar": {
+            display: "none",
+          },
+          "-ms-overflow-style": "none" /* IE and Edge */,
+          "scrollbar-width": "none" /* Firefox */,
+        },
+      });
+    },
+  ],
 } satisfies Config;
 
 export default config;
