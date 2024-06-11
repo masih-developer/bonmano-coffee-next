@@ -1,7 +1,8 @@
 "use client";
 
-import { Accordion, AccordionItem } from "@szhsin/react-accordion";
+import { Accordion, AccordionItem } from "@/components/ui/accordion";
 import Image from "next/image";
+import Link from "next/link";
 import { HiChevronDown, HiXMark } from "react-icons/hi2";
 
 interface NavbarMobileProps {
@@ -9,10 +10,95 @@ interface NavbarMobileProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+type NavLinkType =
+  | { id: number; title: string; isLink: true; path: string }
+  | { id: number; title: string; isLink: false; items: NavLinkType[] };
+
+const NAV_LINKS: NavLinkType[] = [
+  {
+    id: 1,
+    title: "محصولات خانگی",
+    isLink: false,
+    items: [
+      { id: 1, title: "نورسکا", isLink: true, path: "" },
+      { id: 2, title: "کپسول اسپرسو", isLink: true, path: "" },
+      {
+        id: 3,
+        title: "اسپرسو",
+        isLink: false,
+        items: [
+          { id: 1, title: "دانه اسپرسو", isLink: true, path: "" },
+          { id: 2, title: "پودر اسپرسو", isLink: true, path: "" },
+        ],
+      },
+      { id: 4, title: "قهوه ترک", isLink: true, path: "" },
+      { id: 5, title: "قهوه فرانسه", isLink: true, path: "" },
+      {
+        id: 6,
+        title: "قهوه فوری",
+        isLink: false,
+        items: [
+          { id: 1, title: "کافی میکس", isLink: true, path: "" },
+          { id: 2, title: "کاپوچینو", isLink: true, path: "" },
+          { id: 3, title: "قهوه گلد گرمی", isLink: true, path: "" },
+          { id: 4, title: "قهوه گلد برزیل ساشه ای", isLink: true, path: "" },
+          { id: 5, title: "کریمر", isLink: true, path: "" },
+        ],
+      },
+      {
+        id: 7,
+        title: "پودر های ترکیبی",
+        isLink: false,
+        items: [
+          { id: 1, title: "چای لاته کاراملی", isLink: true, path: "" },
+          { id: 2, title: "چای ماسالا", isLink: true, path: "" },
+          { id: 3, title: "شکلات داغ", isLink: true, path: "" },
+        ],
+      },
+      {
+        id: 8,
+        title: "شکر قهوه ای",
+        isLink: false,
+        items: [
+          { id: 1, title: "شکر قهوه ای گرمی", isLink: true, path: "" },
+          { id: 2, title: "شکر قهوه ای ساشه", isLink: true, path: "" },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "محصولات هورکا",
+    isLink: false,
+    items: [
+      { id: 1, title: "تخصصی", isLink: true, path: "" },
+      { id: 2, title: "تک خاستگاه", isLink: true, path: "" },
+      { id: 3, title: "ترکیبی", isLink: true, path: "" },
+    ],
+  },
+  {
+    id: 3,
+    title: "مجله بُن مانو",
+    isLink: false,
+    items: [
+      { id: 1, title: "دانشنامه", isLink: true, path: "" },
+      { id: 2, title: "سلامتی", isLink: true, path: "" },
+      { id: 3, title: "روش های دم آوری قهوه", isLink: true, path: "" },
+      { id: 4, title: "طرز تهیه نوشیدنی", isLink: true, path: "" },
+      { id: 5, title: "دستور پخت کیک و دسر", isLink: true, path: "" },
+      { id: 6, title: "لوازم و تجهیزات قهوه", isLink: true, path: "" },
+      { id: 7, title: "برشته کاری قهوه", isLink: true, path: "" },
+      { id: 8, title: "اخبار بُن مانو", isLink: true, path: "" },
+    ],
+  },
+  { id: 4, title: "درباره ما", isLink: true, path: "" },
+  { id: 5, title: "تماس با ما", isLink: true, path: "" },
+];
+
 const NavbarMobile = ({ open, setOpen }: NavbarMobileProps) => {
   return (
     <div
-      className={`fixed z-30 w-80 max-w-full rounded-tl-2xl p-5 rounded-bl-2xl top-0 bottom-0 duration-300 bg-background flex flex-col gap-y-5 ${
+      className={`fixed z-30 w-80 max-w-full rounded-tl-2xl p-5 rounded-bl-2xl top-0 bottom-0 duration-300 bg-background flex flex-col gap-y-10 ${
         open ? "right-0" : "-right-80"
       }`}
     >
@@ -32,107 +118,98 @@ const NavbarMobile = ({ open, setOpen }: NavbarMobileProps) => {
           alt="sidebar app logo"
         />
       </div>
-      <div className="overflow-y-auto overflow-x-hidden">
-        <Accordion transition transitionTimeout={250} className="space-y-4">
-          <AccordionItem
-            header={({ state: { isEnter } }) => {
-              return (
-                <>
-                  <span
-                    className={`transition-colors font-light text-sm ${
-                      isEnter ? "text-primary" : ""
-                    }`}
-                  >
-                    محصولات خانگی
-                  </span>
-                  <span
-                    className={`transition-transform ${
-                      isEnter ? "rotate-180 text-primary" : "rotate-0"
-                    }`}
-                  >
-                    <HiChevronDown />
-                  </span>
-                </>
-              );
-            }}
-            buttonProps={{
-              className:
-                "bg-neutral-100 py-2 w-full text-start flex items-center justify-between",
-            }}
-            className="bg-neutral-100 rounded-xl overflow-hidden p-2"
-            contentProps={{ className: "transition-height" }}
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-          </AccordionItem>
-          <AccordionItem
-            header={({ state: { isEnter } }) => {
-              return (
-                <>
-                  <span
-                    className={`transition-colors font-light text-sm ${
-                      isEnter ? "text-primary" : ""
-                    }`}
-                  >
-                    محصولات هورکا
-                  </span>
-                  <span
-                    className={`transition-transform ${
-                      isEnter ? "rotate-180 text-primary" : "rotate-0"
-                    }`}
-                  >
-                    <HiChevronDown />
-                  </span>
-                </>
-              );
-            }}
-            buttonProps={{
-              className:
-                "bg-neutral-100 py-2 w-full text-start flex items-center justify-between",
-            }}
-            className="bg-neutral-100 rounded-xl overflow-hidden p-2"
-            contentProps={{ className: "transition-height" }}
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-          </AccordionItem>
-          <AccordionItem
-            header={({ state: { isEnter } }) => {
-              return (
-                <>
-                  <span
-                    className={`transition-colors font-light text-sm ${
-                      isEnter ? "text-primary" : ""
-                    }`}
-                  >
-                    مجله بن مانو
-                  </span>
-                  <span
-                    className={`transition-transform ${
-                      isEnter ? "rotate-180 text-primary" : "rotate-0"
-                    }`}
-                  >
-                    <HiChevronDown />
-                  </span>
-                </>
-              );
-            }}
-            buttonProps={{
-              className:
-                "bg-neutral-100 py-2 w-full text-start flex items-center justify-between",
-            }}
-            className="bg-neutral-100 rounded-xl overflow-hidden p-2"
-            contentProps={{ className: "transition-height" }}
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-          </AccordionItem>
+      <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">
+        <Accordion>
+          {NAV_LINKS.map((item) =>
+            item.isLink ? (
+              <Link
+                key={item.id}
+                href={item.path}
+                className="text-sm font-light bg-neutral-100 py-4 w-full text-start flex items-center justify-between rounded-xl overflow-hidden px-2"
+              >
+                {item.title}
+              </Link>
+            ) : (
+              <AccordionItem
+                key={item.id}
+                header={({ state: { isEnter } }) => {
+                  return (
+                    <>
+                      <span
+                        className={`transition-colors font-light text-sm truncate ${
+                          isEnter ? "text-primary" : ""
+                        }`}
+                      >
+                        {item.title}
+                      </span>
+                      <span
+                        className={`transition-transform shrink-0 mr-2 ${
+                          isEnter ? "rotate-180 text-primary" : "rotate-0"
+                        }`}
+                      >
+                        <HiChevronDown />
+                      </span>
+                    </>
+                  );
+                }}
+                contentProps={{ className: "transition-height" }}
+              >
+                {item.items.map((each) =>
+                  each.isLink ? (
+                    <Link
+                      key={each.id}
+                      href={each.path}
+                      className="text-sm font-light bg-neutral-100 py-4 w-full text-start flex items-center justify-between rounded-xl overflow-hidden px-2"
+                    >
+                      {each.title}
+                    </Link>
+                  ) : (
+                    <Accordion key={each.id} className="space-y-0">
+                      <AccordionItem
+                        header={({ state: { isEnter } }) => {
+                          return (
+                            <>
+                              <span
+                                className={`transition-colors font-light text-sm truncate ${
+                                  isEnter ? "text-primary" : ""
+                                }`}
+                              >
+                                {each.title}
+                              </span>
+                              <span
+                                className={`transition-transform shrink-0 mr-2 ${
+                                  isEnter
+                                    ? "rotate-180 text-primary"
+                                    : "rotate-0"
+                                }`}
+                              >
+                                <HiChevronDown />
+                              </span>
+                            </>
+                          );
+                        }}
+                        contentProps={{ className: "transition-height" }}
+                      >
+                        {each.items.map((child) =>
+                          child.isLink ? (
+                            <Link
+                              key={child.id}
+                              href={child.path}
+                              className="text-sm font-light bg-red-400 w-full text-start flex items-center justify-between overflow-hidden px-2"
+                            >
+                              {child.title}
+                            </Link>
+                          ) : (
+                            ""
+                          )
+                        )}
+                      </AccordionItem>
+                    </Accordion>
+                  )
+                )}
+              </AccordionItem>
+            )
+          )}
         </Accordion>
       </div>
     </div>
