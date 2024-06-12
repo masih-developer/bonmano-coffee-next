@@ -154,18 +154,19 @@ const NavbarMobile = ({ open, setOpen }: NavbarMobileProps) => {
                 }}
                 contentProps={{ className: "transition-height" }}
               >
-                {item.items.map((each) =>
-                  each.isLink ? (
-                    <Link
-                      key={each.id}
-                      href={each.path}
-                      className="text-sm font-light bg-neutral-100 py-4 w-full text-start flex items-center justify-between rounded-xl overflow-hidden px-2"
-                    >
-                      {each.title}
-                    </Link>
-                  ) : (
-                    <Accordion key={each.id} className="space-y-0">
+                <Accordion className="space-y-0">
+                  {item.items.map((each) =>
+                    each.isLink ? (
+                      <Link
+                        key={each.id}
+                        href={each.path}
+                        className="text-sm font-light bg-neutral-100 py-3 w-full text-start flex items-center justify-between rounded-xl overflow-hidden px-2"
+                      >
+                        {each.title}
+                      </Link>
+                    ) : (
                       <AccordionItem
+                        key={each.id}
                         header={({ state: { isEnter } }) => {
                           return (
                             <>
@@ -189,24 +190,33 @@ const NavbarMobile = ({ open, setOpen }: NavbarMobileProps) => {
                           );
                         }}
                         contentProps={{ className: "transition-height" }}
+                        className="py-1"
                       >
-                        {each.items.map((child) =>
-                          child.isLink ? (
-                            <Link
-                              key={child.id}
-                              href={child.path}
-                              className="text-sm font-light bg-red-400 w-full text-start flex items-center justify-between overflow-hidden px-2"
-                            >
-                              {child.title}
-                            </Link>
-                          ) : (
-                            ""
-                          )
-                        )}
+                        <div className="py-2">
+                          <ul className="flex flex-col gap-y-3 pr-2 border-r-2 border-r-primary">
+                            {each.items.map((child) =>
+                              child.isLink ? (
+                                <li
+                                  key={child.id}
+                                  className="[&>a]:first:pt-0 [&>a]:last:pb-0"
+                                >
+                                  <Link
+                                    href={child.path}
+                                    className="text-sm font-light w-full text-start block transition-all hover:text-primary hover:pr-5 relative before:content-[''] before:absolute before:right-0 before:w-0 before:h-[2px] before:rounded-full before:bg-primary before:top-0 before:bottom-0 hover:before:w-4 before:m-auto before:transition-all"
+                                  >
+                                    {child.title}
+                                  </Link>
+                                </li>
+                              ) : (
+                                ""
+                              )
+                            )}
+                          </ul>
+                        </div>
                       </AccordionItem>
-                    </Accordion>
-                  )
-                )}
+                    )
+                  )}
+                </Accordion>
               </AccordionItem>
             )
           )}
