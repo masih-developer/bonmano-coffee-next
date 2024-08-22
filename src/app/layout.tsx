@@ -55,8 +55,10 @@ const myFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Coffee Next App",
-  description: "Created By @masih_developer",
+  title:
+    "خرید اینترنتی قهوه تازه با بهترین کیفیت و قیمت، فروش آنلاین قهوه بن‌مانو",
+  description:
+    "فروش اینترنتی انواع قهوه و پودر نوشیدنی، دانه قهوه تازه‌رست، پودر قهوه آسیاشده ترک، فرانسه، اسپرسو، قهوه‌ فوری و کپسول اسپرسو با بهترین قیمت و کیفیت",
 };
 
 export default function RootLayout({
