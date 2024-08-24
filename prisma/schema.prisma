@@ -20,6 +20,7 @@ model User {
   username   String   @unique @db.VarChar(30)
   email      String   @unique @db.VarChar(255)
   password   String   @db.VarChar(30)
+  phone      String   @unique @db.VarChar(11)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
