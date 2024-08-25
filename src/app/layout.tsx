@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/layout/navbar";
+import ReactHotToastProvider from "@/contexts/ReactHotToastProvider";
 
 const myFont = localFont({
   src: [
@@ -69,10 +69,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={myFont.className}>
-        <header>
-          <Navbar />
-        </header>
-        <main className="mt-16">{children}</main>
+        <ReactHotToastProvider>{children}</ReactHotToastProvider>
       </body>
     </html>
   );
