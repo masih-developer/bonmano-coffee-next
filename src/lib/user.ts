@@ -1,7 +1,6 @@
-import { registerSchema } from "@/validators/auth";
 import { Prisma } from "@prisma/client";
-import { z } from "zod";
 import prisma from "./db";
+import { hash } from "bcrypt";
 
 export async function createUser(user: Prisma.UserCreateInput): Promise<{
   error?: { statusCode: number; message: string };
@@ -24,7 +23,10 @@ export async function createUser(user: Prisma.UserCreateInput): Promise<{
       },
     };
   }
-  const res = await prisma.user.create({ data: user });
+  const hashedPassword = await hash(user.password, 12);
+  const res = await prisma.user.create({
+    data: { ...user, password: hashedPassword },
+  });
 
   return { user: res };
 }
