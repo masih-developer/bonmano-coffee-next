@@ -36,3 +36,8 @@ export const registerSchema = z.object({
     .min(1, ErrMsg.required("شماره تلفن همراه"))
     .regex(/^09\d{9}$/, "شماره تلفن همراه باید با 09 شروع شود و 11 رقم باشد."),
 });
+
+export const loginSchema = z.object({
+  email: registerSchema.shape.email,
+  password: registerSchema.shape.password,
+});

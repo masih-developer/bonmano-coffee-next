@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
 import ReactHotToastProvider from "@/contexts/ReactHotToastProvider";
+import AuthProvider from "@/contexts/AuthProvider";
 
 const myFont = localFont({
   src: [
@@ -69,7 +70,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={myFont.className}>
-        <ReactHotToastProvider>{children}</ReactHotToastProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
