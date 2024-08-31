@@ -1,7 +1,8 @@
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/layout/navbar";
+import ReactHotToastProvider from "@/contexts/ReactHotToastProvider";
+import AuthProvider from "@/contexts/AuthProvider";
 
 const myFont = localFont({
   src: [
@@ -55,8 +56,10 @@ const myFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Coffee Next App",
-  description: "Created By @masih_developer",
+  title:
+    "خرید اینترنتی قهوه تازه با بهترین کیفیت و قیمت، فروش آنلاین قهوه بن‌مانو",
+  description:
+    "فروش اینترنتی انواع قهوه و پودر نوشیدنی، دانه قهوه تازه‌رست، پودر قهوه آسیاشده ترک، فرانسه، اسپرسو، قهوه‌ فوری و کپسول اسپرسو با بهترین قیمت و کیفیت",
 };
 
 export default function RootLayout({
@@ -67,10 +70,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={myFont.className}>
-        <header>
-          <Navbar />
-        </header>
-        <main className="mt-16">{children}</main>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
