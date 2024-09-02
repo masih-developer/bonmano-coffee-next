@@ -21,6 +21,7 @@ model User {
   email      String    @unique @db.VarChar(255)
   password   String    @db.VarChar(60)
   phone      String    @unique @db.VarChar(11)
+  role       Role      @default(USER)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   sessions   Session[]
@@ -35,4 +36,9 @@ model Session {
   accessToken  String   @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  USER
 }
