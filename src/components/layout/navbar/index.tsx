@@ -57,17 +57,16 @@ const Navbar = () => {
               <HiBars3BottomRight />
             </span>
           </button>
-          <div className="h-full w-28 flex items-center justify-between flex-col">
+          <div className="h-full w-full max-w-28 overflow-hidden flex items-center justify-between flex-col relative">
             <Image
-              width={64}
-              height={64}
+              fill
               src="/logo.svg"
               alt="app header logo"
               title="بَُن مانو"
-              className="mt-2"
+              className="py-2 block size-full"
               priority={true}
             />
-            <span className="h-[3px] w-full bg-primary rounded-tl-lg rounded-tr-lg"></span>
+            <span className="h-[3px] absolute bottom-0 w-full bg-primary rounded-tl-lg rounded-tr-lg"></span>
           </div>
           <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors">
             <span className="text-xl flex items-center justify-center size-6 rounded-full bg-secondary">
