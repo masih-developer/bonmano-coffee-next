@@ -1,15 +1,12 @@
 "use client";
-
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { HiBars3BottomRight } from "react-icons/hi2";
 import { CiSearch } from "react-icons/ci";
 import NavbarMobile from "./NavbarMobile";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [open, setOpen] = useState(false);
 
   const controlNavbar = useCallback(() => {
     if (typeof window !== "undefined") {
@@ -35,12 +32,6 @@ const Navbar = () => {
     }
   }, [controlNavbar, lastScrollY]);
 
-  useEffect(() => {
-    if (document.body) {
-      document.body.style.overflowY = open ? "hidden" : "unset";
-    }
-  }, [open]);
-
   return (
     <>
       <nav
@@ -49,14 +40,7 @@ const Navbar = () => {
         }`}
       >
         <div className="flex items-center justify-between h-full">
-          <button
-            className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors"
-            onClick={() => setOpen((prev) => !prev)}
-          >
-            <span className="text-xl flex items-center justify-center size-6 rounded-full bg-secondary">
-              <HiBars3BottomRight />
-            </span>
-          </button>
+          <NavbarMobile />
           <div className="h-full w-full max-w-28 overflow-hidden flex items-center justify-between flex-col relative">
             <Image
               fill
@@ -75,13 +59,6 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <NavbarMobile open={open} setOpen={setOpen} />
-      <div
-        className={`fixed bg-black/50 inset-0 z-20 duration-300 ${
-          open ? "visible opacity-100" : "invisible opacity-0"
-        }`}
-        onClick={() => setOpen(false)}
-      ></div>
     </>
   );
 };
