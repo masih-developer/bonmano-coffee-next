@@ -114,7 +114,7 @@ const NavbarMobile = ({ open, setOpen }: NavbarMobileProps) => {
         <Image
           width={125}
           height={125}
-          src="Group-1501.svg"
+          src="/logo.svg"
           alt="sidebar app logo"
         />
       </div>

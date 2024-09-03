@@ -61,7 +61,7 @@ const Navbar = () => {
             <Image
               width={64}
               height={64}
-              src="Group-1501.svg"
+              src="/logo.svg"
               alt="app header logo"
               title="بَُن مانو"
               className="mt-2"
