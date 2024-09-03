@@ -110,7 +110,7 @@ const NavbarMobile = () => {
       </DrawerTrigger>
       <DrawerContent
         aria-describedby={undefined}
-        className="w-80 max-w-full rounded-tl-2xl p-5 rounded-bl-2xl bg-background flex flex-col gap-y-10 h-full rounded-tr-none rounded-br-none"
+        className="w-80 max-w-full rounded-tl-2xl p-5 rounded-bl-2xl bg-background gap-y-10 h-full rounded-tr-none rounded-br-none block"
       >
         <DialogTitle />
         <DrawerHeader className="flex items-center justify-center relative">
