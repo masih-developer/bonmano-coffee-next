@@ -1,6 +1,7 @@
 "use client";
 
 import { Accordion, AccordionItem } from "@/components/ui/accordion";
+import { DialogTitle } from "@/components/ui/dialog";
 import {
   Drawer,
   DrawerClose,
@@ -107,7 +108,11 @@ const NavbarMobile = () => {
           </span>
         </button>
       </DrawerTrigger>
-      <DrawerContent className="w-80 max-w-full rounded-tl-2xl p-5 rounded-bl-2xl bg-background flex flex-col gap-y-10 h-full rounded-tr-none rounded-br-none">
+      <DrawerContent
+        aria-describedby={undefined}
+        className="w-80 max-w-full rounded-tl-2xl p-5 rounded-bl-2xl bg-background flex flex-col gap-y-10 h-full rounded-tr-none rounded-br-none"
+      >
+        <DialogTitle />
         <DrawerHeader className="flex items-center justify-center relative">
           <DrawerClose asChild>
             <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors absolute left-0 top-0">
