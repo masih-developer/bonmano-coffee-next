@@ -65,6 +65,7 @@ const Navbar = () => {
               alt="app header logo"
               title="بَُن مانو"
               className="mt-2"
+              priority={true}
             />
             <span className="h-[3px] w-full bg-primary rounded-tl-lg rounded-tr-lg"></span>
           </div>

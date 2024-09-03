@@ -116,6 +116,7 @@ const NavbarMobile = ({ open, setOpen }: NavbarMobileProps) => {
           height={125}
           src="/logo.svg"
           alt="sidebar app logo"
+          priority={true}
         />
       </div>
       <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">
