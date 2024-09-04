@@ -115,21 +115,23 @@ const NavbarMobile = () => {
         <DialogTitle />
         <DrawerHeader className="flex items-center justify-center relative">
           <DrawerClose asChild>
-            <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors absolute left-0 top-0">
+            <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors absolute left-0 top-0 z-10">
               <span className="flex items-center justify-center size-5 rounded-full bg-secondary">
                 <HiXMark />
               </span>
             </button>
           </DrawerClose>
-          <Image
-            width={125}
-            height={125}
-            src="/logo.svg"
-            alt="sidebar app logo"
-            priority={true}
-          />
+          <div className="size-32 overflow-hidden relative">
+            <Image
+              fill
+              src="/logo.svg"
+              alt="sidebar app logo"
+              priority={true}
+              className="block size-full"
+            />
+          </div>
         </DrawerHeader>
-        <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">
+        <div className="overflow-y-auto overflow-x-hidden hide-scrollbar mt-5">
           <Accordion>
             {NAV_LINKS.map((item) =>
               item.isLink ? (
