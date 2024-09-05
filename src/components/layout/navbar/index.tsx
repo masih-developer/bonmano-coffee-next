@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { CiSearch } from "react-icons/ci";
 import NavbarMobile from "./NavbarMobile";
+import Search from "./Search";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -51,11 +51,7 @@ const Navbar = () => {
               priority={true}
             />
           </div>
-          <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors">
-            <span className="text-xl flex items-center justify-center size-6 rounded-full bg-secondary">
-              <CiSearch />
-            </span>
-          </button>
+          <Search />
         </div>
       </div>
     </nav>
