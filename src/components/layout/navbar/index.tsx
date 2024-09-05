@@ -33,15 +33,15 @@ const Navbar = () => {
   }, [controlNavbar, lastScrollY]);
 
   return (
-    <>
-      <nav
-        className={`bg-background z-10 shadow-md px-1 fixed w-full top-0 transition-transform h-16 duration-300 ${
-          isVisible ? "transform translate-y-0" : "transform -translate-y-full"
-        }`}
-      >
-        <div className="flex items-center justify-between h-full">
+    <nav
+      className={`bg-background sticky z-10 shadow-md w-full top-0 transition-transform duration-300 ${
+        isVisible ? "transform translate-y-0" : "transform -translate-y-full"
+      }`}
+    >
+      <div className="container">
+        <div className="flex items-center size-full justify-between">
           <NavbarMobile />
-          <div className="h-full w-full max-w-28 overflow-hidden flex items-center justify-between flex-col relative">
+          <div className="size-20  md:size-24 overflow-hidden flex items-center justify-between flex-col relative after:content-[''] after:absolute after:bottom-0 after:h-[3px] after:w-44 after:bg-primary after:rounded-tl-lg after:rounded-tr-lg">
             <Image
               fill
               src="/logo.svg"
@@ -50,7 +50,6 @@ const Navbar = () => {
               className="py-2 block size-full"
               priority={true}
             />
-            <span className="h-[3px] absolute bottom-0 w-full bg-primary rounded-tl-lg rounded-tr-lg"></span>
           </div>
           <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors">
             <span className="text-xl flex items-center justify-center size-6 rounded-full bg-secondary">
@@ -58,8 +57,8 @@ const Navbar = () => {
             </span>
           </button>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 
