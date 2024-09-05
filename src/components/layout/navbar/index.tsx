@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import NavbarMobile from "./NavbarMobile";
-import Search from "./Search";
+import Search from "./search";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
