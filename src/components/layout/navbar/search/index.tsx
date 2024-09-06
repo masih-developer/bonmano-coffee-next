@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CiSearch } from "react-icons/ci";
 import { HiXMark } from "react-icons/hi2";
+import ResultSection from "./ResultSection";
 
 export default function Search() {
   return (
@@ -30,8 +31,8 @@ export default function Search() {
         <DrawerHeader className="flex items-center p-5 justify-center relative">
           <DrawerClose asChild>
             <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors absolute left-2 top-2 z-10">
-              <span className="flex items-center justify-center size-5 rounded-full bg-secondary">
-                <HiXMark />
+              <span className="flex items-center justify-center size-7 rounded-full bg-secondary">
+                <HiXMark className="text-xl" />
               </span>
             </button>
           </DrawerClose>
@@ -43,8 +44,17 @@ export default function Search() {
               placeholder="دنبال چی میگردی؟"
             />
           </div>
+          <ScrollArea dir="rtl" className="h-[calc(100vh-108px)]">
+            <div className="mt-10 pl-5 gap-y-10 grid grid-cols-12 lg:gap-10">
+              <div className="col-span-12 lg:col-span-6">
+                <ResultSection type="products" products={[]} />
+              </div>
+              <div className="col-span-12 lg:col-span-6">
+                <ResultSection type="blogs" blogs={[]} />
+              </div>
+            </div>
+          </ScrollArea>
         </div>
-        <ScrollArea dir="rtl" className="h-[calc(100vh-180px)]"></ScrollArea>
       </DrawerContent>
     </Drawer>
   );

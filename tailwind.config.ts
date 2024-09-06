@@ -37,6 +37,8 @@ const config = {
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          light: "hsl(var(--secondary-light))",
+          shade: "hsl(var(--secondary-shade))",
         },
         danger: {
           DEFAULT: "hsl(var(--danger))",
