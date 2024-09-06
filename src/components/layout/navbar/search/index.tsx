@@ -38,14 +38,20 @@ export default function Search() {
           </DrawerClose>
         </DrawerHeader>
         <div className="container">
-          <div className="mt-5">
-            <Input
-              className="text-base h-12 shadow-md"
-              placeholder="دنبال چی میگردی؟"
-            />
+          <div className="mt-5 mb-10">
+            <div className="flex bg-background focus-within:border-primary transition-colors shadow-md overflow-hidden items-center h-12 rounded-xl border border-border">
+              <span className="size-12 shrink-0 flex items-center justify-center text-2xl text-neutral-300">
+                <CiSearch />
+              </span>
+              <input
+                type="text"
+                className="size-full outline-none placeholder:font-light"
+                placeholder="دنبال چی میگردی؟"
+              />
+            </div>
           </div>
-          <ScrollArea dir="rtl" className="h-[calc(100vh-108px)]">
-            <div className="mt-10 pl-5 gap-y-10 grid grid-cols-12 lg:gap-10">
+          <ScrollArea dir="rtl" className="h-[calc(100vh-148px)]">
+            <div className="pl-5 gap-y-10 grid grid-cols-12 lg:gap-10">
               <div className="col-span-12 lg:col-span-6">
                 <ResultSection type="products" products={[]} />
               </div>
