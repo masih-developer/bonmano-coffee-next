@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/navbar";
+import MobileBottomNav from "@/components/layout/navbar/MobileBottomNav";
 
 export default function MainLayout({
   children,
@@ -8,6 +9,7 @@ export default function MainLayout({
   return (
     <>
       <Navbar />
+      <MobileBottomNav />
       {children}
     </>
   );
