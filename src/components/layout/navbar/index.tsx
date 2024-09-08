@@ -73,7 +73,7 @@ const Navbar = () => {
             <Link
               href="/cart"
               className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors hidden sm:flex relative after:absolute after:content-[attr(data-count)] after:-top-2 after:-right-2 after:text-background after:bg-primary after:text-[10px] after:flex after:items-center after:justify-center after:rounded-full after:h-5 after:min-w-5 after:p-1"
-              data-count={10}
+              data-count={1}
             >
               <span className="flex items-center justify-center size-7 rounded-full bg-secondary">
                 <CiShoppingCart className="text-xl" />
