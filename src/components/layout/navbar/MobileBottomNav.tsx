@@ -52,7 +52,7 @@ export default function MobileBottomNav() {
           </li>
         </ul>
         <Link
-          href="/home"
+          href="/"
           className="flex items-center justify-center absolute border-4 border-background -top-7 size-14 bg-primary text-white text-3xl rounded-full left-1/2 -translate-x-1/2"
         >
           <CiHome />
