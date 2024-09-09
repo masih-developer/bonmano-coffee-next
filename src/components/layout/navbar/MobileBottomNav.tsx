@@ -23,7 +23,7 @@ export default function MobileBottomNav() {
           </li>
           <li>
             <Link
-              href="/"
+              href="/shop"
               className="text-background transition-colors hover:text-secondary flex items-center justify-center flex-col whitespace-nowrap"
             >
               <CiBoxList className="text-2xl" />
