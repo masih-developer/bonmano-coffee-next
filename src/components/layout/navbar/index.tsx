@@ -6,6 +6,13 @@ import Search from "./search";
 import { CiHeart, CiShoppingCart, CiUser } from "react-icons/ci";
 import Link from "next/link";
 import { HiChevronDown } from "react-icons/hi2";
+import Noresca from "@/assets/icons/Noresca";
+import EspressoCapsule from "@/assets/icons/EspressoCapsule";
+import Espresso from "@/assets/icons/Espresso";
+import TurkCoffee from "@/assets/icons/TurkCoffee";
+import FrenchCoffee from "@/assets/icons/FrenchCoffee";
+import InstantCoffee from "@/assets/icons/InstantCoffee";
+import MixedPowders from "@/assets/icons/MixedPowders";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -63,7 +70,71 @@ const Navbar = () => {
                   <span>محصولات خانگی</span>
                   <HiChevronDown className="transition group-hover:rotate-180" />
                 </Link>
-                <ul className="absolute top-full right-0 w-64 bg-[#faf3ea] p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible"></ul>
+                <ul className="absolute top-full right-0 w-64 bg-secondary p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible flex flex-col text-background text-sm font-light">
+                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                    <Link
+                      href="/"
+                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                    >
+                      <Noresca />
+                      <span>نورسکا</span>
+                    </Link>
+                  </li>
+                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                    <Link
+                      href="/"
+                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                    >
+                      <EspressoCapsule />
+                      <span>کپسول اسپرسو</span>
+                    </Link>
+                  </li>
+                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                    <Link
+                      href="/"
+                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                    >
+                      <Espresso />
+                      <span>اسپرسو</span>
+                    </Link>
+                  </li>
+                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                    <Link
+                      href="/"
+                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                    >
+                      <TurkCoffee />
+                      <span>قهوه تُرک</span>
+                    </Link>
+                  </li>
+                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                    <Link
+                      href="/"
+                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                    >
+                      <FrenchCoffee />
+                      <span>قهوه فرانسوی</span>
+                    </Link>
+                  </li>
+                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                    <Link
+                      href="/"
+                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                    >
+                      <InstantCoffee />
+                      <span>قهوه فوری</span>
+                    </Link>
+                  </li>
+                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                    <Link
+                      href="/"
+                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                    >
+                      <MixedPowders />
+                      <span>پودر های ترکیبی</span>
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li className="relative pb-9 group">
                 <Link
@@ -73,7 +144,7 @@ const Navbar = () => {
                   <span>محصولات هورکا</span>
                   <HiChevronDown className="transition group-hover:rotate-180" />
                 </Link>
-                <ul className="absolute top-full right-0 w-64 bg-[#faf3ea] p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible"></ul>
+                <ul className="absolute top-full right-0 w-64 bg-secondary p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible"></ul>
               </li>
             </ul>
           </div>
@@ -99,7 +170,7 @@ const Navbar = () => {
                   <span>مجله بن مانو</span>
                   <HiChevronDown className="transition group-hover:rotate-180" />
                 </Link>
-                <ul className="absolute top-full right-0 w-64 bg-[#faf3ea] p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible"></ul>
+                <ul className="absolute top-full right-0 w-64 bg-secondary p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible"></ul>
               </li>
               <li className="relative group pb-9">
                 <Link
