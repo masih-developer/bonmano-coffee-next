@@ -9,13 +9,15 @@ const config = {
     "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
+  corePlugins: { container: false },
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+    screens: {
+      DEFAULT: "100%",
+      sm: "576px",
+      md: "768px",
+      lg: "992px",
+      xl: "1200px",
+      "2xl": "1400px",
     },
     extend: {
       fontFamily: {
@@ -35,6 +37,8 @@ const config = {
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          light: "hsl(var(--secondary-light))",
+          shade: "hsl(var(--secondary-shade))",
         },
         danger: {
           DEFAULT: "hsl(var(--danger))",
@@ -127,14 +131,30 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    function ({ addUtilities }: { addUtilities: (utilities: any) => void }) {
-      addUtilities({
-        ".hide-scrollbar": {
-          "::-webkit-scrollbar": {
-            display: "none",
+    // @ts-ignore
+    function ({ addComponents }) {
+      addComponents({
+        ".container": {
+          width: "100%",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "1rem",
+          paddingRight: "1rem",
+          "@screen sm": {
+            maxWidth: "572px",
           },
-          "-ms-overflow-style": "none" /* IE and Edge */,
-          "scrollbar-width": "none" /* Firefox */,
+          "@screen md": {
+            maxWidth: "752px",
+          },
+          "@screen lg": {
+            maxWidth: "992px",
+          },
+          "@screen xl": {
+            maxWidth: "1172px",
+          },
+          "@screen 2xl": {
+            maxWidth: "1352px",
+          },
         },
       });
     },
