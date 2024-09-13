@@ -77,3 +77,81 @@ enum Role {
   ADMIN
   USER
 }
+
+model Product {
+  id          Int     @id @default(autoincrement())
+  name        String
+  price       Float
+  stock       Int
+  description String?
+  rating      Float?
+  image       String?
+  weight      Float?
+  height      Float?
+  dimensions  String?
+
+  category   Category  @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  faqs       Faq[]
+  comments   Comment[]
+  tags       Tag[]     @relation("ProductTags")
+
+  @@index([categoryId])
+}
+
+model Article {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String
+  tags    Tag[]  @relation("ArticleTags")
+
+  @@index([title])
+}
+
+model Tag {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[] @relation("ProductTags")
+  articles Article[] @relation("ArticleTags")
+
+  @@index([name])
+}
+
+model Faq {
+  id        Int    @id @default(autoincrement())
+  question  String
+  answer    String
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([productId])
+}
+
+model Comment {
+  id        Int    @id @default(autoincrement())
+  author    String
+  text      String
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([productId])
+}
+
+model Category {
+  id       Int          @id @default(autoincrement())
+  name     String
+  parent   Category?    @relation("CategoryParent", fields: [parentId], references: [id])
+  parentId Int?
+  type     CategoryType
+  children Category[]   @relation("CategoryParent")
+  Product  Product[]
+
+  @@index([parentId])
+}
+
+enum CategoryType {
+  article
+  product
+}
