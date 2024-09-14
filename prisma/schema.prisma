@@ -96,6 +96,9 @@ model Product {
   comments   Comment[]
   tags       Tag[]     @relation("ProductTags")
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([categoryId])
 }
 
@@ -105,6 +108,9 @@ model Article {
   content String
   tags    Tag[]  @relation("ArticleTags")
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([title])
 }
 
@@ -113,6 +119,9 @@ model Tag {
   name     String    @unique
   products Product[] @relation("ProductTags")
   articles Article[] @relation("ArticleTags")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([name])
 }
@@ -125,6 +134,9 @@ model Faq {
 
   product Product @relation(fields: [productId], references: [id])
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([productId])
 }
 
@@ -135,6 +147,9 @@ model Comment {
   productId Int
 
   product Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([productId])
 }
@@ -147,6 +162,9 @@ model Category {
   type     CategoryType
   children Category[]   @relation("CategoryParent")
   Product  Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([parentId])
 }
