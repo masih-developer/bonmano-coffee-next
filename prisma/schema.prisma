@@ -90,11 +90,11 @@ model Product {
   height      Float?
   dimensions  String?
 
-  category   Category  @relation(fields: [categoryId], references: [id])
+  category   Category     @relation(fields: [categoryId], references: [id])
   categoryId Int
   faqs       Faq[]
   comments   Comment[]
-  tags       Tag[]     @relation("ProductTags")
+  ProductTag ProductTag[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -102,11 +102,12 @@ model Product {
   @@index([categoryId])
 }
 
-model Article {
+model Blog {
   id      Int    @id @default(autoincrement())
   title   String
   content String
-  tags    Tag[]  @relation("ArticleTags")
+
+  BlogTag BlogTag[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -115,15 +116,37 @@ model Article {
 }
 
 model Tag {
-  id       Int       @id @default(autoincrement())
-  name     String    @unique
-  products Product[] @relation("ProductTags")
-  articles Article[] @relation("ArticleTags")
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  productTags ProductTag[]
+  blogTags    BlogTag[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([name])
+}
+
+model ProductTag {
+  id Int @id @default(autoincrement())
+
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  productId Int
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tagId     Int
+
+  @@unique([productId, tagId])
+}
+
+model BlogTag {
+  id     Int  @id @default(autoincrement())
+  blog   Blog @relation(fields: [blogId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  blogId Int
+  tag    Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tagId  Int
+
+  @@unique([blogId, tagId])
 }
 
 model Faq {
