@@ -193,6 +193,6 @@ model Category {
 }
 
 enum CategoryType {
-  article
+  blog
   product
 }
