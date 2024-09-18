@@ -1,5 +1,3 @@
-const HomePage = () => {
-  return <main>صفحه خانه تست اول</main>;
-};
-
-export default HomePage;
+export default function page() {
+  return <div>صفحه خانه</div>;
+}
