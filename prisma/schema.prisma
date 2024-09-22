@@ -89,6 +89,7 @@ model ProductGallerty {
 
   productId Int?
   Product   Product? @relation(fields: [productId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
