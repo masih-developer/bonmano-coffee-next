@@ -12,6 +12,7 @@ export default function LoginPage({ searchParams }: LoginPageProps) {
         callbackUrl={searchParams?.callbackUrl || "/"}
         error={searchParams?.error || ""}
       />
+      .
     </main>
   );
 }
