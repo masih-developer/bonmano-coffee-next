@@ -14,13 +14,252 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  first_name String   @db.VarChar(50)
-  last_name  String   @db.VarChar(50)
-  username   String   @unique @db.VarChar(30)
-  email      String   @unique @db.VarChar(255)
-  password   String   @db.VarChar(60)
-  phone      String   @unique @db.VarChar(11)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id              Int       @id @default(autoincrement())
+  firstname       String    @db.VarChar(50)
+  lastname        String    @db.VarChar(50)
+  username        String    @unique @db.VarChar(30)
+  email           String    @unique @db.VarChar(255)
+  emailVerified   DateTime?
+  password        String    @db.VarChar(60)
+  phone           String    @unique @db.VarChar(11)
+  isPhoneVerified Boolean   @default(false)
+  role            Role      @default(USER)
+  accounts        Account[]
+  orders          Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  id                       Int     @id @default(autoincrement())
+  userId                   Int
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model Product {
+  id          Int     @id @default(autoincrement())
+  name        String
+  price       Float
+  quantity    Int
+  description String?
+  rating      Float?
+  image       String?
+  weight      Float?
+  height      Float?
+  dimensions  String?
+
+  category    Category          @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  faqs        Faq[]
+  comments    Comment[]
+  ProductTags ProductTags[]
+  gallery     ProductGallerty[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+}
+
+model ProductGallerty {
+  id Int @id @default(autoincrement())
+
+  productId Int?
+  Product   Product? @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Blog {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String
+
+  BlogTags BlogTags[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([title])
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  productTags ProductTags[]
+  blogTags    BlogTags[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+}
+
+model ProductTags {
+  id Int @id @default(autoincrement())
+
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  productId Int
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tagId     Int
+
+  @@unique([productId, tagId])
+}
+
+model BlogTags {
+  id     Int  @id @default(autoincrement())
+  blog   Blog @relation(fields: [blogId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  blogId Int
+  tag    Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tagId  Int
+
+  @@unique([blogId, tagId])
+}
+
+model Faq {
+  id        Int    @id @default(autoincrement())
+  question  String
+  answer    String
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model Comment {
+  id        Int    @id @default(autoincrement())
+  author    String
+  text      String
+  productId Int
+
+  product Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model Category {
+  id       Int          @id @default(autoincrement())
+  name     String
+  parent   Category?    @relation("CategoryParent", fields: [parentId], references: [id])
+  parentId Int?
+  type     CategoryType
+  children Category[]   @relation("CategoryParent")
+  Product  Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parentId])
+}
+
+enum CategoryType {
+  blog
+  product
+}
+
+model Order {
+  id            Int           @id @default(autoincrement())
+  totalPrice    Float
+  orderStatus   OrderStatus
+  orderDate     DateTime      @default(now())
+  paymentStatus PaymentStatus
+  userId        Int
+
+  user           User                 @relation(fields: [userId], references: [id])
+  orderItems     OrderItem[]
+  orderHistories OrderStatusHistory[]
+  payments       Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum OrderStatus {
+  COMPLETED
+  CANCELLED
+  PENDING
+  IN_PROGRESS
+}
+
+enum PaymentStatus {
+  PAID
+  PENDING
+}
+
+model OrderItem {
+  id             Int    @id @default(autoincrement())
+  productName    String
+  quantity       Int
+  price          Float
+  totalItemPrice Float
+  orderId        Int
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OrderStatusHistory {
+  id         Int         @id @default(autoincrement())
+  status     OrderStatus
+  statusDate DateTime    @default(now())
+
+  orderId Int
+  order   Order @relation(fields: [orderId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id            Int           @id @default(autoincrement())
+  amount        Float
+  paymentDate   DateTime      @default(now())
+  paymentMethod PaymentMethod
+  paymentStatus PaymentStatus
+  orderId       Int
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  ONLINE_PAYMENT
+  CASH
 }

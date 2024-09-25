@@ -33,14 +33,14 @@ const AccordionItem = React.forwardRef<
   return (
     <AccItem
       className={cn(
-        "w-full bg-neutral-100 rounded-xl overflow-hidden p-2",
+        "w-full bg-neutral-100 rounded-xl overflow-hidden",
         className
       )}
       ref={ref}
       buttonProps={{
         ...buttonProps,
         className: cn(
-          "bg-neutral-100 py-2 w-full text-start flex items-center justify-between",
+          "bg-neutral-100 px-2 py-4 w-full text-start flex items-center justify-between",
           buttonProps?.className
         ),
       }}

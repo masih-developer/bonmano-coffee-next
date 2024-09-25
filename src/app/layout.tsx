@@ -1,10 +1,9 @@
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
-import ReactHotToastProvider from "@/contexts/ReactHotToastProvider";
 import AuthProvider from "@/contexts/AuthProvider";
 
-const myFont = localFont({
+const DanaFont = localFont({
   src: [
     {
       path: "../assets/fonts/dana/Dana-Thin.ttf",
@@ -68,8 +67,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
-      <body className={myFont.className}>
+    <html lang="fa" dir="rtl" className={DanaFont.className}>
+      <body>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
