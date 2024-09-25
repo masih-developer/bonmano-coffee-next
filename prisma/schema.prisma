@@ -14,18 +14,18 @@ datasource db {
 }
 
 model User {
-  id            Int       @id @default(autoincrement())
-  first_name    String    @db.VarChar(50)
-  last_name     String    @db.VarChar(50)
-  username      String    @unique @db.VarChar(30)
-  email         String    @unique @db.VarChar(255)
-  emailVerified DateTime?
-  password      String    @db.VarChar(60)
-  phone         String    @unique @db.VarChar(11)
-  role          Role      @default(USER)
-  accounts      Account[]
-  sessions      Session[]
-  orders        Order[]
+  id              Int       @id @default(autoincrement())
+  firstname       String    @db.VarChar(50)
+  lastname        String    @db.VarChar(50)
+  username        String    @unique @db.VarChar(30)
+  email           String    @unique @db.VarChar(255)
+  emailVerified   DateTime?
+  password        String    @db.VarChar(60)
+  phone           String    @unique @db.VarChar(11)
+  isPhoneVerified Boolean   @default(false)
+  role            Role      @default(USER)
+  accounts        Account[]
+  orders          Order[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -52,26 +52,6 @@ model Account {
 
   @@unique([provider, providerAccountId])
   @@index([userId])
-}
-
-model Session {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  sessionToken String   @unique
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id])
-  accessToken  String   @unique
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
-
-  @@unique([identifier, token])
 }
 
 enum Role {
