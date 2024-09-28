@@ -1,12 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { loginSchema } from "@/validators/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { signIn } from "next-auth/react";
-import toast from "react-hot-toast";
+import { authSchema } from "@/validators/auth";
 
 interface AuthFormProps {
   callbackUrl: string;
@@ -18,15 +17,14 @@ export default function AuthForm({ callbackUrl, error }: AuthFormProps) {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<z.infer<typeof loginSchema>>({
-    defaultValues: { email: "", password: "" },
-    resolver: zodResolver(loginSchema),
+  } = useForm<z.infer<typeof authSchema>>({
+    defaultValues: { phone: "" },
+    resolver: zodResolver(authSchema),
   });
 
-  const submitFormHandler = async (values: z.infer<typeof loginSchema>) => {
+  const submitFormHandler = async (values: z.infer<typeof authSchema>) => {
     await signIn("credentials", {
-      email: values.email,
-      password: values.password,
+      phone: values.phone,
       callbackUrl,
     });
   };
@@ -38,48 +36,24 @@ export default function AuthForm({ callbackUrl, error }: AuthFormProps) {
     >
       {!!error && <p className="text-danger">{error}</p>}
       <div className="flex flex-col gap-y-2">
-        <label className={cn(errors.email && "text-danger")} htmlFor="email">
-          ایمیل:
+        <label className={cn(errors.phone && "text-danger")} htmlFor="phone">
+          شماره تلفن همراه:
         </label>
         <input
           type="text"
-          id="email"
-          {...register("email")}
-          className={cn(
-            "outline-none border p-2 rounded-lg h-12 placeholder:text-smsm",
-            {
-              "border-danger": errors.email,
-              "border-gray-400": !errors.email,
-            }
-          )}
-          placeholder="example@example.com"
-        />
-        {errors.email && (
-          <span className="text-sm text-danger">{errors.email.message}</span>
-        )}
-      </div>
-      <div className="flex flex-col gap-y-2">
-        <label
-          className={cn(errors.password && "text-danger")}
-          htmlFor="password"
-        >
-          رمز عبور:
-        </label>
-        <input
-          type="password"
           id="password"
-          {...register("password")}
+          {...register("phone")}
           className={cn(
             "outline-none border p-2 rounded-lg h-12 placeholder:text-sm",
             {
-              "border-danger": errors.password,
-              "border-gray-400": !errors.password,
+              "border-danger": errors.phone,
+              "border-gray-400": !errors.phone,
             }
           )}
-          placeholder="رمز عبور"
+          placeholder="09XXXXXXXXX"
         />
-        {errors.password && (
-          <span className="text-sm text-danger">{errors.password.message}</span>
+        {errors.phone && (
+          <span className="text-sm text-danger">{errors.phone.message}</span>
         )}
       </div>
       <button type="submit" className="bg-primary h-12 rounded-lg text-white">
