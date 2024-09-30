@@ -57,7 +57,7 @@ export default function AuthForm({ callbackUrl, error }: AuthFormProps) {
         )}
       </div>
       <button type="submit" className="bg-primary h-12 rounded-lg text-white">
-        {isSubmitting ? "در حال ورود..." : "ورود"}
+        {isSubmitting ? "درحال ارسال کد..." : "ارسال کد"}
       </button>
     </form>
   );
