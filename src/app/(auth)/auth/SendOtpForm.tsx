@@ -12,7 +12,7 @@ interface AuthFormProps {
   error: string;
 }
 
-export default function AuthForm({ callbackUrl, error }: AuthFormProps) {
+export default function SendOtpForm({ callbackUrl, error }: AuthFormProps) {
   const {
     register,
     handleSubmit,
