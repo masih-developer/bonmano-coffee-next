@@ -57,7 +57,7 @@ export default function SendOtpForm({ callbackUrl, error }: AuthFormProps) {
         )}
       </div>
       <button type="submit" className="bg-primary h-12 rounded-lg text-white">
-        {isSubmitting ? "درحال ارسال کد..." : "ارسال کد"}
+        {isSubmitting ? "ارسال کد.." : "ارسال کد"}
       </button>
     </form>
   );
