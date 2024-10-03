@@ -10,7 +10,7 @@ interface LoginPageProps {
 }
 
 export default function AuthPage({ searchParams }: LoginPageProps) {
-  const [step, setStep] = useState(1);
+  const [step] = useState(1);
   return (
     <main className="w-full min-h-screen flex items-center justify-center">
       {step === 1 ? (
