@@ -6,7 +6,7 @@ import { compare } from "bcrypt";
 
 const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
-  pages: { signIn: "/auth/login", error: "/auth/login" },
+  pages: { signIn: "/auth", error: "/auth" },
   adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
