@@ -1,3 +1,3 @@
 export default function CheckOtpForm() {
-  return <div>CheckOtpForm</div>;
+  return <section>CheckOtpForm</section>;
 }
