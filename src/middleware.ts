@@ -2,6 +2,6 @@ import { withAuth } from "next-auth/middleware";
 
 export default withAuth({ pages: { signIn: "/auth" } });
 
-// export const config = {
-//   matcher: "/about",
-// };
+export const config = {
+  matcher: "/user",
+};

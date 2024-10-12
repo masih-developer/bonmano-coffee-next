@@ -10,13 +10,14 @@ interface LoginPageProps {
 }
 
 export default function AuthPage({ searchParams }: LoginPageProps) {
-  const [step] = useState(1);
+  const [step, setStep] = useState(1);
   return (
     <main className="w-full min-h-screen flex items-center justify-center">
       {step === 1 ? (
         <SendOtpForm
-          callbackUrl={searchParams?.callbackUrl || "/"}
-          error={searchParams?.error || ""}
+          // callbackUrl={searchParams?.callbackUrl || "/"}
+          // error={searchParams?.error || ""}
+          setStep={setStep}
         />
       ) : (
         <CheckOtpForm />

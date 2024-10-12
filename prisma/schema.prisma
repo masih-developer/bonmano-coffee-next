@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,253 +7,252 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id              Int       @id @default(autoincrement())
-  firstname       String    @db.VarChar(50)
-  lastname        String    @db.VarChar(50)
-  username        String    @unique @db.VarChar(30)
-  email           String    @unique @db.VarChar(255)
-  emailVerified   DateTime?
-  password        String    @db.VarChar(60)
-  phone           String    @unique @db.VarChar(11)
-  isPhoneVerified Boolean   @default(false)
-  role            Role      @default(USER)
-  accounts        Account[]
-  orders          Order[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Account {
-  id                       Int     @id @default(autoincrement())
+model account {
+  id                       Int      @id @default(autoincrement())
   userId                   Int
   type                     String
   provider                 String
   providerAccountId        String
-  refresh_token            String? @db.Text
-  access_token             String? @db.Text
+  refresh_token            String?  @db.Text
+  access_token             String?  @db.Text
   expires_at               Int?
   token_type               String?
   scope                    String?
-  id_token                 String? @db.Text
+  id_token                 String?  @db.Text
   session_state            String?
   refresh_token_expires_in Int?
-  user                     User?   @relation(fields: [userId], references: [id])
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime
+  user                     user     @relation(fields: [userId], references: [id], map: "Account_userId_fkey")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([provider, providerAccountId])
-  @@index([userId])
+  @@unique([provider, providerAccountId], map: "Account_provider_providerAccountId_key")
+  @@index([userId], map: "Account_userId_idx")
 }
 
-enum Role {
-  ADMIN
-  USER
+model blog {
+  id        Int        @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime
+  blogtags  blogtags[]
+
+  @@index([title], map: "Blog_title_idx")
 }
 
-model Product {
-  id          Int     @id @default(autoincrement())
-  name        String
-  price       Float
-  quantity    Int
-  description String?
-  rating      Float?
-  image       String?
-  weight      Float?
-  height      Float?
-  dimensions  String?
-
-  category    Category          @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  faqs        Faq[]
-  comments    Comment[]
-  ProductTags ProductTags[]
-  gallery     ProductGallerty[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([categoryId])
-}
-
-model ProductGallerty {
-  id Int @id @default(autoincrement())
-
-  productId Int?
-  Product   Product? @relation(fields: [productId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Blog {
-  id      Int    @id @default(autoincrement())
-  title   String
-  content String
-
-  BlogTags BlogTags[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([title])
-}
-
-model Tag {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-
-  productTags ProductTags[]
-  blogTags    BlogTags[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([name])
-}
-
-model ProductTags {
-  id Int @id @default(autoincrement())
-
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  productId Int
-  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  tagId     Int
-
-  @@unique([productId, tagId])
-}
-
-model BlogTags {
+model blogtags {
   id     Int  @id @default(autoincrement())
-  blog   Blog @relation(fields: [blogId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   blogId Int
-  tag    Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   tagId  Int
+  blog   blog @relation(fields: [blogId], references: [id], onDelete: Cascade, map: "BlogTags_blogId_fkey")
+  tag    tag  @relation(fields: [tagId], references: [id], onDelete: Cascade, map: "BlogTags_tagId_fkey")
 
-  @@unique([blogId, tagId])
+  @@unique([blogId, tagId], map: "BlogTags_blogId_tagId_key")
+  @@index([tagId], map: "BlogTags_tagId_fkey")
 }
 
-model Faq {
-  id        Int    @id @default(autoincrement())
-  question  String
-  answer    String
-  productId Int
+model category {
+  id             Int           @id @default(autoincrement())
+  name           String
+  parentId       Int?
+  type           category_type
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime
+  category       category?     @relation("categoryTocategory", fields: [parentId], references: [id], map: "Category_parentId_fkey")
+  other_category category[]    @relation("categoryTocategory")
+  product        product[]
 
-  product Product @relation(fields: [productId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([productId])
+  @@index([parentId], map: "Category_parentId_idx")
 }
 
-model Comment {
-  id        Int    @id @default(autoincrement())
+model comment {
+  id        Int      @id @default(autoincrement())
   author    String
   text      String
   productId Int
-
-  product Product @relation(fields: [productId], references: [id])
-
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime
+  product   product  @relation(fields: [productId], references: [id], map: "Comment_productId_fkey")
 
-  @@index([productId])
+  @@index([productId], map: "Comment_productId_idx")
 }
 
-model Category {
-  id       Int          @id @default(autoincrement())
-  name     String
-  parent   Category?    @relation("CategoryParent", fields: [parentId], references: [id])
-  parentId Int?
-  type     CategoryType
-  children Category[]   @relation("CategoryParent")
-  Product  Product[]
-
+model faq {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String
+  productId Int
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime
+  product   product  @relation(fields: [productId], references: [id], map: "Faq_productId_fkey")
 
-  @@index([parentId])
+  @@index([productId], map: "Faq_productId_idx")
 }
 
-enum CategoryType {
-  blog
-  product
+model order {
+  id                 Int                  @id @default(autoincrement())
+  totalPrice         Float
+  orderStatus        order_orderStatus
+  orderDate          DateTime             @default(now())
+  paymentStatus      order_paymentStatus
+  userId             Int
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime
+  user               user                 @relation(fields: [userId], references: [id], map: "Order_userId_fkey")
+  orderitem          orderitem[]
+  orderstatushistory orderstatushistory[]
+  payment            payment[]
+
+  @@index([userId], map: "Order_userId_fkey")
 }
 
-model Order {
-  id            Int           @id @default(autoincrement())
-  totalPrice    Float
-  orderStatus   OrderStatus
-  orderDate     DateTime      @default(now())
-  paymentStatus PaymentStatus
-  userId        Int
+model orderitem {
+  id             Int      @id @default(autoincrement())
+  productName    String
+  quantity       Int
+  price          Float
+  totalItemPrice Float
+  orderId        Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime
+  order          order    @relation(fields: [orderId], references: [id], map: "OrderItem_orderId_fkey")
 
-  user           User                 @relation(fields: [userId], references: [id])
-  orderItems     OrderItem[]
-  orderHistories OrderStatusHistory[]
-  payments       Payment[]
+  @@index([orderId], map: "OrderItem_orderId_fkey")
+}
 
+model orderstatushistory {
+  id         Int                       @id @default(autoincrement())
+  status     orderstatushistory_status
+  statusDate DateTime                  @default(now())
+  orderId    Int
+  createdAt  DateTime                  @default(now())
+  updatedAt  DateTime
+  order      order                     @relation(fields: [orderId], references: [id], map: "OrderStatusHistory_orderId_fkey")
+
+  @@index([orderId], map: "OrderStatusHistory_orderId_fkey")
+}
+
+model payment {
+  id            Int                   @id @default(autoincrement())
+  amount        Float
+  paymentDate   DateTime              @default(now())
+  paymentMethod payment_paymentMethod
+  paymentStatus payment_paymentStatus
+  orderId       Int
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime
+  order         order                 @relation(fields: [orderId], references: [id], map: "Payment_orderId_fkey")
+
+  @@index([orderId], map: "Payment_orderId_fkey")
+}
+
+model product {
+  id              Int               @id @default(autoincrement())
+  name            String
+  price           Float
+  quantity        Int
+  description     String?
+  rating          Float?
+  image           String?
+  weight          Float?
+  height          Float?
+  dimensions      String?
+  categoryId      Int
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime
+  comment         comment[]
+  faq             faq[]
+  category        category          @relation(fields: [categoryId], references: [id], map: "Product_categoryId_fkey")
+  productgallerty productgallerty[]
+  producttags     producttags[]
+
+  @@index([categoryId], map: "Product_categoryId_idx")
+}
+
+model productgallerty {
+  id        Int      @id @default(autoincrement())
+  productId Int?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime
+  product   product? @relation(fields: [productId], references: [id], map: "ProductGallerty_productId_fkey")
+
+  @@index([productId], map: "ProductGallerty_productId_fkey")
 }
 
-enum OrderStatus {
+model producttags {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  tagId     Int
+  product   product @relation(fields: [productId], references: [id], onDelete: Cascade, map: "ProductTags_productId_fkey")
+  tag       tag     @relation(fields: [tagId], references: [id], onDelete: Cascade, map: "ProductTags_tagId_fkey")
+
+  @@unique([productId, tagId], map: "ProductTags_productId_tagId_key")
+  @@index([tagId], map: "ProductTags_tagId_fkey")
+}
+
+model tag {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique(map: "Tag_name_key")
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime
+  blogtags    blogtags[]
+  producttags producttags[]
+
+  @@index([name], map: "Tag_name_idx")
+}
+
+model user {
+  id              Int       @id @default(autoincrement())
+  username        String    @unique(map: "User_username_key") @db.VarChar(30)
+  email           String    @unique(map: "User_email_key") @db.VarChar(255)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime
+  phone           String    @unique(map: "User_phone_key") @db.VarChar(11)
+  role            user_role @default(USER)
+  firstname       String    @db.VarChar(50)
+  isEmailVerified Boolean
+  isPhoneVerified Boolean   @default(false)
+  lastname        String    @db.VarChar(50)
+  account         account[]
+  order           order[]
+}
+
+enum orderstatushistory_status {
   COMPLETED
   CANCELLED
   PENDING
   IN_PROGRESS
 }
 
-enum PaymentStatus {
+enum order_orderStatus {
+  COMPLETED
+  CANCELLED
+  PENDING
+  IN_PROGRESS
+}
+
+enum category_type {
+  blog
+  product
+}
+
+enum payment_paymentMethod {
+  CREDIT_CARD
+  ONLINE_PAYMENT
+  CASH
+}
+
+enum order_paymentStatus {
   PAID
   PENDING
 }
 
-model OrderItem {
-  id             Int    @id @default(autoincrement())
-  productName    String
-  quantity       Int
-  price          Float
-  totalItemPrice Float
-  orderId        Int
-
-  order Order @relation(fields: [orderId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+enum payment_paymentStatus {
+  PAID
+  PENDING
 }
 
-model OrderStatusHistory {
-  id         Int         @id @default(autoincrement())
-  status     OrderStatus
-  statusDate DateTime    @default(now())
-
-  orderId Int
-  order   Order @relation(fields: [orderId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Payment {
-  id            Int           @id @default(autoincrement())
-  amount        Float
-  paymentDate   DateTime      @default(now())
-  paymentMethod PaymentMethod
-  paymentStatus PaymentStatus
-  orderId       Int
-
-  order Order @relation(fields: [orderId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-enum PaymentMethod {
-  CREDIT_CARD
-  ONLINE_PAYMENT
-  CASH
+enum user_role {
+  ADMIN
+  USER
 }
