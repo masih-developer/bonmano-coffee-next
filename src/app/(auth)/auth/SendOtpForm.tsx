@@ -8,11 +8,12 @@ import { signIn } from "next-auth/react";
 import { authSchema } from "@/validators/auth";
 
 interface AuthFormProps {
-  callbackUrl: string;
-  error: string;
+  // callbackUrl: string;
+  // error: string;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function SendOtpForm({ callbackUrl, error }: AuthFormProps) {
+export default function SendOtpForm({ setStep }: AuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -23,10 +24,13 @@ export default function SendOtpForm({ callbackUrl, error }: AuthFormProps) {
   });
 
   const submitFormHandler = async (values: z.infer<typeof authSchema>) => {
-    await signIn("credentials", {
-      phone: values.phone,
-      callbackUrl,
-    });
+    // await signIn("credentials", {
+    //   phone: values.phone,
+    //   callbackUrl,
+    // });
+    const res = await fetch("/api/auth/sendOtp");
+    const data = await res.json();
+    console.log(data);
   };
 
   return (
@@ -34,7 +38,7 @@ export default function SendOtpForm({ callbackUrl, error }: AuthFormProps) {
       className="rounded-lg p-5 shadow-md max-w-[400px] w-full flex flex-col gap-y-5"
       onSubmit={handleSubmit(submitFormHandler)}
     >
-      {!!error && <p className="text-danger">{error}</p>}
+      {/* {!!error && <p className="text-danger">{error}</p>}l */}
       <div className="flex flex-col gap-y-2">
         <label className={cn(errors.phone && "text-danger")} htmlFor="phone">
           شماره تلفن همراه:
