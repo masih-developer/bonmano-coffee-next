@@ -14,13 +14,12 @@ export default function AuthPage({ searchParams }: LoginPageProps) {
   return (
     <main className="w-full min-h-screen flex items-center justify-center">
       {step === 1 ? (
-        <SendOtpForm
-          // callbackUrl={searchParams?.callbackUrl || "/"}
-          // error={searchParams?.error || ""}
-          setStep={setStep}
-        />
+        <SendOtpForm setStep={setStep} />
       ) : (
-        <CheckOtpForm />
+        <CheckOtpForm
+          callbackUrl={searchParams?.callbackUrl || "/"}
+          error={searchParams?.error || ""}
+        />
       )}
     </main>
   );

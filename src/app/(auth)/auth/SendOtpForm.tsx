@@ -4,12 +4,9 @@ import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { signIn } from "next-auth/react";
-import { authSchema } from "@/validators/auth";
+import { sendOtpSchema } from "@/validators/auth";
 
 interface AuthFormProps {
-  // callbackUrl: string;
-  // error: string;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -18,19 +15,24 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<z.infer<typeof authSchema>>({
+  } = useForm<z.infer<typeof sendOtpSchema>>({
     defaultValues: { phone: "" },
-    resolver: zodResolver(authSchema),
+    resolver: zodResolver(sendOtpSchema),
   });
 
-  const submitFormHandler = async (values: z.infer<typeof authSchema>) => {
-    // await signIn("credentials", {
-    //   phone: values.phone,
-    //   callbackUrl,
-    // });
-    const res = await fetch("/api/auth/sendOtp");
-    const data = await res.json();
-    console.log(data);
+  const submitFormHandler = async (values: z.infer<typeof sendOtpSchema>) => {
+    try {
+      const res = await fetch("/api/auth/send-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values.phone),
+      });
+      const data = await res.json();
+      console.log(data);
+      setStep(2);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -45,7 +47,7 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
         </label>
         <input
           type="text"
-          id="password"
+          id="phone"
           {...register("phone")}
           className={cn(
             "outline-none border p-2 rounded-lg h-12 placeholder:text-sm",

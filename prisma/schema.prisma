@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins", "prismaSchemaFolder"]
 }
 
 datasource db {
@@ -203,18 +204,28 @@ model tag {
 
 model user {
   id              Int       @id @default(autoincrement())
-  username        String    @unique(map: "User_username_key") @db.VarChar(30)
-  email           String    @unique(map: "User_email_key") @db.VarChar(255)
+  username        String?   @unique(map: "User_username_key") @db.VarChar(30)
+  email           String?   @unique(map: "User_email_key") @db.VarChar(255)
   createdAt       DateTime  @default(now())
-  updatedAt       DateTime
+  updatedAt       DateTime  @updatedAt
   phone           String    @unique(map: "User_phone_key") @db.VarChar(11)
   role            user_role @default(USER)
-  firstname       String    @db.VarChar(50)
-  isEmailVerified Boolean
-  isPhoneVerified Boolean   @default(false)
-  lastname        String    @db.VarChar(50)
+  firstname       String?   @db.VarChar(50)
+  isEmailVerified Boolean   @default(false)
+  isPhoneVerified Boolean   @default(true)
+  lastname        String?   @db.VarChar(50)
   account         account[]
   order           order[]
+}
+
+model otp {
+  id         Int      @id @default(autoincrement())
+  phone      String   @unique @db.VarChar(11)
+  code       String   @db.Char(6)
+  expires_at DateTime @db.Timestamp()
+  is_used    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 enum orderstatushistory_status {
