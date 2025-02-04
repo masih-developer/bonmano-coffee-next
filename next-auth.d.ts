@@ -1,20 +1,14 @@
-import { User as PrismaUser } from "@prisma/client";
+import { user as PrismaUser } from "@prisma/client";
 import { DefaultSession, DefaultUser, ISODateString } from "next-auth";
 import { JWT, DefaultJWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   interface Session {
-    user: {
-      id: number;
-      role: string;
-    } & DefaultSession["user"];
+    user: User;
     expires: ISODateString;
   }
 
-  interface User {
-    id: number;
-    role: string;
-  }
+  interface User extends PrismaUser {}
 }
 
 declare module "next-auth/jwt" {

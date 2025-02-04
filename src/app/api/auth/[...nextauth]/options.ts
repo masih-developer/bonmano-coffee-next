@@ -3,11 +3,11 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/lib/db";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcrypt";
+import { checkOtpSchema } from "@/validators/auth";
 
 const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: { signIn: "/auth", error: "/auth" },
-  adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
   },
@@ -15,67 +15,68 @@ const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "user@example.com",
+        phone: {
+          label: "Phone",
+          placeholder: "enter Phone Number...",
+          type: "text",
         },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "********",
+        code: {
+          label: "Code",
+          placeholder: "enter code...",
+          type: "text",
         },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) {
-          return null;
-        }
+        const isValidCredentials = checkOtpSchema.safeParse({ ...credentials });
 
-        const isExistUser = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
-
-        if (!isExistUser) {
-          return null;
-        }
-
-        const passwordMatch = await compare(
-          credentials.password,
-          isExistUser.password
-        );
-
-        if (!passwordMatch) {
+        if (!isValidCredentials.success) {
           throw new Error(
-            encodeURIComponent("ایمیل یا رمز عبور وارد شده صحیح نمی باشد.")
+            encodeURIComponent(isValidCredentials.error.errors[0].message)
           );
         }
 
-        return {
-          id: isExistUser.id,
-          name: `${isExistUser.first_name} ${isExistUser.last_name}`,
-          email: isExistUser.email,
-          role: isExistUser.role,
-        };
+        const { phone, code } = isValidCredentials.data;
+
+        const otp = await prisma.otp.findFirst({
+          where: {
+            phone,
+            code,
+            expires_at: { gt: new Date() },
+            is_used: false,
+          },
+        });
+
+        if (!otp) {
+          throw new Error(encodeURIComponent("کد ارسالی منقضی شده است!"));
+        }
+
+        const user = await prisma.user.upsert({
+          where: { phone },
+          update: {},
+          create: { phone },
+        });
+
+        return user;
       },
     }),
   ],
-  callbacks: {
-    session({ session, token }) {
-      if (session?.user) {
-        session.user.id = token.id;
-        session.user.role = token.role;
-      }
-      return session;
-    },
+  // callbacks: {
+  //   session({ session, token }) {
+  //     if (session?.user) {
+  //       session.user.id = token.id;
+  //       session.user.role = token.role;
+  //     }
+  //     return session;
+  //   },
 
-    jwt({ token, user }) {
-      if (user) {
-        token.id = +user.id;
-        token.role = user.role;
-      }
-      return token;
-    },
-  },
+  //   jwt({ token, user }) {
+  //     if (user) {
+  //       token.id = +user.id;
+  //       token.role = user.role;
+  //     }
+  //     return token;
+  //   },
+  // },
 };
 
 export default authOptions;
