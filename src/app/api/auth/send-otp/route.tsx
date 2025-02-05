@@ -14,7 +14,8 @@ export async function POST(req: Request) {
 
   const code = generateRandomNumber(100_000, 999_999).toString();
 
-  const expires_at = process.env.OTP_EXPIRATION ?? new Date(Date.now() + 90); // 90s by default;
+  const expirationTime = Number(process.env.OTP_EXPIRATION) || 90;
+  const expires_at = new Date(Date.now() + expirationTime * 1000);
 
   await prisma.otp.upsert({
     where: { phone },
