@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prismagen": "dotenv -e .env.local -- npx prisma generate",
-    "prismapush": "dotenv -e .env.local -- npx prisma db push"
+    "prismapush": "dotenv -e .env.local -- npx prisma db push",
+    "prismastudio": "dotenv -e .env.local -- npx prisma studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
