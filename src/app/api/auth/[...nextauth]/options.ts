@@ -50,6 +50,11 @@ const authOptions: AuthOptions = {
           throw new Error(encodeURIComponent("کد ارسالی منقضی شده است!"));
         }
 
+        await prisma.otp.update({
+          where: { id: otp.id },
+          data: { is_used: true },
+        });
+
         const user = await prisma.user.upsert({
           where: { phone },
           update: {},
@@ -60,23 +65,23 @@ const authOptions: AuthOptions = {
       },
     }),
   ],
-  // callbacks: {
-  //   session({ session, token }) {
-  //     if (session?.user) {
-  //       session.user.id = token.id;
-  //       session.user.role = token.role;
-  //     }
-  //     return session;
-  //   },
+  callbacks: {
+    session({ session, token }) {
+      if (session?.user) {
+        session.user.id = token.id;
+        session.user.role = token.role;
+      }
+      return session;
+    },
 
-  //   jwt({ token, user }) {
-  //     if (user) {
-  //       token.id = +user.id;
-  //       token.role = user.role;
-  //     }
-  //     return token;
-  //   },
-  // },
+    jwt({ token, user }) {
+      if (user) {
+        token.id = +user.id;
+        token.role = user.role;
+      }
+      return token;
+    },
+  },
 };
 
 export default authOptions;

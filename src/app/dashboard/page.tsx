@@ -1,8 +1,12 @@
 "use client";
-import { signOut } from "next-auth/react";
-import authOptions from "../api/auth/[...nextauth]/options";
+import { signOut, useSession } from "next-auth/react";
 
 export default function DashboardPage() {
+  const { data, status } = useSession();
+
+  if (status === "authenticated") {
+    console.log(data.user);
+  }
   return (
     <main>
       <h1>hello world!</h1>
