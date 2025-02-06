@@ -1,1 +1,1 @@
-bonmano coffee next app full stack
+bonmano coffee next app full stack prisma, mysql
