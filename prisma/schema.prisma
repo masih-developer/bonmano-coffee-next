@@ -222,7 +222,7 @@ model otp {
   id         Int      @id @default(autoincrement())
   phone      String   @unique @db.VarChar(11)
   code       String   @db.Char(6)
-  expires_at DateTime @db.Timestamp()
+  expires_at DateTime @db.Timestamp(0)
   is_used    Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
