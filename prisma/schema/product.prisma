@@ -1,0 +1,43 @@
+model product {
+  id              Int               @id @default(autoincrement())
+  name            String
+  price           Float
+  quantity        Int
+  description     String?
+  rating          Float?
+  image           String?
+  weight          Float?
+  height          Float?
+  dimensions      String?
+  categoryId      Int
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime
+  comment         comment[]
+  faq             faq[]
+  category        category          @relation(fields: [categoryId], references: [id], map: "Product_categoryId_fkey")
+  productgallerty productgallerty[]
+  producttags     producttags[]
+
+  @@index([categoryId], map: "Product_categoryId_idx")
+}
+
+model productgallerty {
+  id        Int      @id @default(autoincrement())
+  productId Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  product   product? @relation(fields: [productId], references: [id], map: "ProductGallerty_productId_fkey")
+
+  @@index([productId], map: "ProductGallerty_productId_fkey")
+}
+
+model producttags {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  tagId     Int
+  product   product @relation(fields: [productId], references: [id], onDelete: Cascade, map: "ProductTags_productId_fkey")
+  tag       tag     @relation(fields: [tagId], references: [id], onDelete: Cascade, map: "ProductTags_tagId_fkey")
+
+  @@unique([productId, tagId], map: "ProductTags_productId_tagId_key")
+  @@index([tagId], map: "ProductTags_tagId_fkey")
+}

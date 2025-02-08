@@ -1,0 +1,61 @@
+model order {
+  id                 Int                  @id @default(autoincrement())
+  totalPrice         Float
+  orderStatus        order_orderStatus
+  orderDate          DateTime             @default(now())
+  paymentStatus      order_paymentStatus
+  userId             Int
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime
+  user               user                 @relation(fields: [userId], references: [id], map: "Order_userId_fkey")
+  orderitem          orderitem[]
+  orderstatushistory orderstatushistory[]
+  payment            payment[]
+
+  @@index([userId], map: "Order_userId_fkey")
+}
+
+model orderstatushistory {
+  id         Int                       @id @default(autoincrement())
+  status     orderstatushistory_status
+  statusDate DateTime                  @default(now())
+  orderId    Int
+  createdAt  DateTime                  @default(now())
+  updatedAt  DateTime
+  order      order                     @relation(fields: [orderId], references: [id], map: "OrderStatusHistory_orderId_fkey")
+
+  @@index([orderId], map: "OrderStatusHistory_orderId_fkey")
+}
+
+model orderitem {
+  id             Int      @id @default(autoincrement())
+  productName    String
+  quantity       Int
+  price          Float
+  totalItemPrice Float
+  orderId        Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime
+  order          order    @relation(fields: [orderId], references: [id], map: "OrderItem_orderId_fkey")
+
+  @@index([orderId], map: "OrderItem_orderId_fkey")
+}
+
+enum orderstatushistory_status {
+  COMPLETED
+  CANCELLED
+  PENDING
+  IN_PROGRESS
+}
+
+enum order_orderStatus {
+  COMPLETED
+  CANCELLED
+  PENDING
+  IN_PROGRESS
+}
+
+enum order_paymentStatus {
+  PAID
+  PENDING
+}
