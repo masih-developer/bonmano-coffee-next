@@ -1,0 +1,20 @@
+model user {
+  id              Int       @id @default(autoincrement())
+  username        String?   @unique(map: "User_username_key") @db.VarChar(30)
+  email           String?   @unique(map: "User_email_key") @db.VarChar(255)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  phone           String    @unique(map: "User_phone_key") @db.VarChar(11)
+  role            user_role @default(USER)
+  firstname       String?   @db.VarChar(50)
+  isEmailVerified Boolean   @default(false)
+  isPhoneVerified Boolean   @default(true)
+  lastname        String?   @db.VarChar(50)
+  account         account[]
+  order           order[]
+}
+
+enum user_role {
+  ADMIN
+  USER
+}

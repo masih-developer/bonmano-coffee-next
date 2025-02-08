@@ -1,0 +1,21 @@
+model blog {
+  id        Int        @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime
+  blogtags  blogtags[]
+
+  @@index([title], map: "Blog_title_idx")
+}
+
+model blogtags {
+  id     Int  @id @default(autoincrement())
+  blogId Int
+  tagId  Int
+  blog   blog @relation(fields: [blogId], references: [id], onDelete: Cascade, map: "BlogTags_blogId_fkey")
+  tag    tag  @relation(fields: [tagId], references: [id], onDelete: Cascade, map: "BlogTags_tagId_fkey")
+
+  @@unique([blogId, tagId], map: "BlogTags_blogId_tagId_key")
+  @@index([tagId], map: "BlogTags_tagId_fkey")
+}

@@ -1,0 +1,10 @@
+model tag {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique(map: "Tag_name_key")
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime
+  blogtags    blogtags[]
+  producttags producttags[]
+
+  @@index([name], map: "Tag_name_idx")
+}
