@@ -10,6 +10,7 @@ model User {
   isEmailVerified Boolean   @default(false)
   isPhoneVerified Boolean   @default(true)
   lastname        String?   @db.VarChar(50)
+  Cart            Cart[]
   order           Order[]
   account         Account[]
 

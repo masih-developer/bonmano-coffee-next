@@ -12,6 +12,7 @@ model Product {
   categoryId      Int
   createdAt       DateTime         @default(now())
   updatedAt       DateTime
+  cartitem        CartItem[]
   comment         Comment[]
   faq             Faq[]
   productgallerty ProductGallery[]
