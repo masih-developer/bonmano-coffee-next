@@ -1,4 +1,4 @@
-model order {
+model Order {
   id                 Int                  @id @default(autoincrement())
   totalPrice         Float
   orderStatus        order_orderStatus
@@ -7,27 +7,29 @@ model order {
   userId             Int
   createdAt          DateTime             @default(now())
   updatedAt          DateTime
-  user               user                 @relation(fields: [userId], references: [id], map: "Order_userId_fkey")
-  orderitem          orderitem[]
-  orderstatushistory orderstatushistory[]
-  payment            payment[]
+  orderitem          OrderItem[]
+  orderstatushistory OrderStatusHistory[]
+  user               User                 @relation(fields: [userId], references: [id], map: "Order_userId_fkey")
+  payment            Payment[]
 
   @@index([userId], map: "Order_userId_fkey")
+  @@map("orders")
 }
 
-model orderstatushistory {
+model OrderStatusHistory {
   id         Int                       @id @default(autoincrement())
   status     orderstatushistory_status
   statusDate DateTime                  @default(now())
   orderId    Int
   createdAt  DateTime                  @default(now())
   updatedAt  DateTime
-  order      order                     @relation(fields: [orderId], references: [id], map: "OrderStatusHistory_orderId_fkey")
+  order      Order                     @relation(fields: [orderId], references: [id], map: "OrderStatusHistory_orderId_fkey")
 
   @@index([orderId], map: "OrderStatusHistory_orderId_fkey")
+  @@map("order_status_histories")
 }
 
-model orderitem {
+model OrderItem {
   id             Int      @id @default(autoincrement())
   productName    String
   quantity       Int
@@ -36,9 +38,10 @@ model orderitem {
   orderId        Int
   createdAt      DateTime @default(now())
   updatedAt      DateTime
-  order          order    @relation(fields: [orderId], references: [id], map: "OrderItem_orderId_fkey")
+  order          Order    @relation(fields: [orderId], references: [id], map: "OrderItem_orderId_fkey")
 
   @@index([orderId], map: "OrderItem_orderId_fkey")
+  @@map("order_items")
 }
 
 enum orderstatushistory_status {
