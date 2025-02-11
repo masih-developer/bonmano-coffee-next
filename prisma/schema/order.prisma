@@ -1,31 +1,29 @@
 model Order {
   id                 Int                  @id @default(autoincrement())
   totalPrice         Float
-  orderStatus        order_orderStatus
+  orderStatus        OrderStatus
   orderDate          DateTime             @default(now())
-  paymentStatus      order_paymentStatus
+  paymentStatus      OrderPaymentStatus
   userId             Int
+  orderitem          OrderItem[]
+  payment            Payment[]
+  orderstatushistory OrderStatusHistory[]
   createdAt          DateTime             @default(now())
   updatedAt          DateTime
-  orderitem          OrderItem[]
-  orderstatushistory OrderStatusHistory[]
-  user               User                 @relation(fields: [userId], references: [id], map: "Order_userId_fkey")
-  payment            Payment[]
+  user               User                 @relation(fields: [userId], references: [id])
 
-  @@index([userId], map: "Order_userId_fkey")
   @@map("orders")
 }
 
 model OrderStatusHistory {
-  id         Int                       @id @default(autoincrement())
-  status     orderstatushistory_status
-  statusDate DateTime                  @default(now())
+  id         Int                      @id @default(autoincrement())
+  status     OrderStatusHistoryStatus
+  statusDate DateTime                 @default(now())
   orderId    Int
-  createdAt  DateTime                  @default(now())
+  createdAt  DateTime                 @default(now())
   updatedAt  DateTime
-  order      Order                     @relation(fields: [orderId], references: [id], map: "OrderStatusHistory_orderId_fkey")
+  order      Order                    @relation(fields: [orderId], references: [id])
 
-  @@index([orderId], map: "OrderStatusHistory_orderId_fkey")
   @@map("order_status_histories")
 }
 
@@ -38,27 +36,26 @@ model OrderItem {
   orderId        Int
   createdAt      DateTime @default(now())
   updatedAt      DateTime
-  order          Order    @relation(fields: [orderId], references: [id], map: "OrderItem_orderId_fkey")
+  order          Order    @relation(fields: [orderId], references: [id])
 
-  @@index([orderId], map: "OrderItem_orderId_fkey")
   @@map("order_items")
 }
 
-enum orderstatushistory_status {
+enum OrderStatus {
   COMPLETED
   CANCELLED
   PENDING
   IN_PROGRESS
 }
 
-enum order_orderStatus {
+enum OrderStatusHistoryStatus {
   COMPLETED
   CANCELLED
   PENDING
   IN_PROGRESS
 }
 
-enum order_paymentStatus {
+enum OrderPaymentStatus {
   PAID
   PENDING
 }

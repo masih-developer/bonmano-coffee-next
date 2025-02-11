@@ -2,7 +2,6 @@ model Payment {
   id            Int           @id @default(autoincrement())
   amount        Float
   paymentDate   DateTime      @default(now())
-  paymentMethod PaymentMethod
   paymentStatus PaymentStatus
   orderId       Int
   createdAt     DateTime      @default(now())
@@ -16,10 +15,4 @@ model Payment {
 enum PaymentStatus {
   PAID
   PENDING
-}
-
-enum PaymentMethod {
-  CREDIT_CARD
-  ONLINE_PAYMENT
-  CASH
 }
