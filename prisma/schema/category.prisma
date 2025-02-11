@@ -1,15 +1,16 @@
-model category {
+model Category {
   id             Int           @id @default(autoincrement())
   name           String
   parentId       Int?
   type           category_type
   createdAt      DateTime      @default(now())
   updatedAt      DateTime
-  category       category?     @relation("categoryTocategory", fields: [parentId], references: [id], map: "Category_parentId_fkey")
-  other_category category[]    @relation("categoryTocategory")
-  product        product[]
+  category       Category?     @relation("categoryTocategory", fields: [parentId], references: [id], map: "Category_parentId_fkey")
+  other_category Category[]    @relation("categoryTocategory")
+  product        Product[]
 
   @@index([parentId], map: "Category_parentId_idx")
+  @@map("categories")
 }
 
 enum category_type {

@@ -1,0 +1,8 @@
+model Province {
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(255)
+  City   City[]
+  Adress Adress[]
+
+  @@map("provinces")
+}

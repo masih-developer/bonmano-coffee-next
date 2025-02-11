@@ -1,4 +1,4 @@
-model otp {
+model Otp {
   id         Int      @id @default(autoincrement())
   phone      String   @unique @db.VarChar(11)
   code       String   @db.Char(6)
@@ -6,4 +6,6 @@ model otp {
   is_used    Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  @@map("otps")
 }

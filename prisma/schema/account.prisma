@@ -1,4 +1,4 @@
-model account {
+model Account {
   id                       Int      @id @default(autoincrement())
   userId                   Int
   type                     String
@@ -14,8 +14,9 @@ model account {
   refresh_token_expires_in Int?
   createdAt                DateTime @default(now())
   updatedAt                DateTime
-  user                     user     @relation(fields: [userId], references: [id], map: "Account_userId_fkey")
+  user                     User     @relation(fields: [userId], references: [id], map: "Account_userId_fkey")
 
   @@unique([provider, providerAccountId], map: "Account_provider_providerAccountId_key")
   @@index([userId], map: "Account_userId_idx")
+  @@map("user_oauth_accounts")
 }
