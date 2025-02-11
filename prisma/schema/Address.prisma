@@ -1,0 +1,11 @@
+model Adress {
+  id         Int      @id @default(autoincrement())
+  title      String   @db.VarChar(255)
+  postalCode String
+  provinceId Int
+  cityId     Int
+  province   Province @relation(fields: [provinceId], references: [id])
+  city       City     @relation(fields: [cityId], references: [id])
+
+  @@map("addresses")
+}
