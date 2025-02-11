@@ -4,8 +4,10 @@ model Adress {
   postalCode String
   provinceId Int
   cityId     Int
-  province   Province @relation(fields: [provinceId], references: [id])
   city       City     @relation(fields: [cityId], references: [id])
+  province   Province @relation(fields: [provinceId], references: [id])
 
+  @@index([cityId], map: "addresses_cityId_fkey")
+  @@index([provinceId], map: "addresses_provinceId_fkey")
   @@map("addresses")
 }

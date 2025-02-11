@@ -11,7 +11,7 @@ model User {
   isPhoneVerified Boolean   @default(true)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
-  Cart            Cart[]
+  Cart            Cart?
   order           Order[]
   account         Account[]
 

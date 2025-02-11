@@ -2,9 +2,10 @@ model City {
   id         Int      @id @default(autoincrement())
   name       String   @db.VarChar(255)
   provinceId Int
-  province   Province @relation(fields: [provinceId], references: [id])
   Adress     Adress[]
+  province   Province @relation(fields: [provinceId], references: [id])
 
   @@unique([name, provinceId])
+  @@index([provinceId], map: "cities_provinceId_fkey")
   @@map("cities")
 }
