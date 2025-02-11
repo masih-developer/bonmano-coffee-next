@@ -1,6 +1,6 @@
 model Cart {
   id        Int        @id @default(autoincrement())
-  userId    Int
+  userId    Int        @unique
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   cartitem  CartItem[]
