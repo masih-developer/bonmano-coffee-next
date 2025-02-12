@@ -1,0 +1,16 @@
+model Asset {
+  id           Int            @id @default(autoincrement())
+  url          String
+  type         AssetType
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  ProductAsset ProductAsset[]
+
+  @@map("assets")
+}
+
+enum AssetType {
+  IMAGE
+  VIDEO
+  DOCMUMENT
+}

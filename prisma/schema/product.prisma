@@ -1,5 +1,5 @@
 model Product {
-  id              Int              @id @default(autoincrement())
+  id              Int               @id @default(autoincrement())
   name            String
   price           Float
   quantity        Int
@@ -10,28 +10,17 @@ model Product {
   height          Float?
   dimensions      String?
   categoryId      Int
-  createdAt       DateTime         @default(now())
+  createdAt       DateTime          @default(now())
   updatedAt       DateTime
   cartitem        CartItem[]
   comment         Comment[]
   faq             Faq[]
-  productgallerty ProductGallery[]
+  ProductAsset    ProductAsset[]
   producttags     ProductTag[]
-  category        Category         @relation(fields: [categoryId], references: [id], map: "Product_categoryId_fkey")
+  ProductCategory ProductCategory[]
 
   @@index([categoryId], map: "Product_categoryId_idx")
   @@map("products")
-}
-
-model ProductGallery {
-  id        Int      @id @default(autoincrement())
-  productId Int?
-  createdAt DateTime @default(now())
-  updatedAt DateTime
-  product   Product? @relation(fields: [productId], references: [id], map: "ProductGallerty_productId_fkey")
-
-  @@index([productId], map: "ProductGallerty_productId_fkey")
-  @@map("product_galleries")
 }
 
 model ProductTag {
@@ -44,4 +33,34 @@ model ProductTag {
   @@unique([productId, tagId], map: "ProductTags_productId_tagId_key")
   @@index([tagId], map: "ProductTags_tagId_fkey")
   @@map("product_tags")
+}
+
+model ProductAsset {
+  id        Int        @id @default(autoincrement())
+  productId Int
+  assetId   Int
+  usage     AssetUsage
+  createdAt DateTime   @default(now())
+  asset     Asset      @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, usage])
+  @@index([assetId], map: "product_assets_assetId_fkey")
+  @@map("product_assets")
+}
+
+model ProductCategory {
+  id         Int      @id @default(autoincrement())
+  productId  Int
+  categoryId Int
+  product    Product  @relation(fields: [productId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  @@map("product_categories")
+}
+
+enum AssetUsage {
+  MAIN
+  GALLERY
+  THUMBNAIL
 }
