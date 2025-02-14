@@ -4,6 +4,8 @@ model City {
   provinceId Int
   Adress     Adress[]
   province   Province @relation(fields: [provinceId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@unique([name, provinceId])
   @@index([provinceId], map: "cities_provinceId_fkey")
