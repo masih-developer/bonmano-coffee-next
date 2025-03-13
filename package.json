@@ -6,18 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prisma:generate": "dotenv -e .env.local -- npx prisma generate",
-    "prisma:push": "dotenv -e .env.local -- npx prisma db push",
-    "prisma:pull": "dotenv -e .env.local -- npx prisma db pull",
-    "prisma:studio": "dotenv -e .env.local -- npx prisma studio",
-    "prisma:reset": "dotenv -e .env.local -- npx prisma migrate reset",
-    "prisma:migrate:dev": "dotenv -e .env.local -- npx prisma migrate dev",
-    "prisma:migrate:deploy": "dotenv -e .env.local -- npx prisma migrate deploy",
-    "prisma:migrate:status": "dotenv -e .env.local -- npx prisma migrate status",
-    "prisma:validate": "dotenv -e .env.local -- npx prisma validate",
-    "prisma:seed": "dotenv -e .env.local -- npx prisma db seed",
-    "prisma:format": "dotenv -e .env.local -- npx prisma format"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -29,7 +18,6 @@
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "dotenv-cli": "^8.0.0",
     "lucide-react": "^0.390.0",
     "next": "14.2.3",
     "next-auth": "^4.24.7",
