@@ -1,0 +1,15 @@
+model Adress {
+  id         Int      @id @default(autoincrement())
+  title      String   @db.VarChar(255)
+  postalCode String
+  provinceId Int
+  cityId     Int
+  city       City     @relation(fields: [cityId], references: [id])
+  province   Province @relation(fields: [provinceId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([cityId], map: "addresses_cityId_fkey")
+  @@index([provinceId], map: "addresses_provinceId_fkey")
+  @@map("addresses")
+}

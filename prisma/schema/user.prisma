@@ -1,0 +1,27 @@
+model User {
+  id              Int               @id @default(autoincrement())
+  firstname       String?           @db.VarChar(50)
+  lastname        String?           @db.VarChar(50)
+  username        String?           @unique(map: "User_username_key") @db.VarChar(30)
+  nationalCode    String?           @db.Char(10)
+  email           String?           @unique(map: "User_email_key") @db.VarChar(255)
+  phone           String            @unique(map: "User_phone_key") @db.VarChar(11)
+  role            Role              @default(USER)
+  isEmailVerified Boolean           @default(false)
+  isPhoneVerified Boolean           @default(true)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  Cart            Cart?
+  order           Order[]
+  account         Account[]
+  ProductReview   ProductReview[]
+  ProductQuestion ProductQuestion[]
+  ProductAnswer   ProductAnswer[]
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  USER
+}

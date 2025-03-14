@@ -1,0 +1,148 @@
+model Product {
+  id               Int                @id @default(autoincrement())
+  name             String
+  price            Float
+  quantity         Int
+  description      String?
+  rating           Float?
+  image            String?
+  weight           Float?
+  height           Float?
+  dimensions       String?
+  categoryId       Int
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime
+  cartitem         CartItem[]
+  comment          Comment[]
+  faq              Faq[]
+  ProductAsset     ProductAsset[]
+  producttags      ProductTag[]
+  ProductCategory  ProductCategory[]
+  ProductAttribute ProductAttribute[]
+  ProductFAQ       ProductFAQ[]
+  ProductReview    ProductReview[]
+  ProductQuestion  ProductQuestion[]
+
+  @@index([categoryId], map: "Product_categoryId_idx")
+  @@map("products")
+}
+
+model ProductTag {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  tagId     Int
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade, map: "ProductTags_productId_fkey")
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade, map: "ProductTags_tagId_fkey")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, tagId], map: "ProductTags_productId_tagId_key")
+  @@index([tagId], map: "ProductTags_tagId_fkey")
+  @@map("product_tags")
+}
+
+model ProductAsset {
+  id        Int        @id @default(autoincrement())
+  productId Int
+  assetId   Int
+  usage     AssetUsage
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  asset     Asset      @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, usage])
+  @@index([assetId], map: "product_assets_assetId_fkey")
+  @@map("product_assets")
+}
+
+model ProductCategory {
+  id         Int      @id @default(autoincrement())
+  productId  Int
+  categoryId Int
+  product    Product  @relation(fields: [productId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("product_categories")
+}
+
+model ProductAttribute {
+  id          Int       @id @default(autoincrement())
+  value       String    @db.VarChar(255)
+  productId   Int
+  attributeId Int
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  attribute   Attribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([productId, attributeId])
+  @@map("product_attributes")
+}
+
+model ProductFAQ {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String
+  productId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductReview {
+  id           Int          @id @default(autoincrement())
+  comment      String
+  rating       Int
+  reviewStatus ReviewStatus @default(PENDING)
+  productId    Int
+  userId       Int
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, userId])
+}
+
+model ProductQuestion {
+  id        Int      @id @default(autoincrement())
+  question  String
+  userId    Int
+  productId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  answers ProductAnswer[]
+}
+
+model ProductAnswer {
+  id         Int      @id @default(autoincrement())
+  questionId Int
+  userId     Int
+  answer     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  question ProductQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum AssetUsage {
+  MAIN
+  GALLERY
+  THUMBNAIL
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}

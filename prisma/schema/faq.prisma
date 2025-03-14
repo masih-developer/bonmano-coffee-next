@@ -1,0 +1,12 @@
+model Faq {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String
+  productId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  product   Product  @relation(fields: [productId], references: [id], map: "Faq_productId_fkey")
+
+  @@index([productId], map: "Faq_productId_idx")
+  @@map("faqs")
+}

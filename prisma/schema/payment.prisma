@@ -1,0 +1,18 @@
+model Payment {
+  id            Int           @id @default(autoincrement())
+  amount        Float
+  paymentDate   DateTime      @default(now())
+  paymentStatus PaymentStatus
+  orderId       Int
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime
+  order         Order         @relation(fields: [orderId], references: [id], map: "Payment_orderId_fkey")
+
+  @@index([orderId], map: "Payment_orderId_fkey")
+  @@map("payments")
+}
+
+enum PaymentStatus {
+  PAID
+  PENDING
+}

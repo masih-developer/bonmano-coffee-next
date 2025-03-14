@@ -1,0 +1,12 @@
+model Comment {
+  id        Int      @id @default(autoincrement())
+  author    String
+  text      String
+  productId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  product   Product  @relation(fields: [productId], references: [id], map: "Comment_productId_fkey")
+
+  @@index([productId], map: "Comment_productId_idx")
+  @@map("comments")
+}
