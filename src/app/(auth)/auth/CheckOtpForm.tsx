@@ -38,7 +38,7 @@ export default function CheckOtpForm({
 
   return (
     <form
-      className="rounded-lg p-5 shadow-md max-w-[400px] w-full flex flex-col gap-y-5"
+      className="flex w-full max-w-[400px] flex-col gap-y-5 rounded-lg p-5 shadow-md"
       onSubmit={handleSubmit(submitFormHandler)}
     >
       <div className="flex flex-col gap-y-2">
@@ -50,7 +50,7 @@ export default function CheckOtpForm({
           id="code"
           {...register("code")}
           className={cn(
-            "outline-none border p-2 rounded-lg h-12 placeholder:text-sm",
+            "h-12 rounded-lg border p-2 outline-none placeholder:text-sm",
             {
               "border-danger": errors.code,
               "border-gray-400": !errors.code,
@@ -62,7 +62,7 @@ export default function CheckOtpForm({
           <span className="text-sm text-danger">{errors.code.message}</span>
         )}
       </div>
-      <button type="submit" className="bg-primary h-12 rounded-lg text-white">
+      <button type="submit" className="h-12 rounded-lg bg-primary text-white">
         {isSubmitting ? "درحال بررسی..." : "ورود"}
       </button>
     </form>

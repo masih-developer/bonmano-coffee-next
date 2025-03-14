@@ -103,26 +103,26 @@ const NavbarMobile = () => {
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
-        <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors">
-          <span className="text-xl flex items-center justify-center size-6 rounded-full bg-secondary">
+        <button className="rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary">
+          <span className="flex size-6 items-center justify-center rounded-full bg-secondary text-xl">
             <HiBars3BottomRight />
           </span>
         </button>
       </DrawerTrigger>
       <DrawerContent
         aria-describedby={undefined}
-        className="w-80 max-w-full rounded-tl-2xl rounded-bl-2xl bg-background gap-y-10 h-full rounded-tr-none rounded-br-none block"
+        className="block h-full w-80 max-w-full gap-y-10 rounded-bl-2xl rounded-br-none rounded-tl-2xl rounded-tr-none bg-background"
       >
         <DialogTitle />
-        <DrawerHeader className="flex items-center p-5 justify-center relative">
+        <DrawerHeader className="relative flex items-center justify-center p-5">
           <DrawerClose asChild>
-            <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors absolute left-5 top-5 z-10">
-              <span className="flex items-center justify-center size-5 rounded-full bg-secondary">
+            <button className="absolute left-5 top-5 z-10 rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary">
+              <span className="flex size-5 items-center justify-center rounded-full bg-secondary">
                 <HiXMark />
               </span>
             </button>
           </DrawerClose>
-          <div className="size-32 overflow-hidden relative">
+          <div className="relative size-32 overflow-hidden">
             <Image
               fill
               src="/logo.svg"
@@ -140,7 +140,7 @@ const NavbarMobile = () => {
                   <Link
                     key={item.id}
                     href={item.path}
-                    className="text-sm font-light bg-neutral-100 py-4 w-full text-start flex items-center justify-between rounded-xl overflow-hidden px-2"
+                    className="flex w-full items-center justify-between overflow-hidden rounded-xl bg-neutral-100 px-2 py-4 text-start text-sm font-light"
                   >
                     {item.title}
                   </Link>
@@ -151,14 +151,14 @@ const NavbarMobile = () => {
                       return (
                         <>
                           <span
-                            className={`transition-colors font-light text-sm truncate ${
+                            className={`truncate text-sm font-light transition-colors ${
                               isEnter ? "text-primary" : ""
                             }`}
                           >
                             {item.title}
                           </span>
                           <span
-                            className={`transition-transform shrink-0 mr-2 ${
+                            className={`mr-2 shrink-0 transition-transform ${
                               isEnter ? "rotate-180 text-primary" : "rotate-0"
                             }`}
                           >
@@ -175,7 +175,7 @@ const NavbarMobile = () => {
                           <Link
                             key={each.id}
                             href={each.path}
-                            className="text-sm font-light bg-neutral-100 py-3 w-full text-start flex items-center justify-between rounded-xl overflow-hidden px-2"
+                            className="flex w-full items-center justify-between overflow-hidden rounded-xl bg-neutral-100 px-2 py-3 text-start text-sm font-light"
                           >
                             {each.title}
                           </Link>
@@ -186,14 +186,14 @@ const NavbarMobile = () => {
                               return (
                                 <>
                                   <span
-                                    className={`transition-colors font-light text-sm truncate ${
+                                    className={`truncate text-sm font-light transition-colors ${
                                       isEnter ? "text-primary" : ""
                                     }`}
                                   >
                                     {each.title}
                                   </span>
                                   <span
-                                    className={`transition-transform shrink-0 mr-2 ${
+                                    className={`mr-2 shrink-0 transition-transform ${
                                       isEnter
                                         ? "rotate-180 text-primary"
                                         : "rotate-0"
@@ -208,7 +208,7 @@ const NavbarMobile = () => {
                             className="py-1"
                           >
                             <div className="py-2">
-                              <ul className="flex flex-col gap-y-3 pr-2 border-r-2 border-r-primary">
+                              <ul className="flex flex-col gap-y-3 border-r-2 border-r-primary pr-2">
                                 {each.items.map((child) =>
                                   child.isLink ? (
                                     <li
@@ -217,7 +217,7 @@ const NavbarMobile = () => {
                                     >
                                       <Link
                                         href={child.path}
-                                        className="text-sm font-light w-full text-start block transition-all hover:text-primary hover:pr-5 relative before:content-[''] before:absolute before:right-0 before:w-0 before:h-[2px] before:rounded-full before:bg-primary before:top-0 before:bottom-0 hover:before:w-4 before:m-auto before:transition-all"
+                                        className="relative block w-full text-start text-sm font-light transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:m-auto before:h-[2px] before:w-0 before:rounded-full before:bg-primary before:transition-all before:content-[''] hover:pr-5 hover:text-primary hover:before:w-4"
                                       >
                                         {child.title}
                                       </Link>

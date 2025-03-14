@@ -12,7 +12,7 @@ interface LoginPageProps {
 export default function AuthPage({ searchParams }: LoginPageProps) {
   const [step, setStep] = useState(1);
   return (
-    <main className="w-full min-h-screen flex items-center justify-center">
+    <main className="flex min-h-screen w-full items-center justify-center">
       {step === 1 ? (
         <SendOtpForm setStep={setStep} />
       ) : (

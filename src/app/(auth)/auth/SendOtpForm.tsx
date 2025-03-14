@@ -37,7 +37,7 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
 
   return (
     <form
-      className="rounded-lg p-5 shadow-md max-w-[400px] w-full flex flex-col gap-y-5"
+      className="flex w-full max-w-[400px] flex-col gap-y-5 rounded-lg p-5 shadow-md"
       onSubmit={handleSubmit(submitFormHandler)}
     >
       {/* {!!error && <p className="text-danger">{error}</p>}l */}
@@ -50,7 +50,7 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
           id="phone"
           {...register("phone")}
           className={cn(
-            "outline-none border p-2 rounded-lg h-12 placeholder:text-sm",
+            "h-12 rounded-lg border p-2 outline-none placeholder:text-sm",
             {
               "border-danger": errors.phone,
               "border-gray-400": !errors.phone,
@@ -62,7 +62,7 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
           <span className="text-sm text-danger">{errors.phone.message}</span>
         )}
       </div>
-      <button type="submit" className="bg-primary h-12 rounded-lg text-white">
+      <button type="submit" className="h-12 rounded-lg bg-primary text-white">
         {isSubmitting ? "ارسال کد.." : "ارسال کد"}
       </button>
     </form>

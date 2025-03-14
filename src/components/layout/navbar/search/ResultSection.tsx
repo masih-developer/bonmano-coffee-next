@@ -21,7 +21,7 @@ type BasePropsType = ProductsType | BlogsType;
 export default function ResultSection(props: BasePropsType) {
   return (
     <div>
-      <div className="bg-secondary-light text-secondary-shade border border-secondary flex items-center rounded-xl font-light p-2 h-11">
+      <div className="flex h-11 items-center rounded-xl border border-secondary bg-secondary-light p-2 font-light text-secondary-shade">
         {props.type === "products" ? "محصولات" : "مقالات"}
       </div>
       <div className="mt-5 flex flex-col gap-2.5">
@@ -29,7 +29,7 @@ export default function ResultSection(props: BasePropsType) {
           <div className="flex items-center" key={item}>
             <Link
               href=""
-              className="block shrink-0 size-32 sm:size-36 lg:size-40 xl:size-44 overflow-hidden rounded-xl border border-secondary bg-background"
+              className="block size-32 shrink-0 overflow-hidden rounded-xl border border-secondary bg-background sm:size-36 lg:size-40 xl:size-44"
             >
               <img
                 src="https://www.bonmano.com/wp-content/uploads/2024/06/main-2-products-300x300.jpg"
@@ -37,17 +37,17 @@ export default function ResultSection(props: BasePropsType) {
                 className="block size-full object-contain"
               />
             </Link>
-            <div className="w-full rounded-xl -mr-5 py-5 px-2.5 bg-background shadow-lg flex items-center border border-[#e9e9e9]">
+            <div className="-mr-5 flex w-full items-center rounded-xl border border-[#e9e9e9] bg-background px-2.5 py-5 shadow-lg">
               <Link
                 href=""
-                className="flex flex-col gap-y-1.5 text-neutral-300 transition-colors hover:text-primary font-light text-sm"
+                className="flex flex-col gap-y-1.5 text-sm font-light text-neutral-300 transition-colors hover:text-primary"
               >
                 {props.type === "products" ? (
                   <>
                     <span>دانه قهوه تک‌خاستگاه کنیا</span>
                     <span>
                       شناسه:{" "}
-                      <span className="font-medium text-sm">352470370103</span>
+                      <span className="text-sm font-medium">352470370103</span>
                     </span>
                   </>
                 ) : (
@@ -59,15 +59,15 @@ export default function ResultSection(props: BasePropsType) {
         ))}
         <Link
           href=""
-          className="my-2.5 rounded-xl bg-primary text-white block w-fit px-4 py-2.5 text-sm"
+          className="my-2.5 block w-fit rounded-xl bg-primary px-4 py-2.5 text-sm text-white"
         >
           نمایش نتایج بیشتر
         </Link>
         <div>
-          <div className="bg-secondary-light text-secondary-shade border border-secondary flex items-center rounded-xl font-light p-2 h-11">
+          <div className="flex h-11 items-center rounded-xl border border-secondary bg-secondary-light p-2 font-light text-secondary-shade">
             دسته بندی {props.type === "products" ? "محصولات" : "مقالات"}
           </div>
-          <ul className="flex items-center flex-wrap gap-1.5 my-5">
+          <ul className="my-5 flex flex-wrap items-center gap-1.5">
             {[
               "لوازم و تحهیزات قهوه",
               "قهوه فرانسه",
@@ -81,7 +81,7 @@ export default function ResultSection(props: BasePropsType) {
             ].map((item, index) => (
               <li
                 key={index}
-                className="flex text-[15px] font-light items-center gap-1.5"
+                className="flex items-center gap-1.5 text-[15px] font-light"
               >
                 <Link href="" className="transition-colors hover:text-primary">
                   {item}

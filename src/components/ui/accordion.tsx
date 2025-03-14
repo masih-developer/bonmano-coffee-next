@@ -33,7 +33,7 @@ const AccordionItem = React.forwardRef<
   return (
     <AccItem
       className={cn(
-        "w-full bg-neutral-100 rounded-xl overflow-hidden",
+        "w-full overflow-hidden rounded-xl bg-neutral-100",
         className,
       )}
       ref={ref}

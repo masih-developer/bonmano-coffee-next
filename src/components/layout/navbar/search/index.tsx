@@ -16,31 +16,31 @@ export default function Search() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors">
-          <span className="text-xl flex items-center justify-center size-6 rounded-full bg-secondary">
+        <button className="rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary">
+          <span className="flex size-6 items-center justify-center rounded-full bg-secondary text-xl">
             <CiSearch />
           </span>
         </button>
       </DrawerTrigger>
       <DrawerContent
         aria-describedby={undefined}
-        className="size-full bg-transparent rounded-none block backdrop-blur-md border-none"
+        className="block size-full rounded-none border-none bg-transparent backdrop-blur-md"
         overalyClassName="bg-transparent"
       >
         <DialogTitle />
-        <DrawerHeader className="flex items-center p-5 justify-center relative">
+        <DrawerHeader className="relative flex items-center justify-center p-5">
           <DrawerClose asChild>
-            <button className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors absolute left-2 top-2 z-10">
-              <span className="flex items-center justify-center size-7 rounded-full bg-secondary">
+            <button className="absolute left-2 top-2 z-10 rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary">
+              <span className="flex size-7 items-center justify-center rounded-full bg-secondary">
                 <HiXMark className="text-xl" />
               </span>
             </button>
           </DrawerClose>
         </DrawerHeader>
         <div className="container">
-          <div className="mt-5 mb-10">
-            <div className="flex bg-background focus-within:border-primary transition-colors shadow-md overflow-hidden items-center h-12 rounded-xl border border-border">
-              <span className="size-12 shrink-0 flex items-center justify-center text-2xl text-neutral-300">
+          <div className="mb-10 mt-5">
+            <div className="flex h-12 items-center overflow-hidden rounded-xl border border-border bg-background shadow-md transition-colors focus-within:border-primary">
+              <span className="flex size-12 shrink-0 items-center justify-center text-2xl text-neutral-300">
                 <CiSearch />
               </span>
               <input
@@ -51,7 +51,7 @@ export default function Search() {
             </div>
           </div>
           <ScrollArea dir="rtl" className="h-[calc(100vh-148px)]">
-            <div className="pl-5 gap-y-10 grid grid-cols-12 lg:gap-10">
+            <div className="grid grid-cols-12 gap-y-10 pl-5 lg:gap-10">
               <div className="col-span-12 lg:col-span-6">
                 <ResultSection type="products" products={[]} />
               </div>

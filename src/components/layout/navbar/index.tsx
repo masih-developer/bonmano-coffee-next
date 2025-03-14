@@ -44,14 +44,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-background sticky z-10 shadow-md w-full top-0 transition-transform duration-300 ${
-        isVisible ? "transform translate-y-0" : "transform -translate-y-full"
+      className={`sticky top-0 z-10 w-full bg-background shadow-md transition-transform duration-300 ${
+        isVisible ? "translate-y-0 transform" : "-translate-y-full transform"
       }`}
     >
       <div className="container">
-        <div className="flex items-center pt-5 size-full justify-between lg:grid lg:grid-cols-12">
+        <div className="flex size-full items-center justify-between pt-5 lg:grid lg:grid-cols-12">
           <div className="lg:col-span-1 2xl:col-span-2">
-            <div className="flex text-center items-center gap-5">
+            <div className="flex items-center gap-5 text-center">
               <div className="block lg:hidden">
                 <NavbarMobile />
               </div>
@@ -60,75 +60,75 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-3 h-full">
-            <ul className="hidden lg:flex gap-5 shrink-0 justify-end size-full items-end">
-              <li className="relative pb-9 group">
+          <div className="h-full lg:col-span-3">
+            <ul className="hidden size-full shrink-0 items-end justify-end gap-5 lg:flex">
+              <li className="group relative pb-9">
                 <Link
                   href="/"
-                  className="text-sm transition-colors group-hover:text-primary flex items-center gap-1"
+                  className="flex items-center gap-1 text-sm transition-colors group-hover:text-primary"
                 >
                   <span>محصولات خانگی</span>
                   <HiChevronDown className="transition group-hover:rotate-180" />
                 </Link>
-                <ul className="absolute top-full right-0 w-64 bg-secondary p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible flex flex-col text-background text-sm font-light">
-                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                <ul className="invisible absolute right-0 top-full flex w-64 flex-col rounded-bl-2xl rounded-br-2xl bg-secondary p-5 text-sm font-light text-background opacity-0 duration-300 group-hover:visible group-hover:opacity-100">
+                  <li className="[&>a]:first:pt-0 [&>a]:last:border-b-0">
                     <Link
                       href="/"
-                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                      className="flex items-center gap-x-2 border-b border-b-secondary-light py-4"
                     >
                       <Noresca />
                       <span>نورسکا</span>
                     </Link>
                   </li>
-                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                  <li className="[&>a]:first:pt-0 [&>a]:last:border-b-0">
                     <Link
                       href="/"
-                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                      className="flex items-center gap-x-2 border-b border-b-secondary-light py-4"
                     >
                       <EspressoCapsule />
                       <span>کپسول اسپرسو</span>
                     </Link>
                   </li>
-                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                  <li className="[&>a]:first:pt-0 [&>a]:last:border-b-0">
                     <Link
                       href="/"
-                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                      className="flex items-center gap-x-2 border-b border-b-secondary-light py-4"
                     >
                       <Espresso />
                       <span>اسپرسو</span>
                     </Link>
                   </li>
-                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                  <li className="[&>a]:first:pt-0 [&>a]:last:border-b-0">
                     <Link
                       href="/"
-                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                      className="flex items-center gap-x-2 border-b border-b-secondary-light py-4"
                     >
                       <TurkCoffee />
                       <span>قهوه تُرک</span>
                     </Link>
                   </li>
-                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                  <li className="[&>a]:first:pt-0 [&>a]:last:border-b-0">
                     <Link
                       href="/"
-                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                      className="flex items-center gap-x-2 border-b border-b-secondary-light py-4"
                     >
                       <FrenchCoffee />
                       <span>قهوه فرانسوی</span>
                     </Link>
                   </li>
-                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                  <li className="[&>a]:first:pt-0 [&>a]:last:border-b-0">
                     <Link
                       href="/"
-                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                      className="flex items-center gap-x-2 border-b border-b-secondary-light py-4"
                     >
                       <InstantCoffee />
                       <span>قهوه فوری</span>
                     </Link>
                   </li>
-                  <li className="[&>a]:last:border-b-0 [&>a]:first:pt-0">
+                  <li className="[&>a]:first:pt-0 [&>a]:last:border-b-0">
                     <Link
                       href="/"
-                      className="flex items-center gap-x-2 py-4 border-b border-b-secondary-light"
+                      className="flex items-center gap-x-2 border-b border-b-secondary-light py-4"
                     >
                       <MixedPowders />
                       <span>پودر های ترکیبی</span>
@@ -136,54 +136,54 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="relative pb-9 group">
+              <li className="group relative pb-9">
                 <Link
                   href="/"
-                  className="text-sm transition-colors group-hover:text-primary flex items-center gap-1"
+                  className="flex items-center gap-1 text-sm transition-colors group-hover:text-primary"
                 >
                   <span>محصولات هورکا</span>
                   <HiChevronDown className="transition group-hover:rotate-180" />
                 </Link>
-                <ul className="absolute top-full right-0 w-64 bg-secondary p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible"></ul>
+                <ul className="invisible absolute right-0 top-full w-64 rounded-bl-2xl rounded-br-2xl bg-secondary p-5 opacity-0 duration-300 group-hover:visible group-hover:opacity-100"></ul>
               </li>
             </ul>
           </div>
           <div className="lg:col-span-2 lg:flex lg:items-center lg:justify-center">
-            <div className="size-20 shrink-0 md:size-24 overflow-hidden flex items-center justify-between flex-col mx-10 relative after:content-[''] after:absolute after:bottom-0 after:h-[3px] after:w-44 after:bg-primary after:rounded-tl-lg after:rounded-tr-lg">
+            <div className="relative mx-10 flex size-20 shrink-0 flex-col items-center justify-between overflow-hidden after:absolute after:bottom-0 after:h-[3px] after:w-44 after:rounded-tl-lg after:rounded-tr-lg after:bg-primary after:content-[''] md:size-24">
               <Image
                 fill
                 src="/logo.svg"
                 alt="app header logo"
                 title="بَُن مانو"
-                className="pb-5 block size-full"
+                className="block size-full pb-5"
                 priority={true}
               />
             </div>
           </div>
-          <div className="lg:col-span-4 2xl:col-span-3 h-full">
-            <ul className="hidden lg:flex gap-5 shrink-0 size-full items-end">
-              <li className="relative pb-9 group">
+          <div className="h-full lg:col-span-4 2xl:col-span-3">
+            <ul className="hidden size-full shrink-0 items-end gap-5 lg:flex">
+              <li className="group relative pb-9">
                 <Link
                   href="/"
-                  className="text-sm transition-colors group-hover:text-primary flex items-center gap-1"
+                  className="flex items-center gap-1 text-sm transition-colors group-hover:text-primary"
                 >
                   <span>مجله بن مانو</span>
                   <HiChevronDown className="transition group-hover:rotate-180" />
                 </Link>
-                <ul className="absolute top-full right-0 w-64 bg-secondary p-5 rounded-bl-2xl rounded-br-2xl opacity-0 invisible duration-300 group-hover:opacity-100 group-hover:visible"></ul>
+                <ul className="invisible absolute right-0 top-full w-64 rounded-bl-2xl rounded-br-2xl bg-secondary p-5 opacity-0 duration-300 group-hover:visible group-hover:opacity-100"></ul>
               </li>
-              <li className="relative group pb-9">
+              <li className="group relative pb-9">
                 <Link
                   href="/"
-                  className="text-sm transition-colors group-hover:text-primary flex items-center gap-1"
+                  className="flex items-center gap-1 text-sm transition-colors group-hover:text-primary"
                 >
                   درباره ما
                 </Link>
               </li>
-              <li className="relative group pb-9">
+              <li className="group relative pb-9">
                 <Link
                   href="/"
-                  className="text-sm transition-colors group-hover:text-primary flex items-center gap-1"
+                  className="flex items-center gap-1 text-sm transition-colors group-hover:text-primary"
                 >
                   تماس با ما
                 </Link>
@@ -191,32 +191,32 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="lg:col-span-2">
-            <div className="flex items-center justify-end text-center gap-5">
+            <div className="flex items-center justify-end gap-5 text-center">
               <div className="block sm:hidden">
                 <Search />
               </div>
               <Link
                 href="/profile"
-                className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors hidden sm:flex"
+                className="hidden rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary sm:flex"
               >
-                <span className="flex items-center justify-center size-7 rounded-full bg-secondary">
+                <span className="flex size-7 items-center justify-center rounded-full bg-secondary">
                   <CiUser className="text-xl" />
                 </span>
               </Link>
               <Link
                 href="/cart"
-                className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors hidden sm:flex relative after:absolute after:content-[attr(data-count)] after:-top-2 after:-right-2 after:text-background after:bg-primary after:text-[10px] after:flex after:items-center after:justify-center after:rounded-full after:h-5 after:min-w-5 after:p-1"
+                className="relative hidden rounded-full border-2 border-neutral-500 p-[2px] transition-colors after:absolute after:-right-2 after:-top-2 after:flex after:h-5 after:min-w-5 after:items-center after:justify-center after:rounded-full after:bg-primary after:p-1 after:text-[10px] after:text-background after:content-[attr(data-count)] hover:border-primary sm:flex"
                 data-count={1}
               >
-                <span className="flex items-center justify-center size-7 rounded-full bg-secondary">
+                <span className="flex size-7 items-center justify-center rounded-full bg-secondary">
                   <CiShoppingCart className="text-xl" />
                 </span>
               </Link>
               <Link
                 href="/wishlist"
-                className="border-2 border-neutral-500 rounded-full p-[2px] hover:border-primary transition-colors hidden sm:flex"
+                className="hidden rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary sm:flex"
               >
-                <span className="flex items-center justify-center size-7 rounded-full bg-secondary">
+                <span className="flex size-7 items-center justify-center rounded-full bg-secondary">
                   <CiHeart className="text-xl" />
                 </span>
               </Link>

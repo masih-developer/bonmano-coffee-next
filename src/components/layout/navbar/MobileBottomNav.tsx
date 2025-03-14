@@ -9,13 +9,13 @@ import {
 
 export default function MobileBottomNav() {
   return (
-    <div className="fixed left-0 right-0 bottom-0 w-full bg-neutral-300 h-14 block sm:hidden">
-      <div className="size-full relative p-5 flex items-center justify-between">
-        <ul className="flex items-center gap-2.5 justify-between pl-7 basis-1/2">
+    <div className="fixed bottom-0 left-0 right-0 block h-14 w-full bg-neutral-300 sm:hidden">
+      <div className="relative flex size-full items-center justify-between p-5">
+        <ul className="flex basis-1/2 items-center justify-between gap-2.5 pl-7">
           <li>
             <Link
               href="/wishlist"
-              className="text-background transition-colors hover:text-secondary flex items-center justify-center flex-col whitespace-nowrap"
+              className="flex flex-col items-center justify-center whitespace-nowrap text-background transition-colors hover:text-secondary"
             >
               <CiHeart className="text-2xl" />
               <span className="text-xs">علاقه مندی</span>
@@ -24,18 +24,18 @@ export default function MobileBottomNav() {
           <li>
             <Link
               href="/shop"
-              className="text-background transition-colors hover:text-secondary flex items-center justify-center flex-col whitespace-nowrap"
+              className="flex flex-col items-center justify-center whitespace-nowrap text-background transition-colors hover:text-secondary"
             >
               <CiBoxList className="text-2xl" />
               <span className="text-xs">دسته بندی ها</span>
             </Link>
           </li>
         </ul>
-        <ul className="flex items-center gap-2.5 justify-between pr-7 basis-1/2">
+        <ul className="flex basis-1/2 items-center justify-between gap-2.5 pr-7">
           <li>
             <Link
               href="/auth/login"
-              className="text-background transition-colors hover:text-secondary flex items-center justify-center flex-col whitespace-nowrap"
+              className="flex flex-col items-center justify-center whitespace-nowrap text-background transition-colors hover:text-secondary"
             >
               <CiLogin className="text-2xl" />
               <span className="text-xs">ورود | ثبت نام</span>
@@ -44,7 +44,7 @@ export default function MobileBottomNav() {
           <li>
             <Link
               href="/cart"
-              className="text-background transition-colors hover:text-secondary flex items-center justify-center flex-col whitespace-nowrap"
+              className="flex flex-col items-center justify-center whitespace-nowrap text-background transition-colors hover:text-secondary"
             >
               <CiShoppingCart className="text-2xl" />
               <span className="text-xs">سبد خرید</span>
@@ -53,7 +53,7 @@ export default function MobileBottomNav() {
         </ul>
         <Link
           href="/"
-          className="flex items-center justify-center absolute border-4 border-background -top-7 size-14 bg-primary text-white text-3xl rounded-full left-1/2 -translate-x-1/2"
+          className="absolute -top-7 left-1/2 flex size-14 -translate-x-1/2 items-center justify-center rounded-full border-4 border-background bg-primary text-3xl text-white"
         >
           <CiHome />
         </Link>
