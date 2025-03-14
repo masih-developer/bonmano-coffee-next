@@ -54,7 +54,7 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
             {
               "border-danger": errors.phone,
               "border-gray-400": !errors.phone,
-            }
+            },
           )}
           placeholder="09XXXXXXXXX"
         />

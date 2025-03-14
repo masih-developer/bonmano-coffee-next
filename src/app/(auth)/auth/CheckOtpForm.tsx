@@ -54,7 +54,7 @@ export default function CheckOtpForm({
             {
               "border-danger": errors.code,
               "border-gray-400": !errors.code,
-            }
+            },
           )}
           placeholder="کد ۶ رقمی ارسال‌شده را وارد کنید"
         />

@@ -224,16 +224,16 @@ const NavbarMobile = () => {
                                     </li>
                                   ) : (
                                     ""
-                                  )
+                                  ),
                                 )}
                               </ul>
                             </div>
                           </AccordionItem>
-                        )
+                        ),
                       )}
                     </Accordion>
                   </AccordionItem>
-                )
+                ),
               )}
             </Accordion>
           </div>

@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   if (!isValidatePhone.success) {
     return Response.json(
       { message: isValidatePhone.error.errors[0].message },
-      { status: 422 }
+      { status: 422 },
     );
   }
 

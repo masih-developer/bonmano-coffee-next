@@ -11,7 +11,7 @@ const Accordion = React.forwardRef<
 >(
   (
     { transition = true, transitionTimeout = 250, className, ...props },
-    ref
+    ref,
   ) => {
     return (
       <Acc
@@ -22,7 +22,7 @@ const Accordion = React.forwardRef<
         {...props}
       />
     );
-  }
+  },
 );
 Accordion.displayName = "Accordion";
 
@@ -34,14 +34,14 @@ const AccordionItem = React.forwardRef<
     <AccItem
       className={cn(
         "w-full bg-neutral-100 rounded-xl overflow-hidden",
-        className
+        className,
       )}
       ref={ref}
       buttonProps={{
         ...buttonProps,
         className: cn(
           "bg-neutral-100 px-2 py-4 w-full text-start flex items-center justify-between",
-          buttonProps?.className
+          buttonProps?.className,
         ),
       }}
       header={header}

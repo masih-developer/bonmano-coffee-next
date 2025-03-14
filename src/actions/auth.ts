@@ -17,14 +17,14 @@ type PrevState = {
 
 export async function registerUserAction(
   prevState: PrevState,
-  formData: FormData
+  formData: FormData,
 ): Promise<PrevState> {
   const parsedUser = registerSchema.safeParse(Object.fromEntries(formData));
   // if has an error
   if (!parsedUser.success) {
     return {
       validationErrors: Object.entries(
-        parsedUser.error.formErrors.fieldErrors
+        parsedUser.error.formErrors.fieldErrors,
       ).map((value) => ({
         name: value[0] as FieldPath<z.infer<typeof registerSchema>>,
         message: value[1][0],
