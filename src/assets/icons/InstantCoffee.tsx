@@ -1,11 +1,11 @@
 export default function InstantCoffee() {
   return (
     <svg
-      id="Layer_2"
+      className="size-5"
       data-name="Layer 2"
+      id="Layer_2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
-      className="size-5"
     >
       <defs>
         <style
@@ -16,8 +16,8 @@ export default function InstantCoffee() {
         />
       </defs>
       <g id="Variations">
-        <g id="Instant_Coffee" data-name="Instant Coffee">
-          <rect className="cls-2" width={20} height={20} />
+        <g data-name="Instant Coffee" id="Instant_Coffee">
+          <rect height={20} width={20} className="cls-2" />
           <path
             className="cls-1"
             d="m4.75,3.47l3.84,3.84-2.47,2.47-3.92-3.92.57-.06.06-.84.06-.9.98-.09.85-.08.03-.43m-.85-2.26l-.12,1.78-1.83.17-.12,1.75L.01,5.1l6.11,6.11,3.89-3.89L3.9,1.21h0Z"

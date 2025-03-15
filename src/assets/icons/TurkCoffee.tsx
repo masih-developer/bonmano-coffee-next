@@ -1,11 +1,11 @@
 export default function TurkCoffee() {
   return (
     <svg
-      id="Layer_2"
+      className="size-5"
       data-name="Layer 2"
+      id="Layer_2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20.01 20"
-      className="size-5"
     >
       <defs>
         <style
@@ -16,8 +16,8 @@ export default function TurkCoffee() {
         />
       </defs>
       <g id="Variations">
-        <g id="Turkish_Coffee" data-name="Turkish Coffee">
-          <line className="cls-4" x1="9.9" y1="6.52" x2="19.51" y2="4.33" />
+        <g data-name="Turkish Coffee" id="Turkish_Coffee">
+          <line className="cls-4" x1="9.9" x2="19.51" y1="6.52" y2="4.33" />
           <path
             className="cls-1"
             d="m12.22,16.31l-2.39-11.97H2.41l-.91,4.57s-.01.03-.01.04l-.03.12v.04c0,.24.18.44.41.49.03.01.06.01.1.01.24,0,.44-.18.49-.4l.77-3.87h5.78l2.23,11.18-.76,1.24-8.74-.02-.74-1.24.47-2.34s.02-.09.02-.14c0-.24-.17-.44-.39-.49h-.02s-.06,0-.09,0c-.24,0-.44.17-.49.4L.02,16.31c-.05.25-.01.51.13.73l.73,1.22c.18.31.52.5.88.5h8.72c.36,0,.7-.19.89-.5l.73-1.22c.13-.22.17-.48.12-.73Z"
@@ -36,7 +36,7 @@ export default function TurkCoffee() {
               d="m7.51,8.51c.14,1.12-.11,1.83-.37,2.29-.77,1.33-2.25,1.37-2.79,2.66-.25.61-.18,1.22-.08,1.65"
             />
           </g>
-          <rect className="cls-2" x={0} width={20} height={20} />
+          <rect height={20} width={20} className="cls-2" x={0} />
         </g>
       </g>
     </svg>

@@ -1,7 +1,10 @@
-import localFont from "next/font/local";
 import type { Metadata } from "next";
-import "./globals.css";
+
 import AuthProvider from "@/contexts/AuthProvider";
+
+import "./globals.css";
+
+import localFont from "next/font/local";
 
 const DanaFont = localFont({
   src: [
@@ -67,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className={DanaFont.className}>
+    <html dir="rtl" lang="fa" className={DanaFont.className}>
       <body>
         <AuthProvider>{children}</AuthProvider>
       </body>

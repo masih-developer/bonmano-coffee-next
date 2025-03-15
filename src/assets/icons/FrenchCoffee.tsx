@@ -1,11 +1,11 @@
 export default function FrenchCoffee() {
   return (
     <svg
-      id="Layer_2"
+      className="size-5"
       data-name="Layer 2"
+      id="Layer_2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
-      className="size-5"
     >
       <defs>
         <style
@@ -16,7 +16,7 @@ export default function FrenchCoffee() {
         />
       </defs>
       <g id="Variations">
-        <g id="Frech_Coffee" data-name="Frech Coffee">
+        <g data-name="Frech Coffee" id="Frech_Coffee">
           <path
             className="cls-3"
             d="m3.29,1.4h11.36c.56,0,1.01.45,1.01,1.01v1.86H2.28v-1.86c0-.56.45-1.01,1.01-1.01Z"
@@ -26,13 +26,13 @@ export default function FrenchCoffee() {
             d="m.51,4.33l1.77-1.02v4.78L.27,5.9c-.44-.48-.32-1.25.24-1.57Z"
           />
           <rect
-            className="cls-3"
-            x="8.02"
-            y=".44"
-            width="1.91"
             height="1.47"
+            width="1.91"
+            className="cls-3"
             rx=".31"
             ry=".31"
+            x="8.02"
+            y=".44"
           />
           <path
             className="cls-3"
@@ -42,12 +42,12 @@ export default function FrenchCoffee() {
             className="cls-1"
             d="m2.28,4.26v5.15c0,.27.23.5.5.5s.5-.23.5-.5v-4.15h11.39l-.02,13.3H3.28v-4.15c0-.28-.22-.5-.5-.5s-.5.22-.5.5v4.14c0,.56.45,1.01,1.01,1.01h11.36c.56,0,1.02-.45,1.02-1.01V4.26H2.28Z"
           />
-          <rect className="cls-3" x="8.47" y="5.22" width={1} height="9.56" />
+          <rect height="9.56" width={1} className="cls-3" x="8.47" y="5.22" />
           <path
             className="cls-3"
             d="m11.84,15.28h-5.74c-.28,0-.5-.22-.5-.5s.22-.5.5-.5h5.74c.28,0,.5.22.5.5s-.22.5-.5.5Z"
           />
-          <rect className="cls-2" width={20} height={20} />
+          <rect height={20} width={20} className="cls-2" />
         </g>
       </g>
     </svg>

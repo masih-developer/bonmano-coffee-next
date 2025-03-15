@@ -1,10 +1,11 @@
 "use client";
 
+import type { z } from "zod";
+
 import { cn } from "@/lib/utils";
+import { sendOtpSchema } from "@/validators/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { sendOtpSchema } from "@/validators/auth";
 
 interface AuthFormProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -46,9 +47,10 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
           شماره تلفن همراه:
         </label>
         <input
-          type="text"
           id="phone"
+          type="text"
           {...register("phone")}
+          placeholder="09XXXXXXXXX"
           className={cn(
             "h-12 rounded-lg border p-2 outline-none placeholder:text-sm",
             {
@@ -56,13 +58,12 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
               "border-gray-400": !errors.phone,
             },
           )}
-          placeholder="09XXXXXXXXX"
         />
         {errors.phone && (
           <span className="text-sm text-danger">{errors.phone.message}</span>
         )}
       </div>
-      <button type="submit" className="h-12 rounded-lg bg-primary text-white">
+      <button className="h-12 rounded-lg bg-primary text-white" type="submit">
         {isSubmitting ? "ارسال کد.." : "ارسال کد"}
       </button>
     </form>

@@ -1,31 +1,22 @@
-export default class ErrMsg {
-  private constructor() {}
+const ErrMsg = {
+  contains: (name: string, pattern: string): string =>
+    `${name} باید شامل ${pattern} باشد.`,
 
-  public static required(name: string): string {
-    return `وارد کردن ${name} الزامی است.`;
-  }
+  endWith: (name: string, pattern: string): string =>
+    `${name} باید با ${pattern} خاتمه یابد.`,
 
-  public static min(name: string, length: number): string {
-    return `${name} باید حداقل ${length} کاراکتر داشته باشد.`;
-  }
+  incorrect: (name: string): string => `${name} وارد شده صحیح نمی‌باشد.`,
 
-  public static max(name: string, length: number): string {
-    return `${name} باید حداکثر ${length} کاراکتر داشته باشد.`;
-  }
+  max: (name: string, length: number): string =>
+    `${name} باید حداکثر ${length} کاراکتر داشته باشد.`,
 
-  public static incorrect(name: string): string {
-    return `${name} وارد شده صحیح نمی‌باشد.`;
-  }
+  min: (name: string, length: number): string =>
+    `${name} باید حداقل ${length} کاراکتر داشته باشد.`,
 
-  public static startWith(name: string, pattern: string): string {
-    return `${name} باید با ${pattern} شروع شود.`;
-  }
+  required: (name: string): string => `وارد کردن ${name} الزامی است.`,
 
-  public static contains(name: string, pattern: string): string {
-    return `${name} باید شامل ${pattern} باشد.`;
-  }
+  startWith: (name: string, pattern: string): string =>
+    `${name} باید با ${pattern} شروع شود.`,
+};
 
-  public static endWith(name: string, pattern: string): string {
-    return `${name} باید با ${pattern} خاتمه یابد.`;
-  }
-}
+export default ErrMsg;

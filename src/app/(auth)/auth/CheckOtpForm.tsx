@@ -1,9 +1,10 @@
+import type { z } from "zod";
+
+import { cn } from "@/lib/utils";
+import { checkOtpSchema } from "@/validators/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { checkOtpSchema } from "@/validators/auth";
-import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 interface CheckOtpFormProps {
   callbackUrl: string;
@@ -31,8 +32,8 @@ export default function CheckOtpForm({
         code: values.code,
         callbackUrl,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -46,9 +47,10 @@ export default function CheckOtpForm({
           کد تایید:
         </label>
         <input
-          type="text"
           id="code"
+          type="text"
           {...register("code")}
+          placeholder="کد ۶ رقمی ارسال‌شده را وارد کنید"
           className={cn(
             "h-12 rounded-lg border p-2 outline-none placeholder:text-sm",
             {
@@ -56,13 +58,12 @@ export default function CheckOtpForm({
               "border-gray-400": !errors.code,
             },
           )}
-          placeholder="کد ۶ رقمی ارسال‌شده را وارد کنید"
         />
         {errors.code && (
           <span className="text-sm text-danger">{errors.code.message}</span>
         )}
       </div>
-      <button type="submit" className="h-12 rounded-lg bg-primary text-white">
+      <button className="h-12 rounded-lg bg-primary text-white" type="submit">
         {isSubmitting ? "درحال بررسی..." : "ورود"}
       </button>
     </form>

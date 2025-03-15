@@ -14,8 +14,8 @@ export default function MobileBottomNav() {
         <ul className="flex basis-1/2 items-center justify-between gap-2.5 pl-7">
           <li>
             <Link
-              href="/wishlist"
               className="flex flex-col items-center justify-center whitespace-nowrap text-background transition-colors hover:text-secondary"
+              href="/wishlist"
             >
               <CiHeart className="text-2xl" />
               <span className="text-xs">علاقه مندی</span>
@@ -23,8 +23,8 @@ export default function MobileBottomNav() {
           </li>
           <li>
             <Link
-              href="/shop"
               className="flex flex-col items-center justify-center whitespace-nowrap text-background transition-colors hover:text-secondary"
+              href="/shop"
             >
               <CiBoxList className="text-2xl" />
               <span className="text-xs">دسته بندی ها</span>
@@ -34,8 +34,8 @@ export default function MobileBottomNav() {
         <ul className="flex basis-1/2 items-center justify-between gap-2.5 pr-7">
           <li>
             <Link
-              href="/auth/login"
               className="flex flex-col items-center justify-center whitespace-nowrap text-background transition-colors hover:text-secondary"
+              href="/auth/login"
             >
               <CiLogin className="text-2xl" />
               <span className="text-xs">ورود | ثبت نام</span>
@@ -43,8 +43,8 @@ export default function MobileBottomNav() {
           </li>
           <li>
             <Link
-              href="/cart"
               className="flex flex-col items-center justify-center whitespace-nowrap text-background transition-colors hover:text-secondary"
+              href="/cart"
             >
               <CiShoppingCart className="text-2xl" />
               <span className="text-xs">سبد خرید</span>
@@ -52,8 +52,8 @@ export default function MobileBottomNav() {
           </li>
         </ul>
         <Link
-          href="/"
           className="absolute -top-7 left-1/2 flex size-14 -translate-x-1/2 items-center justify-center rounded-full border-4 border-background bg-primary text-3xl text-white"
+          href="/"
         >
           <CiHome />
         </Link>

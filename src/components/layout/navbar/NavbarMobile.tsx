@@ -15,8 +15,8 @@ import Link from "next/link";
 import { HiBars3BottomRight, HiChevronDown, HiXMark } from "react-icons/hi2";
 
 type NavLinkType =
-  | { id: number; title: string; isLink: true; path: string }
-  | { id: number; title: string; isLink: false; items: NavLinkType[] };
+  | { id: number; title: string; isLink: false; items: NavLinkType[] }
+  | { id: number; title: string; isLink: true; path: string };
 
 const NAV_LINKS: NavLinkType[] = [
   {
@@ -125,10 +125,10 @@ const NavbarMobile = () => {
           <div className="relative size-32 overflow-hidden">
             <Image
               fill
-              src="/logo.svg"
               alt="sidebar app logo"
-              priority={true}
               className="block size-full"
+              src="/logo.svg"
+              priority
             />
           </div>
         </DrawerHeader>
@@ -138,15 +138,16 @@ const NavbarMobile = () => {
               {NAV_LINKS.map((item) =>
                 item.isLink ? (
                   <Link
-                    key={item.id}
-                    href={item.path}
                     className="flex w-full items-center justify-between overflow-hidden rounded-xl bg-neutral-100 px-2 py-4 text-start text-sm font-light"
+                    href={item.path}
+                    key={item.id}
                   >
                     {item.title}
                   </Link>
                 ) : (
                   <AccordionItem
                     key={item.id}
+                    contentProps={{ className: "transition-height" }}
                     header={({ state: { isEnter } }) => {
                       return (
                         <>
@@ -167,21 +168,22 @@ const NavbarMobile = () => {
                         </>
                       );
                     }}
-                    contentProps={{ className: "transition-height" }}
                   >
                     <Accordion className="space-y-0">
                       {item.items.map((each) =>
                         each.isLink ? (
                           <Link
-                            key={each.id}
-                            href={each.path}
                             className="flex w-full items-center justify-between overflow-hidden rounded-xl bg-neutral-100 px-2 py-3 text-start text-sm font-light"
+                            href={each.path}
+                            key={each.id}
                           >
                             {each.title}
                           </Link>
                         ) : (
                           <AccordionItem
+                            className="py-1"
                             key={each.id}
+                            contentProps={{ className: "transition-height" }}
                             header={({ state: { isEnter } }) => {
                               return (
                                 <>
@@ -204,20 +206,18 @@ const NavbarMobile = () => {
                                 </>
                               );
                             }}
-                            contentProps={{ className: "transition-height" }}
-                            className="py-1"
                           >
                             <div className="py-2">
                               <ul className="flex flex-col gap-y-3 border-r-2 border-r-primary pr-2">
                                 {each.items.map((child) =>
                                   child.isLink ? (
                                     <li
-                                      key={child.id}
                                       className="[&>a]:first:pt-0 [&>a]:last:pb-0"
+                                      key={child.id}
                                     >
                                       <Link
-                                        href={child.path}
                                         className="relative block w-full text-start text-sm font-light transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:m-auto before:h-[2px] before:w-0 before:rounded-full before:bg-primary before:transition-all before:content-[''] hover:pr-5 hover:text-primary hover:before:w-4"
+                                        href={child.path}
                                       >
                                         {child.title}
                                       </Link>

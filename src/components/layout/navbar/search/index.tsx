@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CiSearch } from "react-icons/ci";
 import { HiXMark } from "react-icons/hi2";
+
 import ResultSection from "./ResultSection";
 
 export default function Search() {
@@ -44,8 +45,8 @@ export default function Search() {
                 <CiSearch />
               </span>
               <input
-                type="text"
                 className="size-full outline-none placeholder:font-light"
+                type="text"
                 placeholder="دنبال چی میگردی؟"
               />
             </div>

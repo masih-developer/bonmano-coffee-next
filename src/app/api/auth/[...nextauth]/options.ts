@@ -1,7 +1,8 @@
-import { AuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import type { AuthOptions } from "next-auth";
+
 import prisma from "@/lib/db";
 import { checkOtpSchema } from "@/validators/auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -60,10 +61,8 @@ const authOptions: AuthOptions = {
   ],
   callbacks: {
     jwt({ token, user }) {
-      if (user) {
-        token.id = +user.id;
-        token.role = user.role;
-      }
+      token.id = +user.id;
+      token.role = user.role;
       return token;
     },
     session({ session, token }) {

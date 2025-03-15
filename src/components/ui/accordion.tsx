@@ -1,9 +1,9 @@
-import React from "react";
+import { cn } from "@/lib/utils";
 import {
   Accordion as Acc,
   AccordionItem as AccItem,
 } from "@szhsin/react-accordion";
-import { cn } from "@/lib/utils";
+import React from "react";
 
 const Accordion = React.forwardRef<
   HTMLDivElement,
@@ -16,9 +16,9 @@ const Accordion = React.forwardRef<
     return (
       <Acc
         className={cn("space-y-4", className)}
+        ref={ref}
         transition={transition}
         transitionTimeout={transitionTimeout}
-        ref={ref}
         {...props}
       />
     );
@@ -32,10 +32,7 @@ const AccordionItem = React.forwardRef<
 >(({ className, buttonProps, header, ...props }, ref) => {
   return (
     <AccItem
-      className={cn(
-        "w-full overflow-hidden rounded-xl bg-neutral-100",
-        className,
-      )}
+      header={header}
       ref={ref}
       buttonProps={{
         ...buttonProps,
@@ -44,7 +41,10 @@ const AccordionItem = React.forwardRef<
           buttonProps?.className,
         ),
       }}
-      header={header}
+      className={cn(
+        "w-full overflow-hidden rounded-xl bg-neutral-100",
+        className,
+      )}
       {...props}
     />
   );

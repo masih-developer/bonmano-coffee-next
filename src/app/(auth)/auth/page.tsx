@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import SendOtpForm from "./SendOtpForm";
+
 import CheckOtpForm from "./CheckOtpForm";
+import SendOtpForm from "./SendOtpForm";
 
 interface LoginPageProps {
   params?: string;
@@ -17,8 +18,8 @@ export default function AuthPage({ searchParams }: LoginPageProps) {
         <SendOtpForm setStep={setStep} />
       ) : (
         <CheckOtpForm
-          callbackUrl={searchParams?.callbackUrl || "/"}
-          error={searchParams?.error || ""}
+          callbackUrl={searchParams?.callbackUrl ?? "/"}
+          error={searchParams?.error ?? ""}
         />
       )}
     </main>

@@ -3,11 +3,11 @@ import { cn } from "@/lib/utils";
 export default function MixedPowders({ className }: { className?: string }) {
   return (
     <svg
-      id="Layer_2"
+      className={cn("size-5", className)}
       data-name="Layer 2"
+      id="Layer_2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
-      className={cn("size-5", className)}
     >
       <defs>
         <style
@@ -18,7 +18,7 @@ export default function MixedPowders({ className }: { className?: string }) {
         />
       </defs>
       <g id="Variations">
-        <g id="Powder_Sachet" data-name="Powder Sachet">
+        <g data-name="Powder Sachet" id="Powder_Sachet">
           <g>
             <path
               className="cls-1"
@@ -45,7 +45,7 @@ export default function MixedPowders({ className }: { className?: string }) {
           <circle className="cls-3" cx="11.24" cy="16.35" r=".87" />
           <circle className="cls-3" cx="10.87" cy="18.54" r=".48" />
           <circle className="cls-3" cx="8.73" cy="16.82" r=".91" />
-          <rect className="cls-2" x={0} width={20} height={20} />
+          <rect height={20} width={20} className="cls-2" x={0} />
         </g>
       </g>
     </svg>

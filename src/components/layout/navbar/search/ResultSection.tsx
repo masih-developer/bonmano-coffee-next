@@ -1,22 +1,22 @@
 import Link from "next/link";
 
-type ProductsType = {
+interface ProductsType {
   type: "products";
   products: {
     img: string;
     title: string;
     identifier: string;
   }[];
-};
-type BlogsType = {
+}
+interface BlogsType {
   type: "blogs";
   blogs: {
     img: string;
     title: string;
   }[];
-};
+}
 
-type BasePropsType = ProductsType | BlogsType;
+type BasePropsType = BlogsType | ProductsType;
 
 export default function ResultSection(props: BasePropsType) {
   return (
@@ -28,19 +28,19 @@ export default function ResultSection(props: BasePropsType) {
         {Array.from({ length: 3 }, (_, index) => index + 1).map((item) => (
           <div className="flex items-center" key={item}>
             <Link
-              href=""
               className="block size-32 shrink-0 overflow-hidden rounded-xl border border-secondary bg-background sm:size-36 lg:size-40 xl:size-44"
+              href=""
             >
               <img
-                src="https://www.bonmano.com/wp-content/uploads/2024/06/main-2-products-300x300.jpg"
                 alt=""
                 className="block size-full object-contain"
+                src="https://www.bonmano.com/wp-content/uploads/2024/06/main-2-products-300x300.jpg"
               />
             </Link>
             <div className="-mr-5 flex w-full items-center rounded-xl border border-[#e9e9e9] bg-background px-2.5 py-5 shadow-lg">
               <Link
-                href=""
                 className="flex flex-col gap-y-1.5 text-sm font-light text-neutral-300 transition-colors hover:text-primary"
+                href=""
               >
                 {props.type === "products" ? (
                   <>
@@ -58,8 +58,8 @@ export default function ResultSection(props: BasePropsType) {
           </div>
         ))}
         <Link
-          href=""
           className="my-2.5 block w-fit rounded-xl bg-primary px-4 py-2.5 text-sm text-white"
+          href=""
         >
           نمایش نتایج بیشتر
         </Link>
@@ -80,10 +80,10 @@ export default function ResultSection(props: BasePropsType) {
               "دانه قهوه کلمبیا",
             ].map((item, index) => (
               <li
-                key={index}
                 className="flex items-center gap-1.5 text-[15px] font-light"
+                key={index}
               >
-                <Link href="" className="transition-colors hover:text-primary">
+                <Link className="transition-colors hover:text-primary" href="">
                   {item}
                 </Link>
                 {index !== 8 && <span className="text-primary">/</span>}

@@ -1,11 +1,11 @@
 export default function EspressoCapsule() {
   return (
     <svg
-      id="Layer_2"
+      className="size-5"
       data-name="Layer 2"
+      id="Layer_2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
-      className="size-5"
     >
       <defs>
         <style
@@ -25,8 +25,8 @@ export default function EspressoCapsule() {
             className="cls-3"
             d="m10,0C5.03,0,1,1.57,1,3.5c0,.74.6,1.44,1.63,2,.32.19.69.36,1.11.51,1.62.62,3.82.99,6.26.99s4.63-.37,6.25-.99c.42-.15.79-.32,1.11-.51,1.03-.56,1.64-1.26,1.64-2C19,1.57,14.97,0,10,0Zm7.62,4.1c-.26.25-.65.5-1.16.74-1.34.62-3.52,1.15-6.46,1.15s-5.14-.54-6.47-1.16c-.51-.23-.89-.48-1.15-.73-.25-.21-.38-.43-.38-.61,0-.12.06-.26.19-.41.24-.31.75-.67,1.51-1,1.34-.59,3.47-1.08,6.3-1.08s4.95.49,6.3,1.08c.76.33,1.27.69,1.51,1,.13.15.19.29.19.41,0,.18-.13.4-.38.61Z"
           />
-          <line className="cls-4" x1={14} y1={9} x2={13} y2={14} />
-          <rect className="cls-2" width={20} height={20} />
+          <line className="cls-4" x1={14} x2={13} y1={9} y2={14} />
+          <rect height={20} width={20} className="cls-2" />
         </g>
       </g>
     </svg>

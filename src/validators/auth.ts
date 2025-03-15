@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import ErrMsg from "./utils";
 
 export const sendOtpSchema = z.object({

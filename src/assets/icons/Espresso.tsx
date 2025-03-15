@@ -1,11 +1,11 @@
 export default function Espresso() {
   return (
     <svg
-      id="Layer_2"
+      className="size-5"
       data-name="Layer 2"
+      id="Layer_2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20.02"
-      className="size-5"
     >
       <defs>
         <style
@@ -16,8 +16,8 @@ export default function Espresso() {
         />
       </defs>
       <g id="Variations">
-        <g id="Bean_Pack" data-name="Bean Pack">
-          <rect className="cls-2" y=".02" width={20} height={20} />
+        <g data-name="Bean Pack" id="Bean_Pack">
+          <rect height={20} width={20} className="cls-2" y=".02" />
           <path
             className="cls-1"
             d="m4.82,4.7v-1.13c-.43.29-.74.75-.84,1.3l-.13.83-.57,3.71s0,.07,0,.1c0,.23.17.43.38.48.04.01.08.02.12.02.24,0,.44-.18.49-.4.01-.03.01-.07.01-.1l.59-3.81.1-.65c.02-.13.07-.25.13-.35h-.27Zm11.43,8.98l-1.22-7.98-.13-.83c-.1-.55-.42-1.01-.85-1.3v1.13h-.27c.06.1.11.21.13.32l.1.68,1.26,8.16c.02.13.03.26.03.38v2.73c0,1.13-.88,2.05-1.96,2.05h-7.81c-1.08,0-1.96-.92-1.96-2.05,0,0,0-1.66.01-2.49v-.05c-.01-.22-.18-.42-.4-.47-.03-.01-.07-.01-.11-.01-.28,0-.5.23-.5.5v2.52c0,1.68,1.33,3.05,2.96,3.05h7.81c1.64,0,2.96-1.37,2.96-3.05v-2.73c0-.19,0-.37-.05-.56Z"

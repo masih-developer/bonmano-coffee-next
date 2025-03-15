@@ -1,7 +1,6 @@
+import { cn } from "@/lib/utils";
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
-
-import { cn } from "@/lib/utils";
 
 const Drawer = ({
   shouldScaleBackground = true,
@@ -25,8 +24,8 @@ const DrawerOverlay = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Overlay
-    ref={ref}
     className={cn("fixed inset-0 z-50 bg-black/80", className)}
+    ref={ref}
     {...props}
   />
 ));
@@ -96,8 +95,8 @@ const DrawerDescription = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
-    ref={ref}
     className={cn("text-sm text-muted-foreground", className)}
+    ref={ref}
     {...props}
   />
 ));
@@ -105,13 +104,13 @@ DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 
 export {
   Drawer,
-  DrawerPortal,
-  DrawerOverlay,
-  DrawerTrigger,
   DrawerClose,
   DrawerContent,
-  DrawerHeader,
-  DrawerFooter,
-  DrawerTitle,
   DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerPortal,
+  DrawerTitle,
+  DrawerTrigger,
 };

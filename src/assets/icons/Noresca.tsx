@@ -1,11 +1,11 @@
 const Noresca = () => {
   return (
     <svg
-      id="Layer_2"
+      className="size-5"
       data-name="Layer 2"
+      id="Layer_2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
-      className="size-5"
     >
       <defs>
         <style>
@@ -30,7 +30,7 @@ const Noresca = () => {
       </defs>
       <g id="Variations">
         <g id="Sachet_Square">
-          <rect className="cls-2" width="20" height="20" />
+          <rect height="20" width="20" className="cls-2" />
           <circle className="cls-1" cx="7.37" cy="10.42" r="0.75" />
           <circle className="cls-1" cx="11.76" cy="13.94" r="1.04" />
           <circle className="cls-1" cx="7.03" cy="14.21" r="0.54" />
