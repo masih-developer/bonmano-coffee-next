@@ -6,8 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint-check": "eslint .",
-    "lint": "eslint . --fix"
+    "lint:check": "eslint .",
+    "lint": "eslint . --fix",
+    "format:check": "prettier -c .",
+    "format": "prettier -w ."
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,yml,yaml,css,scss,less,md,mdx,html,xml}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "3.9.0",
@@ -39,6 +50,8 @@
     "@types/react": "18",
     "@types/react-dom": "18",
     "eslint": "9.22.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.0",
     "postcss": "8",
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "0.6.11",
