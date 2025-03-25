@@ -61,8 +61,11 @@ const authOptions: AuthOptions = {
   ],
   callbacks: {
     jwt({ token, user }) {
-      token.id = +user.id;
-      token.role = user.role;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      if (user) {
+        token.id = +user.id;
+        token.role = user.role;
+      }
       return token;
     },
     session({ session, token }) {
