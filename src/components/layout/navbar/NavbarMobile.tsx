@@ -103,21 +103,27 @@ const NavbarMobile = () => {
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
-        <button className="rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary">
-          <span className="flex size-6 items-center justify-center rounded-full bg-secondary text-xl">
+        <button
+          className="hover:border-primary rounded-full border-2 border-neutral-500 p-[2px] transition-colors"
+          type="button"
+        >
+          <span className="bg-secondary flex size-6 items-center justify-center rounded-full text-xl">
             <HiBars3BottomRight />
           </span>
         </button>
       </DrawerTrigger>
       <DrawerContent
         aria-describedby={undefined}
-        className="block h-full w-80 max-w-full gap-y-10 rounded-bl-2xl rounded-br-none rounded-tl-2xl rounded-tr-none bg-background"
+        className="bg-background block h-full w-80 max-w-full gap-y-10 rounded-tl-2xl rounded-tr-none rounded-br-none rounded-bl-2xl"
       >
         <DialogTitle />
         <DrawerHeader className="relative flex items-center justify-center p-5">
           <DrawerClose asChild>
-            <button className="absolute left-5 top-5 z-10 rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary">
-              <span className="flex size-5 items-center justify-center rounded-full bg-secondary">
+            <button
+              className="hover:border-primary absolute top-5 left-5 z-10 rounded-full border-2 border-neutral-500 p-[2px] transition-colors"
+              type="button"
+            >
+              <span className="bg-secondary flex size-5 items-center justify-center rounded-full">
                 <HiXMark />
               </span>
             </button>
@@ -160,7 +166,7 @@ const NavbarMobile = () => {
                           </span>
                           <span
                             className={`mr-2 shrink-0 transition-transform ${
-                              isEnter ? "rotate-180 text-primary" : "rotate-0"
+                              isEnter ? "text-primary rotate-180" : "rotate-0"
                             }`}
                           >
                             <HiChevronDown />
@@ -197,7 +203,7 @@ const NavbarMobile = () => {
                                   <span
                                     className={`mr-2 shrink-0 transition-transform ${
                                       isEnter
-                                        ? "rotate-180 text-primary"
+                                        ? "text-primary rotate-180"
                                         : "rotate-0"
                                     }`}
                                   >
@@ -208,15 +214,15 @@ const NavbarMobile = () => {
                             }}
                           >
                             <div className="py-2">
-                              <ul className="flex flex-col gap-y-3 border-r-2 border-r-primary pr-2">
+                              <ul className="border-r-primary flex flex-col gap-y-3 border-r-2 pr-2">
                                 {each.items.map((child) =>
                                   child.isLink ? (
                                     <li
-                                      className="[&>a]:first:pt-0 [&>a]:last:pb-0"
+                                      className="first:[&>a]:pt-0 last:[&>a]:pb-0"
                                       key={child.id}
                                     >
                                       <Link
-                                        className="relative block w-full text-start text-sm font-light transition-all before:absolute before:bottom-0 before:right-0 before:top-0 before:m-auto before:h-[2px] before:w-0 before:rounded-full before:bg-primary before:transition-all before:content-[''] hover:pr-5 hover:text-primary hover:before:w-4"
+                                        className="before:bg-primary hover:text-primary relative block w-full text-start text-sm font-light transition-all before:absolute before:top-0 before:right-0 before:bottom-0 before:m-auto before:h-[2px] before:w-0 before:rounded-full before:transition-all before:content-[''] hover:pr-5 hover:before:w-4"
                                         href={child.path}
                                       >
                                         {child.title}

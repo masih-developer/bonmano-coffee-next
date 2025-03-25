@@ -52,7 +52,7 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
           {...register("phone")}
           placeholder="09XXXXXXXXX"
           className={cn(
-            "h-12 rounded-lg border p-2 outline-none placeholder:text-sm",
+            "h-12 rounded-lg border p-2 outline-hidden placeholder:text-sm",
             {
               "border-danger": errors.phone,
               "border-gray-400": !errors.phone,
@@ -60,10 +60,10 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
           )}
         />
         {errors.phone && (
-          <span className="text-sm text-danger">{errors.phone.message}</span>
+          <span className="text-danger text-sm">{errors.phone.message}</span>
         )}
       </div>
-      <button className="h-12 rounded-lg bg-primary text-white" type="submit">
+      <button className="bg-primary h-12 rounded-lg text-white" type="submit">
         {isSubmitting ? "ارسال کد.." : "ارسال کد"}
       </button>
     </form>
