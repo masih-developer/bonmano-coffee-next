@@ -5,6 +5,7 @@ import AuthProvider from "@/contexts/AuthProvider";
 import "./globals.css";
 
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
 
 const DanaFont = localFont({
   src: [
@@ -73,6 +74,7 @@ export default function RootLayout({
     <html dir="rtl" lang="fa" className={DanaFont.className}>
       <body>
         <AuthProvider>{children}</AuthProvider>
+        <Toaster />
       </body>
     </html>
   );
