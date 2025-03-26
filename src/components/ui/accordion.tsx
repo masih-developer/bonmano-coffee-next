@@ -5,31 +5,36 @@ import {
 } from "@szhsin/react-accordion";
 import React from "react";
 
-const Accordion = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof Acc>
->(
-  (
-    { transition = true, transitionTimeout = 250, className, ...props },
-    ref,
-  ) => {
-    return (
-      <Acc
-        className={cn("space-y-4", className)}
-        ref={ref}
-        transition={transition}
-        transitionTimeout={transitionTimeout}
-        {...props}
-      />
-    );
-  },
-);
+const Accordion = ({
+  ref,
+  transition = true,
+  transitionTimeout = 250,
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Acc> & {
+  ref: React.RefObject<HTMLDivElement | null>;
+}) => {
+  return (
+    <Acc
+      className={cn("space-y-4", className)}
+      ref={ref}
+      transition={transition}
+      transitionTimeout={transitionTimeout}
+      {...props}
+    />
+  );
+};
 Accordion.displayName = "Accordion";
 
-const AccordionItem = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof AccItem>
->(({ className, buttonProps, header, ...props }, ref) => {
+const AccordionItem = ({
+  ref,
+  className,
+  buttonProps,
+  header,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof AccItem> & {
+  ref: React.RefObject<HTMLDivElement | null>;
+}) => {
   return (
     <AccItem
       header={header}
@@ -48,7 +53,7 @@ const AccordionItem = React.forwardRef<
       {...props}
     />
   );
-});
+};
 AccordionItem.displayName = "AccordionItem";
 
 export { Accordion, AccordionItem };

@@ -52,7 +52,7 @@ export default function CheckOtpForm({
           {...register("code")}
           placeholder="کد ۶ رقمی ارسال‌شده را وارد کنید"
           className={cn(
-            "h-12 rounded-lg border p-2 outline-none placeholder:text-sm",
+            "h-12 rounded-lg border p-2 outline-hidden placeholder:text-sm",
             {
               "border-danger": errors.code,
               "border-gray-400": !errors.code,
@@ -60,10 +60,10 @@ export default function CheckOtpForm({
           )}
         />
         {errors.code && (
-          <span className="text-sm text-danger">{errors.code.message}</span>
+          <span className="text-danger text-sm">{errors.code.message}</span>
         )}
       </div>
-      <button className="h-12 rounded-lg bg-primary text-white" type="submit">
+      <button className="bg-primary h-12 rounded-lg text-white" type="submit">
         {isSubmitting ? "درحال بررسی..." : "ورود"}
       </button>
     </form>

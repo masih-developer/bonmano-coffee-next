@@ -1,4 +1,4 @@
-import prisma from "@/lib/db";
+import prisma from "@/lib/prisma";
 import { generateRandomNumber } from "@/lib/utils";
 import { sendOtpSchema } from "@/validators/auth";
 

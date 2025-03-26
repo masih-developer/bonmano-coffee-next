@@ -17,8 +17,8 @@ export default function Search() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <button className="rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary">
-          <span className="flex size-6 items-center justify-center rounded-full bg-secondary text-xl">
+        <button className="hover:border-primary rounded-full border-2 border-neutral-500 p-[2px] transition-colors">
+          <span className="bg-secondary flex size-6 items-center justify-center rounded-full text-xl">
             <CiSearch />
           </span>
         </button>
@@ -31,21 +31,21 @@ export default function Search() {
         <DialogTitle />
         <DrawerHeader className="relative flex items-center justify-center p-5">
           <DrawerClose asChild>
-            <button className="absolute left-2 top-2 z-10 rounded-full border-2 border-neutral-500 p-[2px] transition-colors hover:border-primary">
-              <span className="flex size-7 items-center justify-center rounded-full bg-secondary">
+            <button className="hover:border-primary absolute top-2 left-2 z-10 rounded-full border-2 border-neutral-500 p-[2px] transition-colors">
+              <span className="bg-secondary flex size-7 items-center justify-center rounded-full">
                 <HiXMark className="text-xl" />
               </span>
             </button>
           </DrawerClose>
         </DrawerHeader>
         <div className="container">
-          <div className="mb-10 mt-5">
-            <div className="flex h-12 items-center overflow-hidden rounded-xl border border-border bg-background shadow-md transition-colors focus-within:border-primary">
+          <div className="mt-5 mb-10">
+            <div className="border-border bg-background focus-within:border-primary flex h-12 items-center overflow-hidden rounded-xl border shadow-md transition-colors">
               <span className="flex size-12 shrink-0 items-center justify-center text-2xl text-neutral-300">
                 <CiSearch />
               </span>
               <input
-                className="size-full outline-none placeholder:font-light"
+                className="size-full outline-hidden placeholder:font-light"
                 type="text"
                 placeholder="دنبال چی میگردی؟"
               />

@@ -1,6 +1,6 @@
 import type { AuthOptions } from "next-auth";
 
-import prisma from "@/lib/db";
+import prisma from "@/lib/prisma";
 import { checkOtpSchema } from "@/validators/auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 

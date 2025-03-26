@@ -1,65 +1,171 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 60 5% 30%;
+@theme inline {
+  --font-dana:
+    var(--font-dana), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
 
-    --primary: 168 100% 30%;
-    --primary-foreground: 210 40% 98%;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-light: var(--secondary-light);
+  --color-secondary-shade: var(--secondary-shade);
 
-    /* Secondary Colors */
-    --secondary: 34 61% 75%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
 
-    --secondary-light: 33.75 62% 95%;
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
 
-    --secondary-shade: 21.89 37% 61%;
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
 
-    --danger: 354 66% 52%;
-    --danger-foreground: 210 40% 98%;
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 
-    --success: 128 49% 51%;
-    --success-foreground: 210 40% 98%;
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 
-    --warning: 48 100% 67%;
-    --warning-foreground: 222.2 47.4% 11.2%;
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
 
-    --info: 201 98% 41%;
-    --info-foreground: 210 40% 98%;
+  --color-neutral-0: var(--c-neutral-0);
+  --color-neutral-0-foreground: var(--c-neutral-0-foreground);
 
-    --c-neutral-0: 0 0% 100%;
+  --color-neutral-100: var(--c-neutral-100);
+  --color-neutral-100-foreground: var(--c-neutral-100-foreground);
 
-    --c-neutral-100: 0 0% 96%;
+  --color-neutral-200: var(--c-neutral-200);
+  --color-neutral-200-foreground: var(--c-neutral-200-foreground);
 
-    --c-neutral-200: 0 0% 85%;
+  --color-neutral-300: var(--c-neutral-300);
+  --color-neutral-300-foreground: var(--c-neutral-300-foreground);
 
-    --c-neutral-300: 0 0% 44%;
+  --color-neutral-400: var(--c-neutral-400);
+  --color-neutral-400-foreground: var(--c-neutral-400-foreground);
 
-    --c-neutral-400: 60 5% 30%;
+  --color-neutral-500: var(--c-neutral-500);
+  --color-neutral-500-foreground: var(--c-neutral-500-foreground);
 
-    --c-neutral-500: 60 4% 11%;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 
-    --radius: 0.5rem;
+  --ease-custom-cubic: cubic-bezier(0, 0, 0, 1);
+
+  --transition-duration-250: 250ms;
+
+  --transition-property-height: height;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(60 5% 30%);
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222.2 84% 4.9%);
+
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222.2 84% 4.9%);
+
+  --primary: hsl(168 100% 30%);
+  --primary-foreground: hsl(210 40% 98%);
+
+  /* Secondary Colors */
+  --secondary: hsl(34 61% 75%);
+  --secondary-foreground: hsl(222.2 47.4% 11.2%);
+
+  --secondary-light: hsl(33.75 62% 95%);
+
+  --secondary-shade: hsl(21.89 37% 61%);
+
+  --muted: hsl(210 40% 96.1%);
+  --muted-foreground: hsl(215.4 16.3% 46.9%);
+
+  --accent: hsl(210 40% 96.1%);
+  --accent-foreground: hsl(222.2 47.4% 11.2%);
+
+  --danger: hsl(354 66% 52%);
+  --danger-foreground: hsl(210 40% 98%);
+
+  --success: hsl(128 49% 51%);
+  --success-foreground: hsl(210 40% 98%);
+
+  --warning: hsl(48 100% 67%);
+  --warning-foreground: hsl(222.2 47.4% 11.2%);
+
+  --info: hsl(201 98% 41%);
+  --info-foreground: hsl(210 40% 98%);
+
+  --c-neutral-0: hsl(0 0% 100%);
+
+  --c-neutral-100: hsl(0 0% 96%);
+
+  --c-neutral-200: hsl(0 0% 85%);
+
+  --c-neutral-300: hsl(0 0% 44%);
+
+  --c-neutral-400: hsl(60 5% 30%);
+
+  --c-neutral-500: hsl(60 4% 11%);
+
+  --border: hsl(214.3 31.8% 91.4%);
+  --input: hsl(214.3 31.8% 91.4%);
+  --ring: hsl(222.2 84% 4.9%);
+
+  --radius: 0.5rem;
 }
 
 @layer base {
@@ -68,5 +174,31 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @variant sm {
+    max-width: 572px;
+  }
+
+  @variant md {
+    max-width: 752px;
+  }
+
+  @variant lg {
+    max-width: 992px;
+  }
+
+  @variant xl {
+    max-width: 1172px;
+  }
+
+  @variant 2xl {
+    max-width: 1352px;
   }
 }
