@@ -40,7 +40,7 @@ const DialogContent = ({
   ref: React.RefObject<React.ElementRef<typeof DialogPrimitive.Content> | null>;
 }) => (
   <DialogPortal>
-    <DialogOverlay />
+    <DialogOverlay ref={ref} />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
