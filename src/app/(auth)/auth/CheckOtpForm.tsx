@@ -11,10 +11,7 @@ interface CheckOtpFormProps {
   error: string;
 }
 
-export default function CheckOtpForm({
-  callbackUrl,
-  error,
-}: CheckOtpFormProps) {
+export default function CheckOtpForm({ callbackUrl }: CheckOtpFormProps) {
   const {
     handleSubmit,
     register,

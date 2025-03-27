@@ -12,16 +12,9 @@
     "format": "prettier -w ."
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "**/*.{json,yml,yaml,css,scss,less,md,mdx,html,xml}": [
-      "prettier --write"
-    ],
-    "prisma/**/*.prisma": [
-      "npx prisma format"
-    ]
+    "**/*.{js,jsx,ts,tsx}": "eslint --fix",
+    "**/*.{json,yml,yaml,css,scss,less,md,mdx,html,xml}": "prettier --write",
+    "prisma/**/*.prisma": "npx prisma format"
   },
   "dependencies": {
     "@hookform/resolvers": "4.1.3",

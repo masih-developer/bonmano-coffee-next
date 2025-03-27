@@ -6,18 +6,14 @@ import {
 import React from "react";
 
 const Accordion = ({
-  ref,
   transition = true,
   transitionTimeout = 250,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof Acc> & {
-  ref: React.RefObject<HTMLDivElement | null>;
-}) => {
+}: React.ComponentProps<typeof Acc>) => {
   return (
     <Acc
       className={cn("space-y-4", className)}
-      ref={ref}
       transition={transition}
       transitionTimeout={transitionTimeout}
       {...props}
@@ -27,18 +23,14 @@ const Accordion = ({
 Accordion.displayName = "Accordion";
 
 const AccordionItem = ({
-  ref,
   className,
   buttonProps,
   header,
   ...props
-}: React.ComponentPropsWithoutRef<typeof AccItem> & {
-  ref: React.RefObject<HTMLDivElement | null>;
-}) => {
+}: React.ComponentProps<typeof AccItem>) => {
   return (
     <AccItem
       header={header}
-      ref={ref}
       buttonProps={{
         ...buttonProps,
         className: cn(

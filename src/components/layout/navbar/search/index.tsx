@@ -6,7 +6,6 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CiSearch } from "react-icons/ci";
 import { HiXMark } from "react-icons/hi2";
@@ -17,7 +16,10 @@ export default function Search() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <button className="hover:border-primary rounded-full border-2 border-neutral-500 p-[2px] transition-colors">
+        <button
+          className="hover:border-primary rounded-full border-2 border-neutral-500 p-[2px] transition-colors"
+          type="button"
+        >
           <span className="bg-secondary flex size-6 items-center justify-center rounded-full text-xl">
             <CiSearch />
           </span>
@@ -31,7 +33,10 @@ export default function Search() {
         <DialogTitle />
         <DrawerHeader className="relative flex items-center justify-center p-5">
           <DrawerClose asChild>
-            <button className="hover:border-primary absolute top-2 left-2 z-10 rounded-full border-2 border-neutral-500 p-[2px] transition-colors">
+            <button
+              className="hover:border-primary absolute top-2 left-2 z-10 rounded-full border-2 border-neutral-500 p-[2px] transition-colors"
+              type="button"
+            >
               <span className="bg-secondary flex size-7 items-center justify-center rounded-full">
                 <HiXMark className="text-xl" />
               </span>
