@@ -20,31 +20,27 @@ const DrawerPortal = DrawerPrimitive.Portal;
 const DrawerClose = DrawerPrimitive.Close;
 
 const DrawerOverlay = ({
-  ref,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay> & {
-  ref: React.RefObject<React.ElementRef<typeof DrawerPrimitive.Overlay> | null>;
-}) => (
+}: React.ComponentProps<typeof DrawerPrimitive.Overlay>) => (
   <DrawerPrimitive.Overlay
     className={cn("fixed inset-0 z-50 bg-black/80", className)}
-    ref={ref}
     {...props}
   />
 );
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
 const DrawerContent = ({
-  ref,
   className,
   children,
   overalyClassName,
   ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Content> & {
+  overalyClassName?: string;
 }) => (
   <DrawerPortal>
     <DrawerOverlay className={overalyClassName} />
     <DrawerPrimitive.Content
-      ref={ref}
       className={cn(
         "bg-background fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border",
         className,
@@ -80,14 +76,10 @@ const DrawerFooter = ({
 DrawerFooter.displayName = "DrawerFooter";
 
 const DrawerTitle = ({
-  ref,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title> & {
-  ref: React.RefObject<React.ElementRef<typeof DrawerPrimitive.Title> | null>;
-}) => (
+}: React.ComponentProps<typeof DrawerPrimitive.Title>) => (
   <DrawerPrimitive.Title
-    ref={ref}
     className={cn(
       "text-lg leading-none font-semibold tracking-tight",
       className,
@@ -98,17 +90,11 @@ const DrawerTitle = ({
 DrawerTitle.displayName = DrawerPrimitive.Title.displayName;
 
 const DrawerDescription = ({
-  ref,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description> & {
-  ref: React.RefObject<React.ElementRef<
-    typeof DrawerPrimitive.Description
-  > | null>;
-}) => (
+}: React.ComponentProps<typeof DrawerPrimitive.Description>) => (
   <DrawerPrimitive.Description
     className={cn("text-muted-foreground text-sm", className)}
-    ref={ref}
     {...props}
   />
 );
