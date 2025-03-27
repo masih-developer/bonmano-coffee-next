@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface ProductsType {
@@ -18,11 +19,11 @@ interface BlogsType {
 
 type BasePropsType = BlogsType | ProductsType;
 
-export default function ResultSection(props: BasePropsType) {
+export default function ResultSection({ type }: BasePropsType) {
   return (
     <div>
       <div className="border-secondary bg-secondary-light text-secondary-shade flex h-11 items-center rounded-xl border p-2 font-light">
-        {props.type === "products" ? "محصولات" : "مقالات"}
+        {type === "products" ? "محصولات" : "مقالات"}
       </div>
       <div className="mt-5 flex flex-col gap-2.5">
         {Array.from({ length: 3 }, (_, index) => index + 1).map((item) => (
@@ -31,10 +32,12 @@ export default function ResultSection(props: BasePropsType) {
               className="border-secondary bg-background block size-32 shrink-0 overflow-hidden rounded-xl border sm:size-36 lg:size-40 xl:size-44"
               href=""
             >
-              <img
+              <Image
+                height={300}
+                width={300}
                 alt=""
                 className="block size-full object-contain"
-                src="https://www.bonmano.com/wp-content/uploads/2024/06/main-2-products-300x300.jpg"
+                src="/products/01.jpg"
               />
             </Link>
             <div className="bg-background -mr-5 flex w-full items-center rounded-xl border border-[#e9e9e9] px-2.5 py-5 shadow-lg">
@@ -42,7 +45,7 @@ export default function ResultSection(props: BasePropsType) {
                 className="hover:text-primary flex flex-col gap-y-1.5 text-sm font-light text-neutral-300 transition-colors"
                 href=""
               >
-                {props.type === "products" ? (
+                {type === "products" ? (
                   <>
                     <span>دانه قهوه تک‌خاستگاه کنیا</span>
                     <span>
@@ -65,28 +68,28 @@ export default function ResultSection(props: BasePropsType) {
         </Link>
         <div>
           <div className="border-secondary bg-secondary-light text-secondary-shade flex h-11 items-center rounded-xl border p-2 font-light">
-            دسته بندی {props.type === "products" ? "محصولات" : "مقالات"}
+            دسته بندی {type === "products" ? "محصولات" : "مقالات"}
           </div>
           <ul className="my-5 flex flex-wrap items-center gap-1.5">
             {[
-              "لوازم و تحهیزات قهوه",
-              "قهوه فرانسه",
-              "قهوه ترک",
-              "شکر قهوه ای",
-              "دستگاه قهوه ساز خانگی",
-              "قهوه فوری",
-              "دانه قهوه اتیوپی",
-              "دانه قهوه اندونزی",
-              "دانه قهوه کلمبیا",
-            ].map((item, index) => (
+              { id: 1, name: "لوازم و تحهیزات قهوه" },
+              { id: 2, name: "قهوه فرانسه" },
+              { id: 3, name: "قهوه ترک" },
+              { id: 4, name: "شکر قهوه ای" },
+              { id: 5, name: "دستگاه قهوه ساز خانگی" },
+              { id: 6, name: "قهوه فوری" },
+              { id: 7, name: "دانه قهوه اتیوپی" },
+              { id: 8, name: "دانه قهوه اندونزی" },
+              { id: 9, name: "دانه قهوه کلمبیا" },
+            ].map((category) => (
               <li
                 className="flex items-center gap-1.5 text-[15px] font-light"
-                key={index}
+                key={category.id}
               >
                 <Link className="hover:text-primary transition-colors" href="">
-                  {item}
+                  {category.name}
                 </Link>
-                {index !== 8 && <span className="text-primary">/</span>}
+                {category.id !== 9 && <span className="text-primary">/</span>}
               </li>
             ))}
           </ul>

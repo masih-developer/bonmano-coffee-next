@@ -20,10 +20,7 @@ export default function AuthPage({
       {step === 1 ? (
         <SendOtpForm setStep={setStep} />
       ) : (
-        <CheckOtpForm
-          callbackUrl={sp.callbackUrl ?? "/"}
-          error={sp.error ?? ""}
-        />
+        <CheckOtpForm callbackUrl={sp.callbackUrl} error={sp.error} />
       )}
     </main>
   );
