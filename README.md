@@ -3,8 +3,8 @@
 Bonmano Coffee App is a modern web application built with Next.js 14.2, Tailwind CSS 3, Prisma, and MySQL. This project provides a seamless and responsive coffee shop experience.
 
 ## 🚀 Technologies Used
-- **Next.js 14.2** - React-based framework for SSR and SSG.
-- **Tailwind CSS 3** - Utility-first CSS framework for rapid UI development.
+- **Next.js 15** - React-based framework for SSR and SSG.
+- **Tailwind CSS 4** - Utility-first CSS framework for rapid UI development.
 - **Prisma** - Modern database ORM for interacting with MySQL.
 - **MySQL** - Relational database for data persistence.
 
