@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function SideBar() {
   return (
-    <aside className="bg-primary text-primary-foreground my-3 mr-3 min-h-[calc(100vh-1.5rem)] w-64 rounded-2xl">
+    <aside className="bg-primary text-primary-foreground min-h-screen w-64 rounded-tl-4xl rounded-bl-4xl">
       <ul className="flex flex-col gap-4 p-4">
         <li className="bg-primary-foreground text-foreground rounded-xl">
           <Link
