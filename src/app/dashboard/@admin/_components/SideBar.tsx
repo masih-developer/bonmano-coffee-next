@@ -1,84 +1,99 @@
+import ArticleIcon from "@/assets/icons/websima/document.svg";
+import GridIcon from "@/assets/icons/websima/grid.svg";
+import HomeIcon from "@/assets/icons/websima/home.svg";
+import LogOutIcon from "@/assets/icons/websima/logout.svg";
+import OrdersIcon from "@/assets/icons/websima/menu.svg";
+import SettingsIcon from "@/assets/icons/websima/settings.svg";
+import ProductsIcon from "@/assets/icons/websima/shopping-bag.svg";
+import UsersIcon from "@/assets/icons/websima/user.svg";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function SideBar() {
   return (
-    <aside className="bg-primary text-primary-foreground min-h-screen w-64 rounded-tl-4xl rounded-bl-4xl">
-      <ul className="flex flex-col gap-4 p-4">
-        <li className="bg-primary-foreground text-foreground rounded-xl">
+    <aside className="bg-primary text-primary-foreground flex h-screen w-60 flex-col rounded-tl-4xl rounded-bl-4xl">
+      <div className="flex items-center justify-center p-5">
+        <Image
+          height={140}
+          width={140}
+          alt="logo"
+          className="block max-w-full"
+          src="/panel-logo.svg"
+        />
+      </div>
+      <ul className="flex flex-col gap-y-2 px-2">
+        <li>
           <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin"
+            className="hover:bg-secondary-shade text-background flex gap-x-2 rounded-2xl p-3 transition-colors"
+            href="/dashboard"
           >
-            داشبورد
+            <GridIcon className="fill-background h-6 w-6" />
+            <span className="">داشبورد</span>
           </Link>
         </li>
-        <li className="bg-primary-foreground text-foreground rounded-xl">
+        <li>
           <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin/users"
+            className="hover:bg-secondary-shade text-background flex gap-x-2 rounded-2xl p-3 transition-colors"
+            href="/dashboard/users"
           >
-            کاربران
+            <UsersIcon className="fill-background h-6 w-6" />
+            <span className="">کاربران</span>
           </Link>
         </li>
-        <li className="bg-primary-foreground text-foreground rounded-xl">
+        <li>
           <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin/products"
+            className="hover:bg-secondary-shade text-background flex gap-x-2 rounded-2xl p-3 transition-colors"
+            href="/dashboard/products"
           >
-            محصولات
+            <ProductsIcon className="fill-background h-6 w-6" />
+            <span className="">محصولات</span>
           </Link>
         </li>
-        <li className="bg-primary-foreground text-foreground rounded-xl">
+        <li>
           <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin/categories"
+            className="hover:bg-secondary-shade text-background flex gap-x-2 rounded-2xl p-3 transition-colors"
+            href="/dashboard/orders"
           >
-            دسته‌بندی‌ها
+            <OrdersIcon className="fill-background h-6 w-6" />
+            <span className="">سفارشات</span>
           </Link>
         </li>
-        <li className="bg-primary-foreground text-foreground rounded-xl">
+        <li>
           <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin/orders"
+            className="hover:bg-secondary-shade text-background flex gap-x-2 rounded-2xl p-3 transition-colors"
+            href="/dashboard/orders"
           >
-            سفارشات
+            <SettingsIcon className="fill-background h-6 w-6" />
+            <span className="">تنظیمات</span>
           </Link>
         </li>
-        <li className="bg-primary-foreground text-foreground rounded-xl">
+        <li>
           <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin/order-items"
+            className="hover:bg-secondary-shade text-background flex gap-x-2 rounded-2xl p-3 transition-colors"
+            href="/dashboard/orders"
           >
-            آیتم‌های سفارش
+            <ArticleIcon className="fill-background h-6 w-6" />
+            <span className="">مقالات</span>
           </Link>
         </li>
-        <li className="bg-primary-foreground text-foreground rounded-xl">
+      </ul>
+      <ul className="mt-auto mb-2 flex flex-col gap-y-2 px-2">
+        <li>
           <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin/addresses"
+            className="hover:bg-secondary-shade text-background flex gap-x-2 rounded-2xl p-3 transition-colors"
+            href="/dashboard"
           >
-            آدرس‌ها
+            <HomeIcon className="fill-background h-6 w-6" />
+            <span className="">خانه</span>
           </Link>
         </li>
-        <li className="bg-primary-foreground text-foreground rounded-xl">
+        <li>
           <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin/comments"
+            className="hover:bg-secondary-shade group hover:text-background flex gap-x-2 rounded-2xl p-3 text-red-500 transition-colors"
+            href="/dashboard"
           >
-            کامنت‌ها
-          </Link>
-        </li>
-        <li className="bg-primary-foreground text-foreground rounded-xl">
-          <Link
-            className="hover:text-primary block p-2 transition-colors"
-            href="/dashboard/admin/settings"
-          >
-            تنظیمات
-          </Link>
-        </li>
-        <li className="bg-primary-foreground rounded-xl text-red-500">
-          <Link className="block p-2" href="/dashboard/admin/logout">
-            خروج
+            <LogOutIcon className="group-hover:fill-background h-6 w-6 fill-red-500 transition-colors" />
+            <span className="">خروج</span>
           </Link>
         </li>
       </ul>
