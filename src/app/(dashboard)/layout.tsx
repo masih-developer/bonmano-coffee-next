@@ -1,7 +1,14 @@
+import { Toaster } from "react-hot-toast";
+
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <body>{children}</body>;
+  return (
+    <body>
+      {children}
+      <Toaster />
+    </body>
+  );
 }
