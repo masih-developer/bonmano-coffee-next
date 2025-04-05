@@ -6,7 +6,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <body>
+    <body className="bg-[#d9d9d954]">
       {children}
       <Toaster />
     </body>
