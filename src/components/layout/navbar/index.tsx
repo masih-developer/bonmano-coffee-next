@@ -1,6 +1,6 @@
 "use client";
 
-import Noresca from "@/assets/icons/Noresca";
+import Noresca from "@/assets/icons/bonmano/noresca.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { CiHeart, CiShoppingCart, CiUser } from "react-icons/ci";
@@ -52,7 +52,7 @@ const Navbar = () => {
                         className="border-b-secondary-light flex items-center gap-x-2 border-b py-4"
                         href="/"
                       >
-                        <Noresca />
+                        <Noresca className="size-5" />
                         <span>{title}</span>
                       </Link>
                     </li>
