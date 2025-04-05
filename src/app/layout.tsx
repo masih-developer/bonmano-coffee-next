@@ -3,9 +3,6 @@ import type { Metadata } from "next";
 import AuthProvider from "@/contexts/AuthProvider";
 
 import "./globals.css";
-
-import { Toaster } from "react-hot-toast";
-
 import { DanaFont } from "./fonts";
 
 export const metadata: Metadata = {
@@ -21,11 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html dir="rtl" lang="fa" className={DanaFont.className}>
-      <body>
-        <AuthProvider>{children}</AuthProvider>
-        <Toaster />
-      </body>
-    </html>
+    <AuthProvider>
+      <html dir="rtl" lang="fa" className={DanaFont.className}>
+        {children}
+      </html>
+    </AuthProvider>
   );
 }
