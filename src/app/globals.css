@@ -14,6 +14,8 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
 
+  --color-primary-light1: var(--primary-light1);
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary-light: var(--secondary-light);
@@ -60,10 +62,6 @@
 
   --color-neutral-500: var(--c-neutral-500);
   --color-neutral-500-foreground: var(--c-neutral-500-foreground);
-
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -123,6 +121,8 @@
   --primary: hsl(168 100% 30%);
   --primary-foreground: hsl(210 40% 98%);
 
+  --primary-light1: hsl(0 0% 95%);
+
   /* Secondary Colors */
   --secondary: hsl(34 61% 75%);
   --secondary-foreground: hsl(222.2 47.4% 11.2%);
@@ -164,8 +164,6 @@
   --border: hsl(214.3 31.8% 91.4%);
   --input: hsl(214.3 31.8% 91.4%);
   --ring: hsl(222.2 84% 4.9%);
-
-  --radius: 0.5rem;
 }
 
 @layer base {

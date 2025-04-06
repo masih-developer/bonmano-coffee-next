@@ -7,9 +7,9 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex gap-3">
+    <main className="flex">
       <SideBar />
-      <div className="flex-1">
+      <div className="flex-1 p-5">
         <TopBar />
         {children}
       </div>
