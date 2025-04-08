@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 @theme inline {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 572px;
+  --breakpoint-md: 752px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1172px;
+  --breakpoint-2xl: 1352px;
+
   --font-dana:
     var(--font-dana), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -179,24 +186,4 @@
   width: 100%;
   margin-inline: auto;
   padding-inline: 1rem;
-
-  @variant sm {
-    max-width: 572px;
-  }
-
-  @variant md {
-    max-width: 752px;
-  }
-
-  @variant lg {
-    max-width: 992px;
-  }
-
-  @variant xl {
-    max-width: 1172px;
-  }
-
-  @variant 2xl {
-    max-width: 1352px;
-  }
 }
