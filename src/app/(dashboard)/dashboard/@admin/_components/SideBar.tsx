@@ -68,7 +68,7 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`bg-primary text-primary-foreground flex h-screen flex-col rounded-tl-2xl rounded-bl-2xl transition-[width] duration-300 ease-linear ${
+      className={`bg-primary text-primary-foreground absolute top-0 -right-60 bottom-0 flex h-screen flex-col rounded-tl-2xl rounded-bl-2xl transition-[width] duration-300 ease-linear ${
         isMinimized ? "w-[71px]" : "w-60"
       }`}
     >

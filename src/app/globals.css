@@ -2,7 +2,7 @@
 
 @theme inline {
   --breakpoint-*: initial;
-  --breakpoint-sm: 572px;
+  --breakpoint-sm: 576px;
   --breakpoint-md: 752px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1172px;
@@ -178,7 +178,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-sm md:text-base;
+  }
+
+  h4 {
+    @apply text-base;
   }
 }
 
