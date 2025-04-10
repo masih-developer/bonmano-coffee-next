@@ -178,7 +178,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground text-sm md:text-base;
+    @apply bg-background text-foreground text-[clamp(15px,14.714px+0.0893vw,16px)];
   }
 
   h4 {
