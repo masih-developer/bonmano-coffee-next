@@ -1,6 +1,71 @@
 @import "tailwindcss";
 
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(60 5% 30%);
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222.2 84% 4.9%);
+
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222.2 84% 4.9%);
+
+  --primary: hsl(168 100% 30%);
+  --primary-foreground: hsl(210 40% 98%);
+
+  --primary-light1: hsl(0 0% 95%);
+
+  /* Secondary Colors */
+  --secondary: hsl(34 61% 75%);
+  --secondary-foreground: hsl(222.2 47.4% 11.2%);
+
+  --secondary-light: hsl(33.75 62% 95%);
+
+  --secondary-shade: hsl(21.89 37% 61%);
+
+  --muted: hsl(210 40% 96.1%);
+  --muted-foreground: hsl(215.4 16.3% 46.9%);
+
+  --accent: hsl(210 40% 96.1%);
+  --accent-foreground: hsl(222.2 47.4% 11.2%);
+
+  --danger: hsl(354 66% 52%);
+  --danger-foreground: hsl(210 40% 98%);
+
+  --success: hsl(128 49% 51%);
+  --success-foreground: hsl(210 40% 98%);
+
+  --warning: hsl(48 100% 67%);
+  --warning-foreground: hsl(222.2 47.4% 11.2%);
+
+  --info: hsl(201 98% 41%);
+  --info-foreground: hsl(210 40% 98%);
+
+  --c-neutral-0: hsl(0 0% 100%);
+
+  --c-neutral-100: hsl(0 0% 96%);
+
+  --c-neutral-200: hsl(0 0% 85%);
+
+  --c-neutral-300: hsl(0 0% 44%);
+
+  --c-neutral-400: hsl(60 5% 30%);
+
+  --c-neutral-500: hsl(60 4% 11%);
+
+  --border: hsl(214.3 31.8% 91.4%);
+  --input: hsl(214.3 31.8% 91.4%);
+  --ring: hsl(222.2 84% 4.9%);
+}
+
 @theme inline {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 752px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1172px;
+  --breakpoint-2xl: 1352px;
+
   --font-dana:
     var(--font-dana), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -13,6 +78,8 @@
 
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
+  --color-primary-light1: var(--primary-light1);
 
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -61,10 +128,6 @@
   --color-neutral-500: var(--c-neutral-500);
   --color-neutral-500-foreground: var(--c-neutral-500-foreground);
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
@@ -110,70 +173,16 @@
   }
 }
 
-:root {
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(60 5% 30%);
-
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(222.2 84% 4.9%);
-
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(222.2 84% 4.9%);
-
-  --primary: hsl(168 100% 30%);
-  --primary-foreground: hsl(210 40% 98%);
-
-  /* Secondary Colors */
-  --secondary: hsl(34 61% 75%);
-  --secondary-foreground: hsl(222.2 47.4% 11.2%);
-
-  --secondary-light: hsl(33.75 62% 95%);
-
-  --secondary-shade: hsl(21.89 37% 61%);
-
-  --muted: hsl(210 40% 96.1%);
-  --muted-foreground: hsl(215.4 16.3% 46.9%);
-
-  --accent: hsl(210 40% 96.1%);
-  --accent-foreground: hsl(222.2 47.4% 11.2%);
-
-  --danger: hsl(354 66% 52%);
-  --danger-foreground: hsl(210 40% 98%);
-
-  --success: hsl(128 49% 51%);
-  --success-foreground: hsl(210 40% 98%);
-
-  --warning: hsl(48 100% 67%);
-  --warning-foreground: hsl(222.2 47.4% 11.2%);
-
-  --info: hsl(201 98% 41%);
-  --info-foreground: hsl(210 40% 98%);
-
-  --c-neutral-0: hsl(0 0% 100%);
-
-  --c-neutral-100: hsl(0 0% 96%);
-
-  --c-neutral-200: hsl(0 0% 85%);
-
-  --c-neutral-300: hsl(0 0% 44%);
-
-  --c-neutral-400: hsl(60 5% 30%);
-
-  --c-neutral-500: hsl(60 4% 11%);
-
-  --border: hsl(214.3 31.8% 91.4%);
-  --input: hsl(214.3 31.8% 91.4%);
-  --ring: hsl(222.2 84% 4.9%);
-
-  --radius: 0.5rem;
-}
-
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-[clamp(15px,14.714px+0.0893vw,16px)];
+  }
+
+  h4 {
+    @apply text-base;
   }
 }
 
@@ -181,24 +190,4 @@
   width: 100%;
   margin-inline: auto;
   padding-inline: 1rem;
-
-  @variant sm {
-    max-width: 572px;
-  }
-
-  @variant md {
-    max-width: 752px;
-  }
-
-  @variant lg {
-    max-width: 992px;
-  }
-
-  @variant xl {
-    max-width: 1172px;
-  }
-
-  @variant 2xl {
-    max-width: 1352px;
-  }
 }
