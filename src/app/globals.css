@@ -56,6 +56,22 @@
   --border: hsl(214.3 31.8% 91.4%);
   --input: hsl(214.3 31.8% 91.4%);
   --ring: hsl(222.2 84% 4.9%);
+
+  --fs-10: 10px;
+  --fs-11: 11px;
+  --fs-12: 12px;
+
+  --fs-14: 14px;
+  --fs-14-min: clamp(13px, 12.714px + 0.0893vw, 14px);
+  --fs-15: clamp(14px, 13.7136px + 0.0893vw, 15px);
+  --fs-16: clamp(15px, 14.714px + 0.0893vw, 16px);
+  --fs-16-min: clamp(14px, 13.4288px + 0.1786vw, 16px);
+
+  --fs-18: clamp(16px, 15.429px + 0.1786vw, 18px);
+  --fs-20: clamp(18px, 17.429px + 0.1786vw, 20px);
+  --fs-22: clamp(18px, 16.858px + 0.3571vw, 22px);
+  --fs-24: clamp(18px, 16.286px + 0.5357vw, 24px);
+  --fs-30: clamp(18px, 14.5712px + 1.0714vw, 30px);
 }
 
 @theme inline {
@@ -69,6 +85,20 @@
   --font-dana:
     var(--font-dana), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --text-fs-10: var(--fs-10);
+  --text-fs-11: var(--fs-11);
+  --text-fs-12: var(--fs-12);
+  --text-fs-14: var(--fs-14);
+  --text-fs-14-min: var(--fs-14-min);
+  --text-fs-15: var(--fs-15);
+  --text-fs-16: var(--fs-16);
+  --text-fs-16-min: var(--fs-16-min);
+  --text-fs-18: var(--fs-18);
+  --text-fs-20: var(--fs-20);
+  --text-fs-22: var(--fs-22);
+  --text-fs-24: var(--fs-24);
+  --text-fs-30: var(--fs-30);
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -178,7 +208,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground text-[clamp(15px,14.714px+0.0893vw,16px)];
+    @apply bg-background text-foreground text-fs-16;
   }
 
   h4 {
