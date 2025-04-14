@@ -18,7 +18,7 @@ export default async function TopBar() {
   }
 
   return (
-    <nav className="bg-background flex w-full items-center justify-between rounded-2xl p-4">
+    <nav className="bg-background flex w-full flex-wrap justify-between gap-4 rounded-2xl p-4 sm:flex-row sm:items-center">
       <div className="flex items-center gap-2.5">
         <span className="bg-primary-light1 flex items-center justify-center rounded-lg p-2">
           <UserIcon className="fill-primary size-6" />
@@ -33,7 +33,7 @@ export default async function TopBar() {
           {user.role === "ADMIN" ? "مدیر" : "مشتری"}
         </span>
       </div>
-      <div className="flex items-center overflow-hidden rounded-lg">
+      <div className="flex w-fit items-center overflow-hidden rounded-lg">
         <span className="bg-primary-light1 px-2.5 py-1.5">۱۷ فروردین ۱۴۰۴</span>
         <span className="bg-primary text-background px-1.5 py-2">امروز</span>
       </div>

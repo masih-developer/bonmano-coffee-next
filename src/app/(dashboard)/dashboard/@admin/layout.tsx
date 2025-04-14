@@ -10,6 +10,7 @@ export default function AdminLayout({
     <main className="flex">
       <SideBar />
       <div className="flex-1 p-5">
+        <button className="" type="button"></button>
         <TopBar />
         {children}
       </div>
