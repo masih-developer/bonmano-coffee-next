@@ -3,60 +3,7 @@ import type { Metadata } from "next";
 import AuthProvider from "@/contexts/AuthProvider";
 
 import "./globals.css";
-
-import localFont from "next/font/local";
-import { Toaster } from "react-hot-toast";
-
-const DanaFont = localFont({
-  src: [
-    {
-      path: "../assets/fonts/dana/Dana-Thin.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/dana/Dana-UltraLight.ttf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/dana/Dana-Light.ttf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/dana/Dana-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/dana/Dana-Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/dana/Dana-DemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/dana/Dana-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/dana/Dana-ExtraBold.ttf",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "../assets/fonts/dana/Dana-Black.ttf",
-      weight: "900",
-      style: "normal",
-    },
-  ],
-  variable: "--font-dana",
-});
+import { DanaFont } from "./fonts";
 
 export const metadata: Metadata = {
   title:
@@ -71,11 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html dir="rtl" lang="fa" className={DanaFont.className}>
-      <body>
-        <AuthProvider>{children}</AuthProvider>
-        <Toaster />
-      </body>
-    </html>
+    <AuthProvider>
+      <html dir="rtl" lang="fa" className={DanaFont.className}>
+        {children}
+      </html>
+    </AuthProvider>
   );
 }
