@@ -33,7 +33,7 @@ export default async function TopBar() {
           {user.role === "ADMIN" ? "مدیر" : "مشتری"}
         </span>
       </div>
-      <div className="flex w-fit items-center overflow-hidden rounded-lg">
+      <div className="hidden w-fit items-center overflow-hidden rounded-lg sm:flex">
         <span className="bg-primary-light1 px-2.5 py-1.5">۱۷ فروردین ۱۴۰۴</span>
         <span className="bg-primary text-background px-1.5 py-2">امروز</span>
       </div>

@@ -1,15 +1,8 @@
 "use client";
 
 import ArrowRightIcon from "@/assets/icons/websima/caret-right.svg";
-import CommentIcon from "@/assets/icons/websima/chat.svg";
-import ArticleIcon from "@/assets/icons/websima/document.svg";
-import GridIcon from "@/assets/icons/websima/grid.svg";
 import HomeIcon from "@/assets/icons/websima/home.svg";
 import LogOutIcon from "@/assets/icons/websima/logout.svg";
-import OrdersIcon from "@/assets/icons/websima/menu.svg";
-import SettingsIcon from "@/assets/icons/websima/settings.svg";
-import ProductsIcon from "@/assets/icons/websima/shopping-bag.svg";
-import UsersIcon from "@/assets/icons/websima/user.svg";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -17,50 +10,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const SIDEBAR_LINKS = [
-  {
-    id: 1,
-    href: "/dashboard",
-    icon: <GridIcon className="fill-background size-6" />,
-    label: "داشبورد",
-  },
-  {
-    id: 2,
-    href: "/dashboard/users",
-    icon: <UsersIcon className="fill-background size-6" />,
-    label: "کاربران",
-  },
-  {
-    id: 3,
-    href: "/dashboard/products",
-    icon: <ProductsIcon className="fill-background size-6" />,
-    label: "محصولات",
-  },
-  {
-    id: 4,
-    href: "/dashboard/orders",
-    icon: <OrdersIcon className="fill-background size-6" />,
-    label: "سفارشات",
-  },
-  {
-    id: 5,
-    href: "/dashboard/articles",
-    icon: <ArticleIcon className="fill-background size-6" />,
-    label: "مقالات",
-  },
-  {
-    id: 6,
-    href: "/dashboard/comments",
-    icon: <CommentIcon className="fill-background size-6" />,
-    label: "نظرات",
-  },
-  {
-    id: 7,
-    href: "/dashboard/settings",
-    icon: <SettingsIcon className="fill-background size-6" />,
-    label: "تنظیمات",
-  },
-];
+import { SIDEBAR_LINKS } from "./links";
 
 export default function SideBar() {
   const pathname = usePathname();
@@ -68,7 +18,7 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`bg-primary text-primary-foreground absolute top-0 -right-60 bottom-0 flex h-screen flex-col rounded-tl-2xl rounded-bl-2xl transition-[width] duration-300 ease-linear ${
+      className={`bg-primary text-primary-foreground hidden h-screen flex-col rounded-tl-2xl rounded-bl-2xl transition-[width] duration-300 ease-linear lg:flex ${
         isMinimized ? "w-[71px]" : "w-60"
       }`}
     >
@@ -126,7 +76,7 @@ export default function SideBar() {
       </ScrollArea>
       <div className="relative mt-auto px-2 pt-10 pb-2">
         <button
-          className="bg-background absolute top-0 -left-5 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full shadow-lg"
+          className="bg-background absolute top-0 -left-5 flex h-10 w-10 items-center justify-center rounded-full shadow-lg"
           type="button"
           onClick={() => setIsMinimized(!isMinimized)}
         >

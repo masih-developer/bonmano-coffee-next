@@ -1,4 +1,5 @@
-import SideBar from "./_components/SideBar";
+import SideBar from "./_components/sidebar/desktop";
+import SidebarMobile from "./_components/sidebar/mobile";
 import TopBar from "./_components/TopBar";
 
 export default function AdminLayout({
@@ -10,7 +11,7 @@ export default function AdminLayout({
     <main className="flex">
       <SideBar />
       <div className="flex-1 p-5">
-        <button className="" type="button"></button>
+        <SidebarMobile />
         <TopBar />
         {children}
       </div>
