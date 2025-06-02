@@ -12,11 +12,11 @@ model User {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   Cart            Cart?
-  order           Order[]
-  account         Account[]
   ProductReview   ProductReview[]
   ProductQuestion ProductQuestion[]
   ProductAnswer   ProductAnswer[]
+  Order           Order[]
+  Account         Account[]
 
   @@map("users")
 }
