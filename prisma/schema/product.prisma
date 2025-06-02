@@ -9,7 +9,6 @@ model Product {
   weight           Float?
   height           Float?
   dimensions       String?
-  categoryId       Int
   createdAt        DateTime           @default(now())
   updatedAt        DateTime
   cartitem         CartItem[]
@@ -23,7 +22,6 @@ model Product {
   ProductReview    ProductReview[]
   ProductQuestion  ProductQuestion[]
 
-  @@index([categoryId], map: "Product_categoryId_idx")
   @@map("products")
 }
 
