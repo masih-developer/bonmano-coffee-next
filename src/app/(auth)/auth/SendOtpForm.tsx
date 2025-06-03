@@ -9,9 +9,10 @@ import { useForm } from "react-hook-form";
 
 interface AuthFormProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  setPhone: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function SendOtpForm({ setStep }: AuthFormProps) {
+export default function SendOtpForm({ setStep, setPhone }: AuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -30,6 +31,7 @@ export default function SendOtpForm({ setStep }: AuthFormProps) {
       });
       const data = await res.json();
       console.log(data);
+      setPhone(values.phone);
       setStep(2);
     } catch (error) {
       console.log(error);
