@@ -18,7 +18,7 @@ export default async function TopBar() {
   }
 
   return (
-    <nav className="bg-background flex w-full flex-wrap justify-between gap-4 rounded-2xl p-4 sm:flex-row sm:items-center">
+    <nav className="bg-background mb-5 flex w-full flex-wrap justify-between gap-4 rounded-2xl p-4 sm:flex-row sm:items-center">
       <div className="flex items-center gap-2.5">
         <span className="bg-primary-light1 flex items-center justify-center rounded-lg p-2">
           <UserIcon className="fill-primary size-6" />
