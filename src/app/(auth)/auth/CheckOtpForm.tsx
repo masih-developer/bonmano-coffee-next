@@ -4,21 +4,23 @@ import { cn } from "@/lib/utils";
 import { checkOtpSchema } from "@/validators/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 interface CheckOtpFormProps {
-  callbackUrl: string;
-  error: string;
+  phone: string;
 }
 
-export default function CheckOtpForm({ callbackUrl }: CheckOtpFormProps) {
+export default function CheckOtpForm({ phone }: CheckOtpFormProps) {
+  const searchParams = useSearchParams();
+
   const {
     handleSubmit,
     register,
 
     formState: { errors, isSubmitting },
   } = useForm<z.infer<typeof checkOtpSchema>>({
-    defaultValues: { code: "", phone: "09397900270" },
+    defaultValues: { code: "", phone },
     resolver: zodResolver(checkOtpSchema),
   });
 
@@ -27,7 +29,7 @@ export default function CheckOtpForm({ callbackUrl }: CheckOtpFormProps) {
       await signIn("credentials", {
         phone: values.phone,
         code: values.code,
-        callbackUrl,
+        callbackUrl: searchParams.get("callbackUrl") ?? "/",
       });
     } catch (err) {
       console.log(err);
